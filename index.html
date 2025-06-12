@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مذكرة أيوش</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- زر فتح القائمة -->
+<div class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</div>
+
+<!-- القائمة الجانبية -->
+<div id="sidebar" class="sidebar">
+  <h3>اختار اليوم:</h3>
+  <ul id="dayList">
+    <!-- الأيام هتتولد هنا تلقائيًا من JS -->
+  </ul>
+</div>
+  <!-- الصندوق الأول الرئيسي -->
+  <div class="container">
+    <!-- زر تحميل PDF -->
+    <div class="top-bar">
+      <a href="مذكرة أيوش.pdf" download class="btn download">⬇ تحميل مذكرة أيوش PDF</a>
+    </div>
+
+    <h1 class="title">مذكرة أيوش</h1>
+    <p id="selectedDayDisplay" class="selected-day">اليوم الحالي: لم يتم التحديد</p>
+    <!-- اختيار اليوم -->
+    <label for="day"></label>
+<select id="day" style="display: none;"></select>      <option disabled selected></option>
+    </select>
+
+    <!-- المشاعر -->
+    <div class="feelings">
+      <p>أيوش تشعر اليوم بـ:</p>
+      <label><input type="radio" name="feeling" value="السعادة" /> السعادة</label>
+      <label><input type="radio" name="feeling" value="الحزن" /> الحزن</label>
+      <label><input type="radio" name="feeling" value="الخوف" /> الخوف</label>
+      <label><input type="radio" name="feeling" value="الفراغ" /> الفراغ</label>
+      <label><input type="radio" name="feeling" value="التفاؤل" /> التفاؤل</label>
+      <label><input type="radio" name="feeling" value="الندم" /> الندم</label>
+      <label><input type="radio" name="feeling" value="الغضب" /> الغضب</label>
+      <label><input type="radio" name="feeling" value="الهدوء" /> الهدوء</label>
+    </div>
+
+    <!-- الأذكار -->
+    <p>اختر الأذكار:</p>
+    <label><input type="checkbox" id="morning" /> أذكار الصباح</label>
+    <label><input type="checkbox" id="evening" /> أذكار المساء</label>
+
+    <!-- رتب أولوياتك -->
+    <label for="priority">رتب أولوياتك:</label>
+    <textarea id="priority" placeholder="اكتب أولوياتك هنا..."></textarea>
+
+    <!-- ملاحظات اليوم -->
+    <label for="notes">معايا إيه النهارده؟</label>
+    <textarea id="notes" placeholder="اكتب هنا ملاحظاتك..."></textarea>
+  </div>
+
+  <!-- بداية المربع الجديد -->
+  <div class="extra-container">
+    <div class="extra-box">
+      <label for="event">أحكي موقف عجبك أو معجبكش النهارده!</label>
+      <textarea id="event" placeholder="موقف النهارده..."></textarea>
+
+      <label for="feelInside">طلع اللي جواك</label>
+      <textarea id="feelInside" placeholder="فضفض هنا..."></textarea>
+
+      <!-- أزرار -->
+      <div class="buttons">
+        <button onclick="saveData()">✔ سجل</button>
+        <button onclick="viewData()">📋 عرض اليوميات</button>
+      </div>
+
+      <!-- عرض اليوميات -->
+      <div id="output" class="output"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

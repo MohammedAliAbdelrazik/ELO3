@@ -1,0 +1,171 @@
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+  margin: 0;
+  padding: 0;
+}
+
+.container, .extra-container {
+  background: #ffffff;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  color: #6c5ce7;
+  font-size: 28px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.title::after {
+  content: "💜";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  top: 100%;
+}
+
+.top-bar {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.btn.download {
+  background-color: #55efc4;
+  color: #2d3436;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn.download:hover {
+  background-color: #00b894;
+  color: white;
+}
+
+label, p {
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+  color: #2d3436;
+}
+
+select, textarea {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.feelings label,
+input[type="checkbox"] + label {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  color: #636e72;
+}
+
+.buttons {
+  text-align: center;
+  margin-top: 15px;
+}
+
+button {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #a29bfe;
+}
+
+.output {
+  margin-top: 20px;
+  background: #f1f2f6;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* زر الثلاث شرط */
+.sidebar-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1001;
+  color: #6c5ce7;
+}
+
+/* القائمة الجانبية */
+.sidebar {
+  position: fixed;
+  right: -220px;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+  border-left: 2px solid #dfe6e9;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #2d3436;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  color: #636e72;
+  transition: background 0.2s;
+}
+
+.sidebar ul li:hover {
+  background-color: #f1f2f6;
+}
+#day {
+  display: none;
+}
