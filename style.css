@@ -5,9 +5,10 @@ body {
   padding: 0;
 }
 
-.container, .extra-container {
+.container,
+.extra-container {
   background: #ffffff;
-  max-width: 500px;
+  max-width: 550px;
   margin: 30px auto;
   padding: 25px;
   border-radius: 16px;
@@ -15,92 +16,82 @@ body {
   box-sizing: border-box;
 }
 
-.title {
-  text-align: center;
-  color: #6c5ce7;
-  font-size: 28px;
-  margin-bottom: 20px;
-  position: relative;
+.section {
+  border: 1px solid #ececec;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  background-color: #f9f9fb;
 }
 
-.title::after {
-  content: "💜";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
-  top: 100%;
-}
-
-.top-bar {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.btn.download {
-  background-color: #55efc4;
-  color: #2d3436;
-  padding: 10px 18px;
-  text-decoration: none;
-  border-radius: 10px;
+.section-title {
+  font-size: 18px;
   font-weight: bold;
-  transition: background 0.3s;
-}
-
-.btn.download:hover {
-  background-color: #00b894;
-  color: white;
-}
-
-label, p {
-  font-weight: bold;
-  margin-top: 15px;
-  display: block;
-  color: #2d3436;
-}
-
-select, textarea {
-  width: 100%;
-  margin-top: 5px;
   margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #dfe6e9;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 80px;
+  color: #5ccee7;
+  border-bottom: 1px solid #dcdde1;
+  padding-bottom: 5px;
 }
 
 .feelings label,
-input[type="checkbox"] + label {
-  margin-right: 10px;
-  margin-bottom: 10px;
+.section label {
   display: inline-block;
-  color: #636e72;
-}
-
-.buttons {
-  text-align: center;
-  margin-top: 15px;
-}
-
-button {
-  background-color: #6c5ce7;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  margin: 5px;
+  background-color: #f1f2f6;
+  color: #2d3436;
+  padding: 8px 12px;
+  margin: 6px 6px 0 0;
   border-radius: 8px;
-  font-weight: bold;
   cursor: pointer;
   transition: background 0.3s;
 }
 
+.feelings input[type="radio"],
+.section input[type="checkbox"] {
+  display: none;
+}
+
+.feelings input[type="radio"]:checked + label,
+.section input[type="checkbox"]:checked + label {
+  background-color: #00ccff;
+  color: white;
+}
+
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4ec9f6;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+}
+
+button {
+  background-color: #33ccee;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
 button:hover {
-  background-color: #a29bfe;
+  background-color: #9be7fe;
+  transform: scale(1.05);
 }
 
 .output {
@@ -112,7 +103,7 @@ button:hover {
   line-height: 1.6;
 }
 
-/* زر الثلاث شرط */
+/* sidebar + toggle (بدون تغيير) */
 .sidebar-toggle {
   position: fixed;
   top: 15px;
@@ -120,23 +111,32 @@ button:hover {
   font-size: 26px;
   cursor: pointer;
   z-index: 1001;
-  color: #6c5ce7;
+  color: #5ccee7;
+  background-color: #f5f6fa;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
 }
 
-/* القائمة الجانبية */
+.sidebar-toggle:hover {
+  background-color: #dfe6e9;
+}
+
 .sidebar {
   position: fixed;
   right: -220px;
   top: 0;
   width: 200px;
   height: 100%;
-  background-color: #ffffff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  background-color: #fefefe;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: right 0.3s ease;
   z-index: 1000;
   border-left: 2px solid #dfe6e9;
   overflow-y: auto;
+  border-radius: 12px 0 0 12px;
 }
 
 .sidebar.open {
@@ -144,9 +144,11 @@ button:hover {
 }
 
 .sidebar h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #2d3436;
+  font-size: 19px;
+  margin-bottom: 15px;
+  color: #5cc0e7;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
 }
 
 .sidebar ul {
@@ -156,16 +158,78 @@ button:hover {
 }
 
 .sidebar ul li {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+  padding: 10px 12px;
+  margin-bottom: 5px;
+  border-radius: 6px;
   cursor: pointer;
   color: #636e72;
-  transition: background 0.2s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .sidebar ul li:hover {
-  background-color: #f1f2f6;
+  background-color: #e0e7ff;
+  color: #2d3436;
 }
-#day {
+
+
+#output {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  padding-right: 10px;
+  display: block;
+}
+
+/* لما تظهر */
+#output.show {
+  max-height: 2000px; /* زودها كفاية علشان كل الأيام */
+  opacity: 1;
+  overflow-y: auto;
+}
+
+/* تصميم كل يوم */
+.day-entry {
+  border: 1px solid #dcdde1;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.day-header {
+  padding: 12px 16px;
+  background-color: #f1f2f6;
+  font-weight: bold;
+  color: #333;
+  border-radius: 12px 12px 0 0;
+}
+
+.day-details {
+  padding: 10px 16px;
+  border-top: 1px solid #eee;
   display: none;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #fbfcfd;
+  border-radius: 0 0 12px 12px;
+}
+
+button.delete-all {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button.delete-all:hover {
+  background-color: #ff4d4d;
 }
