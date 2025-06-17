@@ -183,7 +183,7 @@ button:hover {
 
 /* لما تظهر */
 #output.show {
-  max-height: 2000px; /* زودها كفاية علشان كل الأيام */
+  max-height: 500px; /* زودها كفاية علشان كل الأيام */
   opacity: 1;
   overflow-y: auto;
 }
@@ -232,4 +232,39 @@ button.delete-all {
 
 button.delete-all:hover {
   background-color: #ff4d4d;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  textarea,
+  select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .sidebar {
+    width: 80%;
+    right: -80%;
+  }
+
+  .sidebar.open {
+    right: 0;
+  }
+
+  .sidebar-toggle {
+    font-size: 22px;
+    padding: 6px 10px;
+  }
 }
