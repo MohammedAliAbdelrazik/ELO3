@@ -34,26 +34,49 @@
 
     <!-- المشاعر -->
     <div class="feelings">
-      <p>أيوش تشعر اليوم بـ:</p>
-      <label><input type="radio" name="feeling" value="السعادة" /> السعادة</label>
-      <label><input type="radio" name="feeling" value="الحزن" /> الحزن</label>
-      <label><input type="radio" name="feeling" value="الخوف" /> الخوف</label>
-      <label><input type="radio" name="feeling" value="الفراغ" /> الفراغ</label>
-      <label><input type="radio" name="feeling" value="التفاؤل" /> التفاؤل</label>
-      <label><input type="radio" name="feeling" value="الندم" /> الندم</label>
-      <label><input type="radio" name="feeling" value="الغضب" /> الغضب</label>
-      <label><input type="radio" name="feeling" value="الهدوء" /> الهدوء</label>
-    </div>
+  <p>أيوش تشعر اليوم بـ:</p>
+  <input type="radio" id="happy" name="feeling" value="السعادة" />
+  <label for="happy">السعادة</label>
+
+  <input type="radio" id="sad" name="feeling" value="الحزن" />
+  <label for="sad">الحزن</label>
+
+  <input type="radio" id="fear" name="feeling" value="الخوف" />
+  <label for="fear">الخوف</label>
+
+  <input type="radio" id="empty" name="feeling" value="الفراغ" />
+  <label for="empty">الفراغ</label>
+
+  <input type="radio" id="hope" name="feeling" value="التفاؤل" />
+  <label for="hope">التفاؤل</label>
+
+  <input type="radio" id="regret" name="feeling" value="الندم" />
+  <label for="regret">الندم</label>
+
+  <input type="radio" id="anger" name="feeling" value="الغضب" />
+  <label for="anger">الغضب</label>
+
+  <input type="radio" id="calm" name="feeling" value="الهدوء" />
+  <label for="calm">الهدوء</label>
+</div>
 
     <!-- الأذكار -->
-    <p>اختر الأذكار:</p>
-    <label><input type="checkbox" id="morning" /> أذكار الصباح</label>
-    <label><input type="checkbox" id="evening" /> أذكار المساء</label>
+     <div class="section">
+  <p>الأذكار:</p>
+
+  <input type="checkbox" id="morning" />
+  <label for="morning">أذكار الصباح</label>
+
+  <input type="checkbox" id="evening" />
+  <label for="evening">أذكار المساء</label>
+</div>
+
+       <div class ="section">
 
     <!-- رتب أولوياتك -->
-    <label for="priority">رتب أولوياتك:</label>
+    <p>رتب أولوياتك:</p>
     <textarea id="priority" placeholder="اكتب أولوياتك هنا..."></textarea>
-
+       </div>
     <!-- ملاحظات اليوم -->
     <label for="notes">معايا إيه النهارده؟</label>
     <textarea id="notes" placeholder="اكتب هنا ملاحظاتك..."></textarea>
@@ -72,6 +95,7 @@
       <div class="buttons">
         <button onclick="saveData()">✔ سجل</button>
         <button onclick="viewData()">📋 عرض اليوميات</button>
+        <button onclick="deleteAllData()" class="delete-all">🗑 حذف جميع الأيام</button>
       </div>
 
       <!-- عرض اليوميات -->
