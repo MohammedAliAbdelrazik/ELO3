@@ -5,35 +5,42 @@ window.onload = () => {
   const dayList = document.getElementById("dayList");
 
   for (let i = 1; i <= 30; i++) {
-    // إنشاء عنصر option للقائمة المخفية
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent =` اليوم ${i}`;
-    daySelect.appendChild(option);
+  // إنشاء عنصر option للقائمة المخفية
+  const option = document.createElement("option");
+  option.value = i;
+  option.textContent = ` اليوم ${i}`;
+  daySelect.appendChild(option);
 
-    // إنشاء عنصر li للقائمة الجانبية
-    const li = document.createElement("li");
-    li.textContent =` اليوم ${i}`;
-    
-    li.onclick = () => {
-      // تحديث قيمة السيلكت المخفي
-      daySelect.value = i;
+  // إنشاء عنصر li للقائمة الجانبية
+  const li = document.createElement("li");
+  li.textContent = ` اليوم ${i}`;
 
-      // عرض اليوم الحالي في الصفحة
-      const selectedDisplay = document.getElementById("selectedDayDisplay");
-      if (selectedDisplay) {
-        selectedDisplay.textContent =` اليوم الحالي: ${i}`;
-      }
-
-      // تحميل بيانات اليوم إذا كانت موجودة
-      loadDayData(i);
-
-      // إغلاق القائمة الجانبية
-      toggleSidebar();
-    };
-
-    dayList.appendChild(li);
+  // ✅ تمييز الأيام اللي فيها بيانات
+  const existingData = localStorage.getItem(`ayoosh_day_${i}`);
+  if (existingData) {
+    li.classList.add("has-data"); // نضيف كلاس للتلوين
   }
+
+  // ✅ تمييز الأيام المهمة (7، 14، 21، 28)
+  if ([7, 14, 21, 28].includes(i)) {
+    li.classList.add("bold-day");
+  }
+
+  // عند الضغط على اليوم
+  li.onclick = () => {
+    daySelect.value = i;
+
+    const selectedDisplay = document.getElementById("selectedDayDisplay");
+    if (selectedDisplay) {
+      selectedDisplay.textContent = ` اليوم الحالي: ${i}`;
+    }
+
+    loadDayData(i);
+    toggleSidebar();
+  };
+
+  dayList.appendChild(li);
+}
 };
 
 // فتح/إغلاق القائمة الجانبية
