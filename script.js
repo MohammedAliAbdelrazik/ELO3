@@ -238,3 +238,28 @@ function deleteAllData() {
     viewData();
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fields = ["priority", "notes", "event", "feelInside"];
+
+  fields.forEach((id, index) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("keydown", function (e) {
+        // لو ضغط Enter من غير Shift
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+
+          // لو مش آخر خانة → روح للي بعدها
+          if (index < fields.length - 1) {
+            const nextEl = document.getElementById(fields[index + 1]);
+            nextEl.focus();
+          } else {
+            // لو آخر خانة → سجل البيانات
+            saveData();
+          }
+        }
+      });
+    }
+  });
+});
