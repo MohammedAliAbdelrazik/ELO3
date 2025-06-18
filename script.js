@@ -3,44 +3,54 @@
 window.onload = () => {
   const daySelect = document.getElementById("day");
   const dayList = document.getElementById("dayList");
+  let firstEmptyDay = null;
 
   for (let i = 1; i <= 30; i++) {
-  // إنشاء عنصر option للقائمة المخفية
-  const option = document.createElement("option");
-  option.value = i;
-  option.textContent = ` اليوم ${i}`;
-  daySelect.appendChild(option);
+    // إنشاء عنصر option للقائمة المخفية
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = ` اليوم ${i}`;
+    daySelect.appendChild(option);
 
-  // إنشاء عنصر li للقائمة الجانبية
-  const li = document.createElement("li");
-  li.textContent = ` اليوم ${i}`;
+    // إنشاء عنصر li للقائمة الجانبية
+    const li = document.createElement("li");
+    li.textContent = ` اليوم ${i}`;
 
-  // ✅ تمييز الأيام اللي فيها بيانات
-  const existingData = localStorage.getItem(`ayoosh_day_${i}`);
-  if (existingData) {
-    li.classList.add("has-data"); // نضيف كلاس للتلوين
-  }
-
-  // ✅ تمييز الأيام المهمة (7، 14، 21، 28)
-  if ([7, 14, 21, 28].includes(i)) {
-    li.classList.add("bold-day");
-  }
-
-  // عند الضغط على اليوم
-  li.onclick = () => {
-    daySelect.value = i;
-
-    const selectedDisplay = document.getElementById("selectedDayDisplay");
-    if (selectedDisplay) {
-      selectedDisplay.textContent = ` اليوم الحالي: ${i}`;
+    // تلوين الأيام اللي فيها بيانات
+    const savedData = localStorage.getItem(`ayoosh_day_${i}`);
+    if (savedData) {
+      li.style.backgroundColor = "#b9effff7"; // لون هادي
+    } else if (!firstEmptyDay) {
+      firstEmptyDay = i;
     }
 
-    loadDayData(i);
-    toggleSidebar();
-  };
+    // تحديد الأيام 7 و14 و21 و28 بخط بولد
+    if ([7, 14, 21, 28].includes(i)) {
+      li.style.fontWeight = "bold";
+    }
 
-  dayList.appendChild(li);
-}
+    li.onclick = () => {
+      daySelect.value = i;
+      const selectedDisplay = document.getElementById("selectedDayDisplay");
+      if (selectedDisplay) {
+        selectedDisplay.textContent = ` اليوم الحالي: ${i}`;
+      }
+      loadDayData(i);
+      toggleSidebar();
+    };
+
+    dayList.appendChild(li);
+  }
+
+  // التوجيه تلقائي لأول يوم فاضي
+  if (firstEmptyDay) {
+    daySelect.value = firstEmptyDay;
+    const selectedDisplay = document.getElementById("selectedDayDisplay");
+    if (selectedDisplay) {
+      selectedDisplay.textContent = ` اليوم الحالي: ${firstEmptyDay}`;
+    }
+    loadDayData(firstEmptyDay);
+  }
 };
 
 // فتح/إغلاق القائمة الجانبية
