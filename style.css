@@ -280,7 +280,7 @@ button.delete-all:hover {
   }
 
   .sidebar {
-    width: 80%; /* فقط غير العرض لو عايزها أضيق على الموبايل */
+    width: 40%; /* فقط غير العرض لو عايزها أضيق على الموبايل */
   }
 
   .sidebar-toggle {
