@@ -37,6 +37,8 @@
     </select>
 
     <!-- المشاعر -->
+          <div class="section">
+
     <div class="feelings">
   <p>أيوش تشعر اليوم بـ:</p>
   <input type="radio" id="happy" name="feeling" value="السعادة" />
@@ -63,7 +65,7 @@
   <input type="radio" id="calm" name="feeling" value="الهدوء" />
   <label for="calm">الهدوء</label>
 </div>
-
+          </div>
     <!-- الأذكار -->
      <div class="sec" style="margin-top: 25px;"></div>
      <div class="section">
@@ -79,30 +81,47 @@
        <div class ="section">
 
     <!-- رتب أولوياتك -->
+        
+         <div class="section">
+
     <p>رتب أولوياتك:</p>
     <textarea id="priority" placeholder="اكتب أولوياتك هنا..."></textarea>
        </div>
+       </div>
+
+
     <!-- ملاحظات اليوم -->
-    <label for="notes">معايا إيه النهارده؟</label>
+          <div class="section">
+
+    <p>معايا إيه النهارده؟</p>
     <textarea id="notes" placeholder="اكتب هنا ملاحظاتك..."></textarea>
   </div>
+  </div>
+
 
   <!-- بداية المربع الجديد -->
+
   <div class="extra-container">
-    <div class="extra-box">
-      <label for="event">أحكي موقف عجبك أو معجبكش النهارده!</label>
+  <div class="extra-box">
+    <div class="section">
+
+          <p>أحكي موقف عجبك أو معجبكش النهارده!</p>
       <textarea id="event" placeholder="موقف النهارده..."></textarea>
 
-      <label for="feelInside">طلع اللي جواك</label>
+           <p>طلع اللي جواك</p>
       <textarea id="feelInside" placeholder="فضفض هنا..."></textarea>
+    </div>
 
-      <!-- أزرار -->
-      <div class="buttons">
-        <button onclick="saveData()">✔ سجل</button>
-        <button onclick="viewData()">📋 عرض اليوميات</button>
-        <button onclick="deleteAllData()" class="delete-all">🗑 حذف جميع الأيام</button>
-      </div>
+    <!-- أزرار -->
+    <div class="buttons">
+      <button onclick="saveData()">✔ سجل</button>
+      <button onclick="viewData()">📋 عرض اليوميات</button>
+      <button onclick="deleteAllData()" class="delete-all">🗑 حذف جميع الأيام</button>
+    </div>
 
+    <div id="output" class="output"></div>
+  </div>
+</div>
       <!-- عرض اليوميات -->
       <div id="output" class="output"></div>
     </div>
