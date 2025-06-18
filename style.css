@@ -280,11 +280,30 @@ button.delete-all:hover {
   }
 
   .sidebar {
-    width: 40%; /* فقط غير العرض لو عايزها أضيق على الموبايل */
+    width: 45%; /* فقط غير العرض لو عايزها أضيق على الموبايل */
   }
 
   .sidebar-toggle {
     font-size: 22px;
     padding: 6px 10px;
   }
+}
+
+/* تلوين الأيام اللي فيها بيانات */
+#dayList li.has-data {
+  background-color: #f0f8ff; /* لون أزرق هادئ */
+  border-radius: 6px;
+  padding: 5px;
+  margin-bottom: 4px;
+}
+
+/* تمييز الأيام 7،14،21،28 بخط عريض */
+#dayList li.bold-day {
+  font-weight: bold;
+}
+
+/* تأثير hover لو حبيت */
+#dayList li:hover {
+  background-color: #e0f0ff;
+  cursor: pointer;
 }
