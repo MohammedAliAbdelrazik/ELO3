@@ -351,3 +351,39 @@ document.querySelectorAll('input[name="feeling"]').forEach(input => {
     }, 2000);
   });
 });
+
+// أول ما الصفحة تفتح، نستنى ٥ ثواني قبل أول سؤال
+setTimeout(() => {
+  const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
+  
+  if (currentDay > 1) {
+    // اسأل أول مره
+    askAboutYesterday(currentDay);
+  }
+
+  // وبعدين كرر السؤال كل دقيقة
+  setInterval(() => {
+    const currentDayRepeat = parseInt(document.getElementById('day').value, 10) || 1;
+    if (currentDayRepeat > 1) {
+      askAboutYesterday(currentDayRepeat);
+    }
+  }, 60000); // كل 60 ثانية
+}, 5000); // بعد أول ٥ ثواني من تحميل الصفحة
+
+// دالة السؤال
+function askAboutYesterday(currentDay) {
+  const previousDay = currentDay - 1;
+  const answer = confirm('أيوش انتهيتي من مهمة امبارح؟ اضغطي "موافق" إذا أه، و "إلغاء" إذا لسه.');
+  if (answer) {
+    const data = localStorage.getItem(`ayoosh_day_${previousDay}`);
+    if (data) {
+      const d = JSON.parse(data);
+      d.taskCompleted = true;
+      localStorage.setItem(`ayoosh_day_${previousDay}`, JSON.stringify(d));
+      alert(`✅ تم تعليم مهمة اليوم ${previousDay} كمكتملة!`);
+    } else {
+      alert(`⚠ مفيش بيانات محفوظة لليوم ${previousDay}.`);
+    }
+  }
+}
+
