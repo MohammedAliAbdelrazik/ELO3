@@ -61,6 +61,9 @@ window.onload = () => {
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   sidebar.classList.toggle("open");
+
+  const tasksToggle = document.querySelector(".tasks-toggle");
+  tasksToggle.classList.toggle("shifted"); // ده الكلاس الجديد
 }
 
 function toggleTasks() {
@@ -104,16 +107,6 @@ function toggleTasks() {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
