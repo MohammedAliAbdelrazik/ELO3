@@ -63,6 +63,60 @@ function toggleSidebar() {
   sidebar.classList.toggle("open");
 }
 
+function toggleTasks() {
+  const dropdown = document.getElementById('tasksDropdown');
+  dropdown.classList.toggle('open');
+
+  // تفريغ القائمة
+  const list = document.getElementById('tasksList');
+  list.innerHTML = '';
+
+  // جلب الأيام المسجلة
+  for (let i = 1; i <= 30; i++) {
+    const data = localStorage.getItem(`ayoosh_day_${i}`);
+    if (data) {
+      const d = JSON.parse(data);
+      if (d.priority) {
+        const li = document.createElement('li');
+
+        // اسم اليوم
+        const label = document.createElement('label');
+        label.textContent = `اليوم ${i}`;
+        label.onclick = (e) => {
+          e.preventDefault();
+          alert(`مهام اليوم ${i}:\n${d.priority || 'لا توجد مهام مسجلة'}`);
+        };
+
+        // مربع اختيار مكتمل؟
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = !!d.taskCompleted;
+        checkbox.onclick = (e) => {
+          e.stopPropagation();
+          d.taskCompleted = checkbox.checked;
+          localStorage.setItem(`ayoosh_day_${i}`, JSON.stringify(d));
+        };
+
+        li.appendChild(label);
+        li.appendChild(checkbox);
+        list.appendChild(li);
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // حفظ البيانات
 function saveData() {
   const day = document.getElementById("day").value;
