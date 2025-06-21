@@ -391,3 +391,8 @@ button.delete-all:hover {
 .tasks-dropdown input[type="checkbox"] {
   margin-left: 8px;
 }
+.tasks-toggle.shifted {
+  right: calc(50px + 250px); /* 70px الأصلية + عرض القائمة 250px */
+  transition: right 0.3s ease;
+}
+
