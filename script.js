@@ -211,12 +211,12 @@ function viewData() {
       details.className = "day-details";
       details.innerHTML = `
         🕒 التاريخ: ${d.date} - الوقت: ${d.time}<br>
-        😌 الشعور: ${d.feeling}<br>
-        📝 الملاحظات: ${d.notes}<br>
-        ✅ الأولويات: ${d.priority || '---'}<br>
-        📌 الموقف: ${d.event || '---'}<br>
-        💬 الفضفضة: ${d.feelInside || '---'}<br>
-        🌤 الأذكار: ${azkarText}
+         الشعور: ${d.feeling}<br>
+         الملاحظات: ${d.notes}<br>
+         الأولويات: ${d.priority || '---'} ${d.taskCompleted ? '<span style="color:green; font-weight:bold;">(مكتملة ✅)</span>' : ''}<br>
+         الموقف: ${d.event || '---'}<br>
+         الفضفضة: ${d.feelInside || '---'}<br>
+         الأذكار: ${azkarText}
       `;
 
       // التحكم في الفتح والإغلاق
