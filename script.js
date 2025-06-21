@@ -270,5 +270,37 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+const feelingEmojis = {
+  "السعادة": "😊",
+  "الحزن": "😢",
+  "الخوف": "😱",
+  "الفراغ": "😶",
+  "التفاؤل": "🌈",
+  "الندم": "😔",
+  "الغضب": "😡",
+  "الهدوء": "😌"
+};
 
+document.querySelectorAll('input[name="feeling"]').forEach(input => {
+  input.addEventListener("change", () => {
+    const label = document.querySelector(`label[for="${input.id}"]`);
+    const emoji = feelingEmojis[input.value];
 
+    if (!label) return;
+
+    // إزالة أي إيموجي قديم
+    const oldEmoji = label.querySelector(".feeling-emoji");
+    if (oldEmoji) oldEmoji.remove();
+
+    // إنشاء إيموجي جديد
+    const emojiSpan = document.createElement("span");
+    emojiSpan.textContent = emoji;
+    emojiSpan.classList.add("feeling-emoji");
+    label.appendChild(emojiSpan);
+
+    // إزالة بعد ثانيتين (احتياطي)
+    setTimeout(() => {
+      emojiSpan.remove();
+    }, 2000);
+  });
+});
