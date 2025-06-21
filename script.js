@@ -53,6 +53,10 @@ window.onload = () => {
   }
 };
 
+
+
+
+
 // فتح/إغلاق القائمة الجانبية
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
@@ -110,6 +114,8 @@ function saveData() {
   if (checkedFeeling) checkedFeeling.checked = false;
   document.getElementById("morning").checked = false;
   document.getElementById("evening").checked = false;
+
+  
 
   viewData(); // علشان يحدث القائمة فورًا
 }
@@ -240,7 +246,7 @@ function deleteAllData() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const fields = ["priority", "notes", "event", "feelInside"];
+  const fields = ["notes", "priority", "event", "feelInside"];
 
   fields.forEach((id, index) => {
     const el = document.getElementById(id);
@@ -263,3 +269,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+
