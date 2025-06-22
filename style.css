@@ -143,7 +143,6 @@ button:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: background 0.3s;
 }
-
 .sidebar-toggle:hover {
   background-color: #dfe6e9;
 }
@@ -162,19 +161,11 @@ button:hover {
   border-left: 2px solid #dfe6e9;
   overflow-y: auto;
   border-radius: 12px 0 0 12px;
-
-  /* مخفية مبدئياً */
   transform: translateX(100%);
 }
-
 .sidebar.open {
   transform: translateX(0);
 }
-
-.sidebar.open {
-  right: 0;
-}
-
 .sidebar h3 {
   font-size: 19px;
   margin-bottom: 15px;
@@ -182,24 +173,43 @@ button:hover {
   border-bottom: 1px solid #eee;
   padding-bottom: 8px;
 }
-
-.sidebar ul {
+.sidebar-menu {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
-.sidebar ul li {
+.sidebar-item {
   padding: 10px 12px;
-  margin-bottom: 5px;
   border-radius: 6px;
   cursor: pointer;
   color: #636e72;
   transition: background 0.3s, color 0.3s;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
 }
-
-.sidebar ul li:hover {
+.sidebar-item:hover {
   background-color: #e0e7ff;
+  color: #2d3436;
+}
+.sidebar-item ul.submenu {
+  list-style: none;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+.sidebar-item ul.submenu li {
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #636e72;
+  transition: background 0.3s;
+}
+.sidebar-item ul.submenu li:hover {
+  background-color: #dfe6e9;
   color: #2d3436;
 }
 
