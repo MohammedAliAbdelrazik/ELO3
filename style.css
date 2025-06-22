@@ -152,20 +152,26 @@ button:hover {
   top: 0;
   right: 0;
   width: 250px;
-  height: 100%;
   background-color: #fefefe;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.3s ease;
-  z-index: 1000;
   border-left: 2px solid #dfe6e9;
-  overflow-y: auto;
   border-radius: 12px 0 0 12px;
+  padding: 10px 20px;
   transform: translateX(100%);
+  transition: transform 0.3s ease, height 0.3s ease;
+  z-index: 1000;
+
+  /* الإرتفاع يكون على أد أقل محتوى */
+  height: auto;
+  max-height: 100vh;      /* يمنع تخطي طول الشاشة */
+  overflow-y: hidden;     /* مفيش سكرول طالما القوائم متقفلة */
 }
 .sidebar.open {
   transform: translateX(0);
 }
+.sidebar.open.expanded {
+  overflow-y: auto;       /* يظهر السكرول فقط لو expanded */
+}
+
 .sidebar h3 {
   font-size: 19px;
   margin-bottom: 15px;
@@ -212,6 +218,18 @@ button:hover {
   background-color: #dfe6e9;
   color: #2d3436;
 }
+
+/* القايمة الجانبية وهي مفتوحة لكنها قصيرة (الافتراضية بعد الفتح مباشرة) */
+.sidebar.collapsed {
+  max-height: 100px; /* تكفي محتوى أولي زي زر الأيام والإحصائيات */
+  overflow: hidden;    /* إخفاء أي عناصر زايدة مؤقتًا */
+}
+.sidebar.open {
+  max-height: 100vh;   /* عند التوسع يسمح بالسكرول */
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+}
+
 
 
 #output {
@@ -453,3 +471,14 @@ button.delete-all:hover {
 }
 
 
+.sidebar.collapsed {
+  height: auto;
+  max-height: 190px; /* مناسب لإظهار العناوين فقط */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.sidebar.open:not(.collapsed) {
+  max-height: 100vh; /* يسمح بالسكرول كامل */
+  overflow-y: auto;
+}
