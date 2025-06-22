@@ -125,7 +125,7 @@ function toggleTasks() {
   if (!day || !feeling || !notes) {
   await showModal(
     "من فضلك املأ البيانات الأساسية.",
-    [{ label: "تمام", value: true }]
+    [{ label: "طيب استنى", value: true }]
   );
   return;
 }
@@ -299,7 +299,7 @@ function loadDayData(day) {
 
     await showModal(
     "تم حذف جميع اليوميات بنجاح!",
-    [{ label: "تمام ✅", value: true }]
+    [{ label: "تم", value: true }]
   );
 
 
@@ -385,7 +385,7 @@ setTimeout(() => {
       askAboutYesterday(currentDayRepeat);
     }
   }, 60000); // كل 60 ثانية
-}, 5000); // بعد أول ٥ ثواني من تحميل الصفحة
+}, 10000); // بعد أول 10 ثواني من تحميل الصفحة
 
 // دالة السؤال
  // دالة السؤال
@@ -408,12 +408,12 @@ async function askAboutYesterday(currentDay) {
       localStorage.setItem(`ayoosh_day_${previousDay}`, JSON.stringify(d));
       await showModal(
         `✅ تم تعليم مهمة اليوم ${previousDay} كمكتملة!`,
-        [{ label: "تمام ✅", value: true }]
+        [{ label: "اشطا", value: true }]
       );
     } else {
       await showModal(
         `⚠ مفيش بيانات محفوظة لليوم ${previousDay}.`,
-        [{ label: "تمام ✅", value: true }]
+        [{ label: "تمام ", value: true }]
       );
     }
   }
@@ -445,8 +445,8 @@ async function checkUncompletedTasks() {
   const answer = await showModal(
     `أيوش انتهيتي من المهام اللي عندك في ${daysList}؟`,
     [
-      { label: "أه خلصتها ✅", value: true },
-      { label: "لسه ❌", value: false }
+      { label: "أه خلصتها ", value: true },
+      { label: "لسه ", value: false }
     ]
   );
 
@@ -476,20 +476,20 @@ async function checkUncompletedTasks() {
 
     await showModal(
       `✅ تم تعليم المهام كمكتملة لـ ${daysList}.`,
-      [{ label: "تمام ✅", value: true }]
+      [{ label: "تم ", value: true }]
     );
 
     const randomPositive = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
     await showModal(
       randomPositive,
-      [{ label: "تمام ✅", value: true }]
+      [{ label: "تمام ", value: true }]
     );
 
   } else {
     const randomNegative = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
     await showModal(
       randomNegative,
-      [{ label: "تمام ✅", value: true }]
+      [{ label: "تمام ", value: true }]
     );
   }
 }
@@ -511,6 +511,14 @@ function showModal(message, buttons) {
     messageElem.textContent = message;
     buttonsElem.innerHTML = '';
 
+    // لو مفيش أزرار نعرض الرسالة بدون أزرار ونرجع مباشرة
+    if (!buttons || buttons.length === 0) {
+      modal.style.display = 'flex';
+      resolve(); // نرجع على طول عشان مفيش قيمة من أزرار
+      return;
+    }
+
+    // لو فيه أزرار نبنيها عادي
     buttons.forEach(btn => {
       const button = document.createElement('button');
       button.textContent = btn.label;
@@ -525,3 +533,25 @@ function showModal(message, buttons) {
   });
 }
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const greetingMessages = [
+    "عندنا يا ترى معانا إيه جديد النهاردة؟ ",
+    "صباح الخير يا أحلى أيوش 🌞",
+    "إيه الجمال ده؟ أنا بفرح لما بتيجي 🥰",
+    "غيابك طول وحشتيني أوي 💜"
+  ];
+
+  const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
+
+  setTimeout(() => {
+    showModal(randomGreeting); // بدون أزرار
+    setTimeout(() => {
+      const modal = document.getElementById('customModal');
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    }, 3000); // يختفي بعد 4 ثواني
+  }, 1000); // يظهر بعد ثانية من تحميل الصفحة
+});
