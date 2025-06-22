@@ -56,15 +56,20 @@ window.onload = () => {
 
 
 
-
 // فتح/إغلاق القائمة الجانبية
 function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("open");
+  const sidebar = document.getElementById('sidebar')
+  sidebar.classList.toggle('open')
 
-  const tasksToggle = document.querySelector(".tasks-toggle");
-  tasksToggle.classList.toggle("shifted"); // ده الكلاس الجديد
+  const tasksToggle = document.querySelector('.tasks-toggle')
+  tasksToggle.classList.toggle('shifted')
+
+  // إذا القايمة بقت مفتوحة، أعد ضبط الأيام
+  if (sidebar.classList.contains('open')) {
+    resetSidebarContent()
+  }
 }
+
 
 function toggleTasks() {
   const dropdown = document.getElementById('tasksDropdown');
@@ -107,6 +112,43 @@ function toggleTasks() {
     }
   }
 }
+
+
+function resetSidebarContent() {
+  const dayList = document.getElementById('dayList')
+  if (dayList) {
+    // امسح القائمة
+    dayList.innerHTML = ''
+
+    // أعد توليد الأيام من الأول
+    for (let i = 1; i <= 30; i++) {
+      const li = document.createElement('li')
+      li.textContent = ` اليوم ${i}`
+
+      const savedData = localStorage.getItem(`ayoosh_day_${i}`)
+      if (savedData) {
+        li.style.backgroundColor = "#b9effff7"
+      } else if ([7, 14, 21, 28].includes(i)) {
+        li.style.fontWeight = "bold"
+      }
+
+      li.onclick = () => {
+        document.getElementById('day').value = i
+        loadDayData(i)
+        const selectedDisplay = document.getElementById('selectedDayDisplay')
+        if (selectedDisplay) {
+          selectedDisplay.textContent = ` اليوم الحالي: ${i}`
+        }
+        toggleSidebar() // إغلاق القائمة بعد الاختيار
+      }
+
+      dayList.appendChild(li)
+    }
+  }
+}
+
+
+
 
 
 
@@ -555,3 +597,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000); // يختفي بعد 4 ثواني
   }, 1000); // يظهر بعد ثانية من تحميل الصفحة
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // بنختار كل عناصر القايمة الرئيسية بدون شرط وجود "has-submenu"
+  const sidebarItems = document.querySelectorAll('.sidebar-item');
+
+  sidebarItems.forEach(item => {
+    const submenu = item.querySelector('.submenu');
+    if (submenu) {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation(); // نمنع انتشار الحدث
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+      });
+    }
+  });
+});
+
+
