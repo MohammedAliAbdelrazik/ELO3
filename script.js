@@ -628,40 +628,44 @@ document.addEventListener('click', function(e) {
   const tasksDropdown = document.getElementById('tasksDropdown');
   const tasksToggle = document.querySelector('.tasks-toggle');
 
-  // لو الضغطة برا القايمة وبرا زر فتح القايمة
-  if (sidebar.classList.contains('open') &&
-      !sidebar.contains(e.target) &&
-      !sidebarToggle.contains(e.target)) {
+  if (
+    sidebar.classList.contains('open') &&
+    !sidebar.contains(e.target) &&
+    !sidebarToggle.contains(e.target)
+  ) {
     sidebar.classList.remove('open');
+    tasksToggle.classList.remove('shifted'); // ✅ أضفنا السطر ده
   }
 
-  // ولو الضغطة برا المهام وبرا زر المهام
-  if (tasksDropdown.classList.contains('open') &&
-      !tasksDropdown.contains(e.target) &&
-      !tasksToggle.contains(e.target)) {
+  if (
+    tasksDropdown.classList.contains('open') &&
+    !tasksDropdown.contains(e.target) &&
+    !tasksToggle.contains(e.target)
+  ) {
     tasksDropdown.classList.remove('open');
   }
 });
 
-// نفس الشيء للمس على الموبايل
 document.addEventListener('touchstart', function(e) {
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.querySelector('.sidebar-toggle');
   const tasksDropdown = document.getElementById('tasksDropdown');
   const tasksToggle = document.querySelector('.tasks-toggle');
 
-  if (sidebar.classList.contains('open') &&
-      !sidebar.contains(e.target) &&
-      !sidebarToggle.contains(e.target)) {
+  if (
+    sidebar.classList.contains('open') &&
+    !sidebar.contains(e.target) &&
+    !sidebarToggle.contains(e.target)
+  ) {
     sidebar.classList.remove('open');
+    tasksToggle.classList.remove('shifted'); // ✅ نفس الشيء هنا للموبايل
   }
 
-  if (tasksDropdown.classList.contains('open') &&
-      !tasksDropdown.contains(e.target) &&
-      !tasksToggle.contains(e.target)) {
+  if (
+    tasksDropdown.classList.contains('open') &&
+    !tasksDropdown.contains(e.target) &&
+    !tasksToggle.contains(e.target)
+  ) {
     tasksDropdown.classList.remove('open');
   }
 });
-
-
-
