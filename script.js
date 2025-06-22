@@ -205,7 +205,7 @@ function resetSidebarContent() {
   localStorage.setItem(`ayoosh_day_${day}`, JSON.stringify(entry));
   await showModal(
   "تم حفظ اليوم بنجاح!",
-  [{ label: "رائع ✅", value: true }]
+  [{ label: " تم" , value: true }]
 );
 
   // إعادة تعيين الحقول
@@ -439,9 +439,18 @@ setTimeout(() => {
 
 // دالة السؤال
  // دالة السؤال
+// دالة السؤال
+// دالة السؤال
 async function askAboutYesterday(currentDay) {
   const previousDay = currentDay - 1;
 
+  const data = localStorage.getItem(`ayoosh_day_${previousDay}`);
+  if (!data) return; // مفيش بيانات لليوم السابق
+
+  const d = JSON.parse(data);
+  if (d.taskCompleted) return; // أصلًا مكتمل → مفيش سؤال
+
+  // اسأل المستخدم
   const answer = await showModal(
     "أيوش انتهيتي من مهمة امبارح؟",
     [
@@ -451,84 +460,18 @@ async function askAboutYesterday(currentDay) {
   );
 
   if (answer) {
-    const data = localStorage.getItem(`ayoosh_day_${previousDay}`);
-    if (data) {
-      const d = JSON.parse(data);
-      d.taskCompleted = true;
-      localStorage.setItem(`ayoosh_day_${previousDay}`, JSON.stringify(d));
-      await showModal(
-        `✅ تم تعليم مهمة اليوم ${previousDay} كمكتملة!`,
-        [{ label: "اشطا", value: true }]
-      );
-    } else {
-      await showModal(
-        `⚠ مفيش بيانات محفوظة لليوم ${previousDay}.`,
-        [{ label: "تمام ", value: true }]
-      );
-    }
-  }
-}
+    // عدّل الحالة للمهمة
+    d.taskCompleted = true;
+    localStorage.setItem(`ayoosh_day_${previousDay}`, JSON.stringify(d));
+    
 
- // دالة تحقق المهام غير المكتملة
-async function checkUncompletedTasks() {
-  const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
-  if (currentDay <= 1) return; // مفيش أيام سابقة
-
-  // جمع الأيام غير المكتملة
-  const incompleteDays = [];
-  for (let i = 1; i < currentDay; i++) {
-    const data = localStorage.getItem(`ayoosh_day_${i}`);
-    if (data) {
-      const d = JSON.parse(data);
-      if (!d.taskCompleted) {
-        incompleteDays.push(i);
-      }
-    }
-  }
-
-  // لو مفيش أيام غير مكتملة → مفيش سؤال
-  if (incompleteDays.length === 0) return;
-
-  // تحضير نص الأيام
-  const daysList = incompleteDays.map(d => `اليوم ${d}`).join(' و ');
-
-  const answer = await showModal(
-    `أيوش انتهيتي من المهام اللي عندك في ${daysList}؟`,
-    [
-      { label: "أه خلصتها ", value: true },
-      { label: "لسه ", value: false }
-    ]
-  );
-
-  const positiveResponses = [
-    "ممتاز يا أشوش، أنا مبسوط منك! 🌟",
-    "هايل يا أيوش! 💖",
-    "أنتي أحسن حد بيعرف ينجّز مهامه! 💪",
-    "أنا مبسوط منك أوي! 🥰"
-  ];
-  const negativeResponses = [
-    "ليه كده يا أيلو؟ طيب يلا نبدأ؟ 💭",
-    "مافيش مشكلة، كلنا بتحصل لنا ظروف تعطّلنا 💜",
-    "كنت فاكرك خلّصتيهم يا أيوش، بس يلا ننجزهم الأول! ✨",
-    "ما تقلقيش، نقدر نبدأ من جديد ونخلّصهم سوا 🤗"
-  ];
-
-  if (answer) {
-    // علم الأيام كمكتملة
-    incompleteDays.forEach(dayNum => {
-      const data = localStorage.getItem(`ayoosh_day_${dayNum}`);
-      if (data) {
-        const d = JSON.parse(data);
-        d.taskCompleted = true;
-        localStorage.setItem(`ayoosh_day_${dayNum}`, JSON.stringify(d));
-      }
-    });
-
-    await showModal(
-      `✅ تم تعليم المهام كمكتملة لـ ${daysList}.`,
-      [{ label: "تم ", value: true }]
-    );
-
+    // رد إيجابي عشوائي
+    const positiveResponses = [
+      "ممتاز يا أشوش، أنا مبسوط منك 🌟",
+      "هايل يا أيوش 💖",
+      "أنتي أحسن حد بيعرف ينجّز مهامه 💪",
+      "أنا مبسوط منك أوي 🥰"
+    ];
     const randomPositive = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
     await showModal(
       randomPositive,
@@ -536,6 +479,13 @@ async function checkUncompletedTasks() {
     );
 
   } else {
+    // رد سلبي عشوائي بدون تعديل الحالة
+    const negativeResponses = [
+      "ليه كده يا أيلو؟ طيب يلا نبدأ؟ 💭",
+      "مفيش مشكلة، كلنا بتحصل لنا ظروف تعطّلنا 💜",
+      "كنت فاكرك خلّصتيهم بصراحة ، بس مش مشكلة يلا ننجزهم الأول! ",
+      "ما تقلقيش، نقدر نبدأ من جديد ونخلّصهم سوا 🤗"
+    ];
     const randomNegative = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
     await showModal(
       randomNegative,
@@ -544,11 +494,16 @@ async function checkUncompletedTasks() {
   }
 }
 
-// أول ما الصفحة تفتح، نستنى 5 ثواني ثم نستدعي الدالة
+
+
+// أول ما الصفحة تفتح، نستنى 10 ثواني ثم نسأل مره واحده فقط
 setTimeout(() => {
-  checkUncompletedTasks();
-  setInterval(() => checkUncompletedTasks(), 60000); // كل 60 ثانية
-}, 5000); // بعد أول 5 ثواني من تحميل الصفحة
+  const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
+  if (currentDay > 1) {
+    askAboutYesterday(currentDay); // نسأل مره واحده فقط
+  }
+}, 10000); // بعد أول 10 ثواني من تحميل الصفحة
+
 
 
 
@@ -587,10 +542,13 @@ function showModal(message, buttons) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const greetingMessages = [
-    "عندنا يا ترى معانا إيه جديد النهاردة؟ ",
-    "صباح الخير يا أحلى أيوش 🌞",
-    "إيه الجمال ده؟ أنا بفرح لما بتيجي 🥰",
-    "غيابك طول وحشتيني أوي 💜"
+    "عندنا يا ترى معانا إيه جديد النهاردة؟؟ ",
+    "صباح الخير يا أحلى أيوش ",
+    "اووه إيه الحلاويات دي؟ أنا بفرح لما بشوفك اوي 🥰",
+    "غيابك طول وحشتيني أوي 💜",
+    "اووف ايه ده 🫣♥",
+
+    
   ];
 
   const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
