@@ -30,13 +30,15 @@ window.onload = () => {
     }
 
     li.onclick = () => {
-      daySelect.value = i;
-      const selectedDisplay = document.getElementById("selectedDayDisplay");
-      if (selectedDisplay) {
-        selectedDisplay.textContent = ` اليوم الحالي: ${i}`;
-      }
-      loadDayData(i);
-      toggleSidebar();
+  daySelect.value = i
+  const selectedDisplay = document.getElementById('selectedDayDisplay')
+  if (selectedDisplay) selectedDisplay.textContent = ` اليوم الحالي: ${i}`
+  loadDayData(i)
+  
+  // بدلاً من الإغلاق، نوسّع القايمة
+  toggleSidebar(); // دي أصلاً بتفتح وتقفل
+
+
     };
 
     dayList.appendChild(li);
@@ -58,60 +60,66 @@ window.onload = () => {
 
 // فتح/إغلاق القائمة الجانبية
 function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar')
-  sidebar.classList.toggle('open')
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("open");
 
-  const tasksToggle = document.querySelector('.tasks-toggle')
-  tasksToggle.classList.toggle('shifted')
+  const tasksToggle = document.querySelector(".tasks-toggle");
+  tasksToggle.classList.toggle("shifted"); // ده الكلاس الجديد
 
-  // إذا القايمة بقت مفتوحة، أعد ضبط الأيام
-  if (sidebar.classList.contains('open')) {
-    resetSidebarContent()
+  if (sidebar.classList.contains("open")) {
+    // شيل الـ collapsed أول ما تتفتح
+    sidebar.classList.remove("collapsed");
+  } else {
+    // ضيف الـ collapsed أول ما تتقفل
+    sidebar.classList.add("collapsed");
   }
 }
 
 
+
+
+
 function toggleTasks() {
-  const dropdown = document.getElementById('tasksDropdown');
-  dropdown.classList.toggle('open');
+  const dropdown = document.getElementById('tasksDropdown')
+  dropdown.classList.toggle('open')
+  
+  // أول ما أفتح المهام، أسمح للقايمة الجانبية بالتمدد
+  const sidebar = document.getElementById('sidebar')
+  sidebar.classList.remove('collapsed') 
 
-  // تفريغ القائمة
-  const list = document.getElementById('tasksList');
-  list.innerHTML = '';
+  // تفريغ القائمة وبناء عناصر المهام زي ما عندك بالفعل
+  const list = document.getElementById('tasksList')
+  list.innerHTML = ''
 
-  // جلب الأيام المسجلة
   for (let i = 1; i <= 30; i++) {
-    const data = localStorage.getItem(`ayoosh_day_${i}`);
+    const data = localStorage.getItem(`ayoosh_day_${i}`)
     if (data) {
-      const d = JSON.parse(data);
+      const d = JSON.parse(data)
       if (d.priority) {
-        const li = document.createElement('li');
-
-        // اسم اليوم
-        const label = document.createElement('label');
-        label.textContent = `اليوم ${i}`;
+        const li = document.createElement('li')
+        const label = document.createElement('label')
+        label.textContent = `اليوم ${i}`
         label.onclick = (e) => {
-          e.preventDefault();
-          alert(`مهام اليوم ${i}:\n${d.priority || 'لا توجد مهام مسجلة'}`);
-        };
-
-        // مربع اختيار مكتمل؟
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = !!d.taskCompleted;
+          e.preventDefault()
+          alert(`مهام اليوم ${i}:\n${d.priority || 'لا توجد مهام مسجلة'}`)
+        }
+        const checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.checked = !!d.taskCompleted
         checkbox.onclick = (e) => {
-          e.stopPropagation();
-          d.taskCompleted = checkbox.checked;
-          localStorage.setItem(`ayoosh_day_${i}`, JSON.stringify(d));
-        };
+          e.stopPropagation()
+          d.taskCompleted = checkbox.checked
+          localStorage.setItem(`ayoosh_day_${i}`, JSON.stringify(d))
+        }
 
-        li.appendChild(label);
-        li.appendChild(checkbox);
-        list.appendChild(li);
+        li.appendChild(label)
+        li.appendChild(checkbox)
+        list.appendChild(li)
       }
     }
   }
 }
+
 
 
 function resetSidebarContent() {
