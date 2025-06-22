@@ -387,3 +387,64 @@ function askAboutYesterday(currentDay) {
   }
 }
 
+function checkUncompletedTasks() {
+  const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
+  if (currentDay <= 1) return; // مفيش أيام سابقة
+
+  // هنجمع الأيام غير المكتملة
+  const incompleteDays = [];
+  for (let i = 1; i < currentDay; i++) {
+    const data = localStorage.getItem(`ayoosh_day_${i}`);
+    if (data) {
+      const d = JSON.parse(data);
+      if (!d.taskCompleted) {
+        incompleteDays.push(i);
+      }
+    }
+  }
+
+  // لو مفيش أيام غير مكتملة، مفيش سؤال
+  if (incompleteDays.length === 0) return;
+
+  // حضّر نص الأيام
+  const daysList = incompleteDays.map(d => `اليوم ${d}`).join(' و ');
+
+  const answer = confirm(`أيوش انتهيتي من المهام اللي عندك في ${daysList}؟ اضغطي "موافق" إذا أه، و "إلغاء" إذا لسه.`);
+
+  const positiveResponses = [
+    "ممتاز يا أشوش، أنا مبسوط منك! 🌟",
+    "هايل يا أيوش! 💖",
+    "أنتي أحسن حد بيعرف ينجّز مهامه! 💪",
+    "أنا مبسوط منك أوي! 🥰"
+  ];
+  const negativeResponses = [
+    "ليه كده يا أيلو؟ طيب يلا نبدأ؟ 💭",
+    "مافيش مشكلة، كلنا بتحصل لنا ظروف تعطّلنا 💜",
+    "كنت فاكرك خلّصتيهم يا أيوش، بس يلا ننجزهم الأول! ✨",
+    "ما تقلقيش، نقدر نبدأ من جديد ونخلّصهم سوا 🤗"
+  ];
+
+  if (answer) {
+    // علم الأيام كمكتملة
+    incompleteDays.forEach(dayNum => {
+      const data = localStorage.getItem(`ayoosh_day_${dayNum}`);
+      if (data) {
+        const d = JSON.parse(data);
+        d.taskCompleted = true;
+        localStorage.setItem(`ayoosh_day_${dayNum}`, JSON.stringify(d));
+      }
+    });
+
+    alert(`✅ تم تعليم المهام كمكتملة لـ ${daysList}.`);
+    const randomPositive = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
+    alert(randomPositive);
+  } else {
+    const randomNegative = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
+    alert(randomNegative);
+  }
+}
+
+setTimeout(() => {
+  checkUncompletedTasks();
+  setInterval(() => checkUncompletedTasks(), 60000); // كل 60 ثانية
+}, 5000); // بعد أول 5 ثواني من تحميل الصفحة
