@@ -111,7 +111,7 @@ function toggleTasks() {
 
 
 // حفظ البيانات
-function saveData() {
+ async function saveData() {
   const day = document.getElementById("day").value;
   const feeling = document.querySelector('input[name="feeling"]:checked')?.value || '';
   const notes = document.getElementById("notes").value;
@@ -123,9 +123,12 @@ function saveData() {
 
   // التحقق من البيانات الأساسية
   if (!day || !feeling || !notes) {
-    alert("من فضلك املأ البيانات الأساسية.");
-    return;
-  }
+  await showModal(
+    "من فضلك املأ البيانات الأساسية.",
+    [{ label: "تمام", value: true }]
+  );
+  return;
+}
 
   // التاريخ والوقت الحالي
   const now = new Date();
@@ -150,7 +153,10 @@ function saveData() {
 
   // التخزين في localStorage
   localStorage.setItem(`ayoosh_day_${day}`, JSON.stringify(entry));
-  alert("تم حفظ اليوم بنجاح!");
+  await showModal(
+  "تم حفظ اليوم بنجاح!",
+  [{ label: "رائع ✅", value: true }]
+);
 
   // إعادة تعيين الحقول
   document.getElementById("notes").value = "";
@@ -277,20 +283,31 @@ function loadDayData(day) {
 }
 
 
-function deleteAllData() {
-  const confirmDelete = confirm("هل أنت متأكد أنك تريد حذف جميع اليوميات؟ هذا لا يمكن التراجع عنه.");
+ async function deleteAllData() {
+  const confirmDelete = await showModal(
+  "هل أنت متأكد أنك تريد حذف جميع اليوميات؟ هذا لا يمكن التراجع عنه.",
+  [
+    { label: "أيوه، امسح 🗑️", value: true },
+    { label: "لا ❌", value: false }
+  ]
+);
 
   if (confirmDelete) {
     for (let i = 1; i <= 30; i++) {
       localStorage.removeItem(`ayoosh_day_${i}`);
     }
 
-    alert("تم حذف جميع اليوميات بنجاح!");
+    await showModal(
+    "تم حذف جميع اليوميات بنجاح!",
+    [{ label: "تمام ✅", value: true }]
+  );
+
 
     // إعادة تحديث العرض (لو القائمة مفتوحة)
     viewData();
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const fields = ["notes", "priority", "event", "feelInside"];
@@ -371,27 +388,43 @@ setTimeout(() => {
 }, 5000); // بعد أول ٥ ثواني من تحميل الصفحة
 
 // دالة السؤال
-function askAboutYesterday(currentDay) {
+ // دالة السؤال
+async function askAboutYesterday(currentDay) {
   const previousDay = currentDay - 1;
-  const answer = confirm('أيوش انتهيتي من مهمة امبارح؟ اضغطي "موافق" إذا أه، و "إلغاء" إذا لسه.');
+
+  const answer = await showModal(
+    "أيوش انتهيتي من مهمة امبارح؟",
+    [
+      { label: "أه خلصتها ", value: true },
+      { label: "لسه ", value: false }
+    ]
+  );
+
   if (answer) {
     const data = localStorage.getItem(`ayoosh_day_${previousDay}`);
     if (data) {
       const d = JSON.parse(data);
       d.taskCompleted = true;
       localStorage.setItem(`ayoosh_day_${previousDay}`, JSON.stringify(d));
-      alert(`✅ تم تعليم مهمة اليوم ${previousDay} كمكتملة!`);
+      await showModal(
+        `✅ تم تعليم مهمة اليوم ${previousDay} كمكتملة!`,
+        [{ label: "تمام ✅", value: true }]
+      );
     } else {
-      alert(`⚠ مفيش بيانات محفوظة لليوم ${previousDay}.`);
+      await showModal(
+        `⚠ مفيش بيانات محفوظة لليوم ${previousDay}.`,
+        [{ label: "تمام ✅", value: true }]
+      );
     }
   }
 }
 
-function checkUncompletedTasks() {
+ // دالة تحقق المهام غير المكتملة
+async function checkUncompletedTasks() {
   const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
   if (currentDay <= 1) return; // مفيش أيام سابقة
 
-  // هنجمع الأيام غير المكتملة
+  // جمع الأيام غير المكتملة
   const incompleteDays = [];
   for (let i = 1; i < currentDay; i++) {
     const data = localStorage.getItem(`ayoosh_day_${i}`);
@@ -403,13 +436,19 @@ function checkUncompletedTasks() {
     }
   }
 
-  // لو مفيش أيام غير مكتملة، مفيش سؤال
+  // لو مفيش أيام غير مكتملة → مفيش سؤال
   if (incompleteDays.length === 0) return;
 
-  // حضّر نص الأيام
+  // تحضير نص الأيام
   const daysList = incompleteDays.map(d => `اليوم ${d}`).join(' و ');
 
-  const answer = confirm(`أيوش انتهيتي من المهام اللي عندك في ${daysList}؟ اضغطي "موافق" إذا أه، و "إلغاء" إذا لسه.`);
+  const answer = await showModal(
+    `أيوش انتهيتي من المهام اللي عندك في ${daysList}؟`,
+    [
+      { label: "أه خلصتها ✅", value: true },
+      { label: "لسه ❌", value: false }
+    ]
+  );
 
   const positiveResponses = [
     "ممتاز يا أشوش، أنا مبسوط منك! 🌟",
@@ -435,16 +474,54 @@ function checkUncompletedTasks() {
       }
     });
 
-    alert(`✅ تم تعليم المهام كمكتملة لـ ${daysList}.`);
+    await showModal(
+      `✅ تم تعليم المهام كمكتملة لـ ${daysList}.`,
+      [{ label: "تمام ✅", value: true }]
+    );
+
     const randomPositive = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
-    alert(randomPositive);
+    await showModal(
+      randomPositive,
+      [{ label: "تمام ✅", value: true }]
+    );
+
   } else {
     const randomNegative = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
-    alert(randomNegative);
+    await showModal(
+      randomNegative,
+      [{ label: "تمام ✅", value: true }]
+    );
   }
 }
 
+// أول ما الصفحة تفتح، نستنى 5 ثواني ثم نستدعي الدالة
 setTimeout(() => {
   checkUncompletedTasks();
   setInterval(() => checkUncompletedTasks(), 60000); // كل 60 ثانية
 }, 5000); // بعد أول 5 ثواني من تحميل الصفحة
+
+
+
+function showModal(message, buttons) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById('customModal');
+    const messageElem = document.getElementById('modalMessage');
+    const buttonsElem = document.getElementById('modalButtons');
+
+    messageElem.textContent = message;
+    buttonsElem.innerHTML = '';
+
+    buttons.forEach(btn => {
+      const button = document.createElement('button');
+      button.textContent = btn.label;
+      button.onclick = () => {
+        modal.style.display = 'none';
+        resolve(btn.value); 
+      };
+      buttonsElem.appendChild(button);
+    });
+
+    modal.style.display = 'flex';
+  });
+}
+
