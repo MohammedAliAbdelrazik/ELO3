@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>📊 إحصائيات 30 يوم</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    margin: 0;
+    padding: 40px 20px 80px; /* padding من تحت للزر */
+    text-align: center;
+    color: #333;
+  }
+
+  .back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #5cc0e7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 1000;
+  }
+
+  .back-button:hover {
+    background-color: #33ccee;
+  }
+
+  .chart-container {
+    max-width: 320px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  canvas {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+  }
+
+  .message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #5cc0e7;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 500px) {
+    body {
+      padding: 20px 10px 80px;
+    }
+
+    .section-title {
+      font-size: 18px;
+    }
+
+    .message {
+      font-size: 16px;
+    }
+
+    .back-button {
+      font-size: 14px;
+      padding: 8px 14px;
+      bottom: 15px;
+      left: 15px;
+    }
+
+    .chart-container {
+      padding: 16px;
+      max-width: 100%;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+
+  <div class="chart-container">
+    <div class="section-title">احصائيات </div>
+    <canvas id="feelingsChart"></canvas>
+    <div class="message" id="feelingMessage"></div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = 'index.html'; // أو اسم صفحتك الرئيسية
+    }
+
+    // مثال تجريبي (استبدله بالقراءة من localStorage لاحقاً)
+    const feelingsData = {
+      'السعادة': 4,
+      'الحزن': 11,
+      'الخوف': 3,
+      'الهدوء': 7,
+      'الندم': 5
+    };
+
+    const feelingColors = {
+      'السعادة': '#feca57',
+      'الحزن': '#576574',
+      'الخوف': '#5f27cd',
+      'الفراغ': '#c8d6e5',
+      'التفاؤل': '#1dd1a1',
+      'الندم': '#ee5253',
+      'الغضب': '#ff6b6b',
+      'الهدوء': '#54a0ff'
+    };
+
+    const ctx = document.getElementById('feelingsChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: Object.keys(feelingsData),
+        datasets: [{
+          data: Object.values(feelingsData),
+          backgroundColor: Object.keys(feelingsData).map(feeling => feelingColors[feeling] || '#ccc')
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: {
+                family: 'Cairo'
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // استنتاج الشعور المسيطر
+    const dominantFeeling = Object.entries(feelingsData).sort((a, b) => b[1] - a[1])[0][0];
+
+    const messages = {
+      'الحزن': " يحزنني أنه يغلب عليك طابع الحزن خلال الثلاثين يومًا الماضية. ليه أنتي حزينة؟",
+      'السعادة': "😊انا مبسوط أن السعادة كانت حاضرة كثير في أيامك الأخيرة.",
+      'الخوف': " الخوف كان باين عليكي، ايه اللى مخوفك ؟",
+      'الفراغ': " شعور بالفراغ يتكرر، اعملي اي حاجة جديدة حتى لو مجنونة.",
+      'التفاؤل': "الايام اللى فاتت بتقول انك متفائله الحمدلله",
+      'الندم': " كثير من الندم... لا بأس، الماضي لا يُغيَّر ولكن المستقبل بيدك.",
+      'الغضب': " الغضب مسيطر، ابعدي عن الناس شويه واعملي حاجة بتحبيها.",
+      'الهدوء': "😌 هدوء جميل، استمتع براحتك ولكن لا تنعزل كثيرًا."
+    };
+
+    document.getElementById("feelingMessage").textContent = messages[dominantFeeling] || "";
+  </script>
+  <button onclick="goBack()" class="back-button">🔙 الصفحة الرئيسية</button>
+
+</body>
+</html>
