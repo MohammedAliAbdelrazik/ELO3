@@ -23,14 +23,24 @@ body {
   transform: scale(1.05);
 }
 
-.container,
-.extra-container {
+.extra-container,
+.container {
+  width: 100%;
   max-width: 450px;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 16px;
+  margin: 20px auto;
+  padding: 20; 
   box-sizing: border-box;
 }
+
+.extra-container .section,
+.container .section {
+  margin: 20px 0;
+  padding: 20px;
+  background: white;
+  border-radius: 17px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
 
 .section {
   border: 1px solid #e0e3ff;
