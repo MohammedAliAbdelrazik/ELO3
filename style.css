@@ -25,12 +25,10 @@ body {
 
 .container,
 .extra-container {
-  background: #ffffff;
   max-width: 450px;
   margin: 30px auto;
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
 }
 
