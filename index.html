@@ -63,7 +63,7 @@
 
   <!-- بداية المربع الجديد -->
   <div class="extra-container">
-    <div class="extra-box">
+    
 
       <!-- موقف -->
       <div class="section">
@@ -116,13 +116,16 @@
 
       <!-- الأزرار -->
       <div class="buttons">
-        <button onclick="saveData()">✔ سجل</button>
-        <button onclick="viewData()">📋 عرض اليوميات</button>
-        <button onclick="deleteAllData()" class="delete-all">🗑 حذف جميع الأيام</button>
-      </div>
+  <button class="save-btn" onclick="saveData()">✔ سجل</button>
+  <button class="view-btn" onclick="viewData()">📋 عرض اليوميات</button>
+  <button class="delete-all" onclick="deleteAllData()">🗑 حذف جميع الأيام</button>
+</div>
+
+
+
 
       <div id="output" class="output"></div>
-    </div>
+    
   </div>
 </div>
 
