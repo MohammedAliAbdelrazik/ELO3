@@ -125,7 +125,7 @@ textarea:focus {
 
 /* زر عرض اليوميات */
 .view-btn {
-  background-color: #00ccff;
+  background-color: #33CCEE;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -137,7 +137,7 @@ textarea:focus {
   transition: background 0.3s, transform 0.2s;
 }
 .view-btn:hover {
-  background-color: #45d9fe;
+  background-color: #52d9f8;
   transform: scale(1.05);
 }
 
