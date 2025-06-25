@@ -530,3 +530,19 @@ button.delete-all:hover {
   visibility: visible;
 }
 
+#sidebar,
+#tasksDropdown {
+  transition: all 0.3s ease;
+}
+
+
+.sidebar-toggle,
+.tasks-toggle {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hidden-soft {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none; /* عشان ميضغطش عليه وهو مخفي */
+}
