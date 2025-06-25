@@ -6,6 +6,7 @@ body {
 }
 
 .download-btn {
+  text-decoration: none;
   background-color: #00ccff;
   color: white;
   border: none;
@@ -100,8 +101,13 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(92, 182, 231, 0.073);
 }
 
-button {
-  background-color: #33ccee;
+
+
+
+
+/* زر سجل */
+.save-btn {
+  background-color: #00C389;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -112,11 +118,49 @@ button {
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
-
-button:hover {
-  background-color: #b9efff;
+.save-btn:hover {
+  background-color: #0ac990;
   transform: scale(1.05);
 }
+
+/* زر عرض اليوميات */
+.view-btn {
+  background-color: #00ccff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.view-btn:hover {
+  background-color: #45d9fe;
+  transform: scale(1.05);
+}
+
+/* زر حذف (موجود عندك لكن للتأكد) */
+.delete-all {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.delete-all:hover {
+  background-color: #ff4d4d;
+  transform: scale(1.05);
+}
+
+
+
 
 .output {
   margin-top: 20px;
@@ -366,17 +410,17 @@ button.delete-all:hover {
   top: 15px;
   right: 70px; /* المسافة على حسب ذوقك */
   font-size: 18px;
-  background-color: #5cc0e7;
-  color: white;
+  background-color: #E1E1E1;
+  color: rgb(0, 0, 0);
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   z-index: 1001;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: background 0.3s;
 }
 .tasks-toggle:hover {
-  background-color: #33ccee;
+  background-color: #c6c6c6;
 }
 .tasks-dropdown {
   position: fixed;
@@ -485,5 +529,4 @@ button.delete-all:hover {
   opacity: 1;
   visibility: visible;
 }
-
 
