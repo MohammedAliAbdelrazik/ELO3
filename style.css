@@ -26,7 +26,7 @@ body {
 .extra-container,
 .container {
   width: 100%;
-  max-width: 450px;
+  max-width: 350px;
   margin: 20px auto;
   padding: 20; 
   box-sizing: border-box;
