@@ -35,6 +35,8 @@ window.onload = () => {
   if (selectedDisplay) selectedDisplay.textContent = ` اليوم الحالي: ${i}`
   loadDayData(i)
   
+
+ 
   // بدلاً من الإغلاق، نوسّع القايمة
   toggleSidebar(); // دي أصلاً بتفتح وتقفل
 
@@ -356,6 +358,8 @@ function loadDayData(day) {
     // إعادة تحديث العرض (لو القائمة مفتوحة)
     viewData();
   }
+  
+
 }
 
 
@@ -544,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const greetingMessages = [
     "عندنا يا ترى معانا إيه جديد النهاردة؟؟ ",
     "صباح الخير يا أحلى أيوش ",
-    "اووه إيه الحلاويات دي؟ أنا بفرح لما بشوفك اوي 🥰",
+    "اووه إيه الحلويات دي؟ أنا بفرح لما بشوفك اوي 🥰",
     "غيابك طول وحشتيني أوي 💜",
     "اووف ايه ده 🫣♥",
 
@@ -580,50 +584,51 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.addEventListener('click', function(e) {
+
+
+let buttonsHidden = false;
+
+document.addEventListener('click', function (e) {
   const sidebar = document.getElementById('sidebar');
-  const sidebarToggle = document.querySelector('.sidebar-toggle');
   const tasksDropdown = document.getElementById('tasksDropdown');
+  const sidebarToggle = document.querySelector('.sidebar-toggle');
   const tasksToggle = document.querySelector('.tasks-toggle');
 
-  if (
-    sidebar.classList.contains('open') &&
-    !sidebar.contains(e.target) &&
-    !sidebarToggle.contains(e.target)
-  ) {
-    sidebar.classList.remove('open');
-    tasksToggle.classList.remove('shifted'); // ✅ أضفنا السطر ده
-  }
+  const clickedInsideSidebar = sidebar.contains(e.target) || sidebarToggle.contains(e.target);
+  const clickedInsideTasks = tasksDropdown.contains(e.target) || tasksToggle.contains(e.target);
 
-  if (
-    tasksDropdown.classList.contains('open') &&
-    !tasksDropdown.contains(e.target) &&
-    !tasksToggle.contains(e.target)
-  ) {
+  // ✅ استثناءات: لو ضغطت على إدخال أو زر أو رابط أو خانة حوار، ما تعملش حاجة
+  const interactiveTags = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'LABEL', 'A'];
+  if (interactiveTags.includes(e.target.tagName)) return;
+
+  // ✅ لو ضغطت جوه القائمة أو جوه المهام، ما تعملش حاجة
+  if (clickedInsideSidebar || clickedInsideTasks) return;
+
+  // ✅ نسجل إذا كانت أي من القوائم مفتوحة
+  const sidebarWasOpen = sidebar.classList.contains('open');
+  const tasksWasOpen = tasksDropdown.classList.contains('open');
+
+  // ✅ نقفلهم لو كانوا مفتوحين
+  if (sidebarWasOpen) {
+    sidebar.classList.remove('open');
+    tasksToggle.classList.remove('shifted');
+  }
+  if (tasksWasOpen) {
     tasksDropdown.classList.remove('open');
   }
-});
 
-document.addEventListener('touchstart', function(e) {
-  const sidebar = document.getElementById('sidebar');
-  const sidebarToggle = document.querySelector('.sidebar-toggle');
-  const tasksDropdown = document.getElementById('tasksDropdown');
-  const tasksToggle = document.querySelector('.tasks-toggle');
+  // ✅ بعد ما نقفلهم، نبدأ نختفي/نظهر الزرار حسب الحالة
+  setTimeout(() => {
+    if (!sidebar.classList.contains('open') && !tasksDropdown.classList.contains('open')) {
+      buttonsHidden = !buttonsHidden;
 
-  if (
-    sidebar.classList.contains('open') &&
-    !sidebar.contains(e.target) &&
-    !sidebarToggle.contains(e.target)
-  ) {
-    sidebar.classList.remove('open');
-    tasksToggle.classList.remove('shifted'); // ✅ نفس الشيء هنا للموبايل
-  }
-
-  if (
-    tasksDropdown.classList.contains('open') &&
-    !tasksDropdown.contains(e.target) &&
-    !tasksToggle.contains(e.target)
-  ) {
-    tasksDropdown.classList.remove('open');
-  }
+      if (buttonsHidden) {
+        sidebarToggle.classList.add('hidden-soft');
+        tasksToggle.classList.add('hidden-soft');
+      } else {
+        sidebarToggle.classList.remove('hidden-soft');
+        tasksToggle.classList.remove('hidden-soft');
+      }
+    }
+  }, (sidebarWasOpen || tasksWasOpen) ? 300 : 0);
 });
