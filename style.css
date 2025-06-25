@@ -137,7 +137,7 @@ textarea:focus {
   transition: background 0.3s, transform 0.2s;
 }
 .view-btn:hover {
-  background-color: #52d9f8;
+  background-color: #3acff0;
   transform: scale(1.05);
 }
 
@@ -411,7 +411,7 @@ button.delete-all:hover {
   right: 70px; /* المسافة على حسب ذوقك */
   font-size: 18px;
   background-color: #E1E1E1;
-  color: rgb(0, 0, 0);
+  color: rgb(55, 55, 55);
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
