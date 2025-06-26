@@ -2,6 +2,7 @@ window.onload = () => {
   const feelingsCount = {};
   const tasksDone = { done: 0, total: 0 };
 
+
   for (let i = 1; i <= 30; i++) {
     const data = localStorage.getItem(`ayoosh_day_${i}`);
     if (data) {
@@ -58,6 +59,10 @@ window.onload = () => {
     }
   });
 
+
+  
+
+
   // تحليل المشاعر
   let mostFrequent = null;
   let max = 0;
@@ -86,4 +91,8 @@ window.onload = () => {
   function goBack() {
     window.location.href = 'index.html'; // اسم صفحتك الرئيسية
   }
+
+
+
+ 
 
