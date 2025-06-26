@@ -203,6 +203,19 @@ function resetSidebarContent() {
     time
   };
 
+// استدعاء المهام (لو فيه مكان بتضيف فيه مهام يومية)
+const taskElements = document.querySelectorAll('.task input[type="checkbox"]');
+const tasks = Array.from(taskElements).map(task => ({
+  name: task.getAttribute('data-name') || 'مهمة',
+  done: task.checked
+}));
+
+entry.tasks = tasks;
+
+
+
+
+
   // التخزين في localStorage
   localStorage.setItem(`ayoosh_day_${day}`, JSON.stringify(entry));
   await showModal(
@@ -348,6 +361,18 @@ function loadDayData(day) {
     for (let i = 1; i <= 30; i++) {
       localStorage.removeItem(`ayoosh_day_${i}`);
     }
+
+// تصفير دائرة المشاعر
+chart.data.labels = [];
+chart.data.datasets[0].data = [];
+chart.data.datasets[0].backgroundColor = [];
+chart.options.plugins.legend.display = false;
+chart.update();
+
+// تغيير الرسالة
+const messageElem = document.getElementById("feelingMessage");
+if (messageElem) messageElem.textContent = "لا توجد بيانات لعرضها.";
+
 
     await showModal(
     "تم حذف جميع اليوميات بنجاح!",
