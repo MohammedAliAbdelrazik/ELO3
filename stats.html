@@ -5,6 +5,8 @@
   <title>📊 إحصائيات 30 يوم</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
 
   body {
@@ -19,28 +21,34 @@
     
   }
 
+.back-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  background-color: #5cc0e7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-arrow:hover {
+  background-color: #33ccee;
+  transform: scale(1.1);
+}
+
 
 
   
-  .back-button {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #5cc0e7;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-    z-index: 1000;
-  }
-
-  .back-button:hover {
-    background-color: #33ccee;
-  }
+  
 
   .chart-container {
     max-width: 320px;
@@ -123,6 +131,10 @@
 </head>
 <body>
 
+<div class="back-arrow" onclick="history.back()" title="رجوع">
+  <i class="fas fa-arrow-right"></i>
+</div>
+
 
   <div class="chart-container">
     <div class="section-title">احصائيات </div>
@@ -141,9 +153,8 @@
 
 
  <script>
-function goBack() {
-  window.location.href = 'index.html';
-}
+
+
 
 const ctx = document.getElementById('feelingsChart').getContext('2d');
 
@@ -289,7 +300,6 @@ setTimeout(() => {
 </script>
 
 
-  <button onclick="goBack()" class="back-button">🔙 الصفحة الرئيسية</button>
 
 </body>
 </html>
