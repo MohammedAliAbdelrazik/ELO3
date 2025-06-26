@@ -14,8 +14,14 @@
     padding: 40px 20px 80px; /* padding من تحت للزر */
     text-align: center;
     color: #333;
+
+
+    
   }
 
+
+
+  
   .back-button {
     position: fixed;
     bottom: 20px;
@@ -65,6 +71,28 @@
     margin-bottom: 15px;
   }
 
+
+.progress-bar-wrapper {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 24px;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #1dd1a1;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+  border-radius: 10px;
+}
+
+
+
+
+
   @media (max-width: 500px) {
     body {
       padding: 20px 10px 80px;
@@ -102,71 +130,165 @@
     <div class="message" id="feelingMessage"></div>
   </div>
 
-  <script>
-    function goBack() {
-      window.location.href = 'index.html'; // أو اسم صفحتك الرئيسية
+<div class="chart-container">
+  <div class="section-title">نسبة إنجاز المهام</div>
+  <div class="progress-bar-wrapper">
+    <div class="progress-bar" id="taskProgress"></div>
+  </div>
+  <div class="message" id="taskPercentageText"></div>
+</div>
+
+
+
+ <script>
+function goBack() {
+  window.location.href = 'index.html';
+}
+
+const ctx = document.getElementById('feelingsChart').getContext('2d');
+
+const feelingColors = {
+  'السعادة': '#feca57',
+  'الحزن': '#576574',
+  'الخوف': '#5f27cd',
+  'الفراغ': '#c8d6e5',
+  'التفاؤل': '#1dd1a1',
+  'الندم': '#ee5253',
+  'الغضب': '#ff6b6b',
+  'الهدوء': '#54a0ff'
+};
+
+const feelingsCount = {};
+
+// اجمع البيانات من localStorage
+for (let i = 1; i <= 30; i++) {
+  const data = localStorage.getItem(`ayoosh_day_${i}`);
+  if (data) {
+    try {
+      const dayData = JSON.parse(data);
+      if (dayData.feeling) {
+        feelingsCount[dayData.feeling] = (feelingsCount[dayData.feeling] || 0) + 1;
+      }
+    } catch {}
+  }
+}
+
+let chart;
+
+if (Object.keys(feelingsCount).length === 0) {
+  chart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [],
+      datasets: [{
+        data: [],
+        backgroundColor: []
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
     }
-
-    // مثال تجريبي (استبدله بالقراءة من localStorage لاحقاً)
-    const feelingsData = {
-      'السعادة': 4,
-      'الحزن': 11,
-      'الخوف': 3,
-      'الهدوء': 7,
-      'الندم': 5
-    };
-
-    const feelingColors = {
-      'السعادة': '#feca57',
-      'الحزن': '#576574',
-      'الخوف': '#5f27cd',
-      'الفراغ': '#c8d6e5',
-      'التفاؤل': '#1dd1a1',
-      'الندم': '#ee5253',
-      'الغضب': '#ff6b6b',
-      'الهدوء': '#54a0ff'
-    };
-
-    const ctx = document.getElementById('feelingsChart').getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: Object.keys(feelingsData),
-        datasets: [{
-          data: Object.values(feelingsData),
-          backgroundColor: Object.keys(feelingsData).map(feeling => feelingColors[feeling] || '#ccc')
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: {
-                family: 'Cairo'
-              }
+  });
+  document.getElementById("feelingMessage").textContent = "لا توجد بيانات لعرضها.";
+} else {
+  chart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: Object.keys(feelingsCount),
+      datasets: [{
+        data: Object.values(feelingsCount),
+        backgroundColor: Object.keys(feelingsCount).map(feeling => feelingColors[feeling] || '#ccc')
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: {
+              family: 'Cairo'
             }
           }
         }
       }
-    });
+    }
+  });
 
-    // استنتاج الشعور المسيطر
-    const dominantFeeling = Object.entries(feelingsData).sort((a, b) => b[1] - a[1])[0][0];
+  const dominantFeeling = Object.entries(feelingsCount).sort((a, b) => b[1] - a[1])[0][0];
 
-    const messages = {
-      'الحزن': " يحزنني أنه يغلب عليك طابع الحزن خلال الثلاثين يومًا الماضية. ليه أنتي حزينة؟",
-      'السعادة': "😊انا مبسوط أن السعادة كانت حاضرة كثير في أيامك الأخيرة.",
-      'الخوف': " الخوف كان باين عليكي، ايه اللى مخوفك ؟",
-      'الفراغ': " شعور بالفراغ يتكرر، اعملي اي حاجة جديدة حتى لو مجنونة.",
-      'التفاؤل': "الايام اللى فاتت بتقول انك متفائله الحمدلله",
-      'الندم': " كثير من الندم... لا بأس، الماضي لا يُغيَّر ولكن المستقبل بيدك.",
-      'الغضب': " الغضب مسيطر، ابعدي عن الناس شويه واعملي حاجة بتحبيها.",
-      'الهدوء': "😌 هدوء جميل، استمتع براحتك ولكن لا تنعزل كثيرًا."
-    };
+  const messages = {
+    'الحزن': "يحزنني أنه يغلب عليك طابع الحزن خلال الثلاثين يومًا الماضية. ليه أنتي حزينة؟",
+    'السعادة': "😊انا مبسوط أن السعادة كانت حاضرة كثير في أيامك الأخيرة.",
+    'الخوف': "الخوف كان باين عليكي، ايه اللى مخوفك ؟",
+    'الفراغ': "شعور بالفراغ يتكرر، اعملي أي حاجة جديدة حتى لو مجنونة.",
+    'التفاؤل': "الأيام اللى فاتت بتقول إنك متفائلة الحمدلله.",
+    'الندم': "كثير من الندم... لا بأس، الماضي لا يُغيَّر ولكن المستقبل بيدك.",
+    'الغضب': "الغضب مسيطر، ابعدي عن الناس شوية واعملي حاجة بتحبيها.",
+    'الهدوء': "😌 هدوء جميل، استمتعي براحتك ولكن لا تنعزلي كثيرًا."
+  };
 
-    document.getElementById("feelingMessage").textContent = messages[dominantFeeling] || "";
-  </script>
+  document.getElementById("feelingMessage").textContent = messages[dominantFeeling] || "";
+}
+
+
+
+
+// حساب نسبة إنجاز المهام
+let tasksDone = 0;
+let tasksTotal = 0;
+
+for (let i = 1; i <= 30; i++) {
+  const data = localStorage.getItem(`ayoosh_day_${i}`);
+  if (data) {
+    try {
+      const dayData = JSON.parse(data);
+      if (dayData.priority) {
+        tasksTotal++;
+        if (dayData.taskCompleted) tasksDone++;
+      }
+    } catch {}
+  }
+}
+
+const percent = tasksTotal > 0 ? Math.round((tasksDone / tasksTotal) * 100) : 0;
+
+// تحديث شريط التقدم
+const bar = document.getElementById('taskProgress');
+const percentText = document.getElementById('taskPercentageText');
+
+bar.style.width = `${percent}%`;
+percentText.textContent = tasksTotal > 0
+  ? `أيوش أنجزت ${tasksDone} من ${tasksTotal} مهمة (${percent}%)`
+  : 'لا توجد مهام مسجلة بعد.';
+
+
+setTimeout(() => {
+  // 🔵 تصفير بيانات الجراف الدائري
+  chart.data.labels = [];
+  chart.data.datasets[0].data = [];
+  chart.data.datasets[0].backgroundColor = [];
+  chart.options.plugins.legend.display = false;
+  chart.update();
+
+  // 🟢 تصفير رسالة المشاعر
+  const messageElem = document.getElementById("feelingMessage");
+  if (messageElem) messageElem.textContent = "لا توجد بيانات لعرضها.";
+
+  // 🟠 تصفير شريط المهام والنسبة
+  const bar = document.getElementById("taskProgress");
+  const percentText = document.getElementById("taskPercentageText");
+  if (bar) bar.style.width = "0%";
+  if (percentText) percentText.textContent = "لا توجد مهام مسجلة بعد.";
+}, 86400000); // بعد 10 ثواني
+
+  
+</script>
+
+
   <button onclick="goBack()" class="back-button">🔙 الصفحة الرئيسية</button>
 
 </body>
