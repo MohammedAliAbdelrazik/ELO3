@@ -46,8 +46,6 @@
 }
 
 
-
-  
   
 
   .chart-container {
@@ -58,6 +56,11 @@
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   }
+
+  .chart-tasks {
+  margin-top: 10px;
+}
+
 
   canvas {
     max-width: 100%;
@@ -99,33 +102,37 @@
 
 
 
-
-
   @media (max-width: 500px) {
-    body {
-      padding: 20px 10px 80px;
-    }
-
-    .section-title {
-      font-size: 18px;
-    }
-
-    .message {
-      font-size: 16px;
-    }
-
-    .back-button {
-      font-size: 14px;
-      padding: 8px 14px;
-      bottom: 15px;
-      left: 15px;
-    }
-
-    .chart-container {
-      padding: 16px;
-      max-width: 100%;
-    }
+  body {
+    padding: 20px 10px 60px;
   }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .message {
+    font-size: 15px;
+  }
+
+  .chart-container {
+    padding: 16px;
+    margin-bottom: 12px; /* مسافة أسفل كل مربع */
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .progress-bar-wrapper {
+    height: 20px;
+  }
+
+  .back-arrow {
+    font-size: 24px;
+    top: 15px;
+    right: 15px;
+  }
+}
+
 </style>
 
 </head>
@@ -142,13 +149,14 @@
     <div class="message" id="feelingMessage"></div>
   </div>
 
-<div class="chart-container">
+<div class="chart-container chart-tasks">
   <div class="section-title">نسبة إنجاز المهام</div>
   <div class="progress-bar-wrapper">
     <div class="progress-bar" id="taskProgress"></div>
   </div>
   <div class="message" id="taskPercentageText"></div>
 </div>
+
 
 
 
