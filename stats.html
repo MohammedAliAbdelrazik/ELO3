@@ -2,140 +2,133 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📊 إحصائيات 30 يوم</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: 'Tajawal', sans-serif;
-    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
-    margin: 0;
-    padding: 40px 20px 80px; /* padding من تحت للزر */
-    text-align: center;
-    color: #333;
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 40px 20px 80px;
+      text-align: center;
+      color: #333;
+    }
 
+    .back-arrow {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      background-color: #5cc0e7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s, transform 0.2s;
+    }
 
-    
-  }
+    .back-arrow:hover {
+      background-color: #33ccee;
+      transform: scale(1.1);
+    }
 
-.back-arrow {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
-  background-color: #5cc0e7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s, transform 0.2s;
-}
+    .chart-container {
+      width: 100%;
+      max-width: 360px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
 
-.back-arrow:hover {
-  background-color: #33ccee;
-  transform: scale(1.1);
-}
+    .chart-tasks {
+      margin-top: 10px;
+    }
 
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
 
-  
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #555;
+    }
 
-  .chart-container {
-    max-width: 320px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
+    .section-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #5cc0e7;
+      margin-bottom: 15px;
+    }
 
-  .chart-tasks {
-  margin-top: 10px;
-}
+    .progress-bar-wrapper {
+      width: 100%;
+      background-color: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 24px;
+      margin: 10px 0;
+    }
 
+    .progress-bar {
+      height: 100%;
+      background-color: #1dd1a1;
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+      border-radius: 10px;
+    }
 
-  canvas {
-    max-width: 100%;
-    height: auto;
-    margin: auto;
-  }
+    @media (max-width: 500px) {
+      body {
+        padding: 20px 10px 60px;
+      }
 
-  .message {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #555;
-  }
+      .section-title {
+        font-size: 18px;
+      }
 
-  .section-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #5cc0e7;
-    margin-bottom: 15px;
-  }
+      .message {
+        font-size: 15px;
+      }
 
+      .chart-container {
+        padding: 16px;
+        margin-bottom: 16px;
+      }
 
-.progress-bar-wrapper {
-  width: 100%;
-  background-color: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 24px;
-  margin: 10px 0;
-}
+      .progress-bar-wrapper {
+        height: 20px;
+      }
 
-.progress-bar {
-  height: 100%;
-  background-color: #1dd1a1;
-  width: 0%;
-  transition: width 0.5s ease-in-out;
-  border-radius: 10px;
-}
-
-
-
-  @media (max-width: 500px) {
-  body {
-    padding: 20px 10px 60px;
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-
-  .message {
-    font-size: 15px;
-  }
-
-  .chart-container {
-    padding: 16px;
-    margin-bottom: 12px; /* مسافة أسفل كل مربع */
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .progress-bar-wrapper {
-    height: 20px;
-  }
-
-  .back-arrow {
-    font-size: 24px;
-    top: 15px;
-    right: 15px;
-  }
-}
-
-</style>
-
+      .back-arrow {
+        font-size: 22px;
+        top: 10px;
+        right: 10px;
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <div class="back-arrow" onclick="history.back()" title="رجوع">
