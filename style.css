@@ -367,6 +367,9 @@ button.delete-all:hover {
     padding: 8px 14px;
   }
 
+  .download-btn {
+    margin-top: 30px; 
+  
   .sidebar-toggle,
   .tasks-toggle {
     top: 2px !important;
