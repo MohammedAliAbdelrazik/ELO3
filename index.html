@@ -29,14 +29,22 @@
 
   <ul class="sidebar-menu">
     <li class="sidebar-item" onclick="toggleDaysList()">
-      📅 الأيام
-      <ul id="daysSubmenu" class="submenu" style="display: none;">
-        <ul id="dayList"></ul>
-      </ul>
-    </li>
-    <li class="sidebar-item" onclick="window.location.href='stats.html'">
-      📊 إحصائيات 30 يوم
-    </li>
+  <i class="fas fa-calendar-days" style="margin-left: 8px; color: #5cc0e7;"></i>
+  الأيام
+  <ul id="daysSubmenu" class="submenu" style="display: none;">
+    <ul id="dayList"></ul>
+  </ul>
+</li>
+<li class="sidebar-item" onclick="window.location.href='stats.html'">
+  <i class="fas fa-chart-column"></i> إحصائيات 30 يوم
+</li>
+
+
+   <li class="sidebar-item" onclick="window.location.href='azkar.html'">
+  <i class="fas fa-kaaba" style="margin-left: 8px; color: #5cc0e7;"></i> أذكار
+</li>
+
+
   </ul>
 </div>
 <div id="overlay" class="overlay"></div>
@@ -53,7 +61,10 @@
 </a>
   </div>
 
-  <h1 class="title" style="margin-top: 40px;">يوميات أيوش</h1>
+  <h1 class="site-title">
+  <i class="fas fa-pen-nib"></i> يوميات <span>أيوش</span>
+</h1>
+
   <p id="selectedDayDisplay" class="selected-day">اليوم الحالي:</p>
   <select id="day" style="display: none;">
     <option disabled selected></option>
