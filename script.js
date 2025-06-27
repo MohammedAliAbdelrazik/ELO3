@@ -646,12 +646,18 @@ window.addEventListener('scroll', () => {
   const sidebarOpen = document.getElementById('sidebar').classList.contains('open');
   const tasksOpen = document.getElementById('tasksDropdown').classList.contains('open');
 
+  // ✅ لو المستخدم في أول الصفحة → نظهر الزرين على طول
+  if (scrollTop === 0) {
+    sidebarToggle.classList.remove('hidden-soft');
+    tasksToggle.classList.remove('hidden-soft');
+    return; // نخرج من الدالة
+  }
+
   // لو القوائم مفتوحة → لا تخفي ولا تظهر الزرار
   if (sidebarOpen || tasksOpen) return;
 
   // المستخدم نازل ↓
   if (scrollTop > lastScrollTop) {
-    // خزّن النقطة اللي بدأ يختفي منها
     hideReferencePoint = scrollTop;
     sidebarToggle.classList.add('hidden-soft');
     tasksToggle.classList.add('hidden-soft');
