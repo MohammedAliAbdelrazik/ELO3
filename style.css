@@ -5,25 +5,22 @@ body {
   padding: 0;
 }
 
-.site-title {
-  font-size: 30px;
+.ayoosh-badge {
+  position: fixed;
+  top: 0px;
+  left: 50px;
+  font-size: 16px;
   font-weight: bold;
-  text-align: center;
-  margin: 40px 0 20px;
-  color: #00ccff;
-  position: relative;
-  font-family: 'Tajawal', sans-serif;
-}
-
-.site-title i {
-  color: #00bcd4;
-  margin-left: 2px;
-  font-size: 20px;
-  vertical-align: middle;
-}
-
-.site-title span {
   color: #00bfa5;
+  background-color: #e0f7fa;
+  border: 1px solid #00ccff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 1002;
+  box-shadow: 0 2px 6px rgba(0, 204, 255, 0.15);
+  font-family: 'Tajawal', sans-serif;
 }
 
 
