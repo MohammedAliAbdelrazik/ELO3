@@ -37,7 +37,7 @@ body {
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 12px rgba(0, 204, 255, 0.3);
   position: relative;
-  left: -23px;
+  left: -22px;
   top: 15px;
 }
 
