@@ -359,7 +359,6 @@ button.delete-all:hover {
 }
 
 @media (max-width: 600px) {
-  .download-btn,
   .save-btn,
   .view-btn,
   .delete-all {
@@ -367,6 +366,11 @@ button.delete-all:hover {
     padding: 8px 14px;
   }
 
+.download-btn {
+ 
+  top: 30px;
+}
+  
   .sidebar-toggle,
   .tasks-toggle {
     top: 2px !important;
@@ -423,11 +427,7 @@ button.delete-all:hover {
     height: 16px;
   }
 
-  .ayoosh-badge {
-    font-size: 13px;
-    padding: 5px 10px;
-    left: 10px;
-  }
+  
 
   .day-badge {
     font-size: 13px;
