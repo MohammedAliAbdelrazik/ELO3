@@ -367,9 +367,6 @@ button.delete-all:hover {
     padding: 8px 14px;
   }
 
-  .download-btn {
-    margin-top: 30px; 
-  
   .sidebar-toggle,
   .tasks-toggle {
     top: 2px !important;
@@ -427,7 +424,27 @@ button.delete-all:hover {
     font-size: 14px;
     padding: 8px;
   }
+
+  /* ✅ رسائل التنبيه */
+  .modal-content {
+    width: 90vw;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  #modalMessage {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .modal-buttons button {
+    font-size: 13px;
+    padding: 6px 12px;
+    margin: 6px;
+  }
 }
+
 
 
 
