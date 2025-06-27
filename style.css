@@ -6,7 +6,7 @@ body {
 }
 
 .site-title {
-  font-size: 38px;
+  font-size: 30px;
   font-weight: bold;
   text-align: center;
   margin: 40px 0 20px;
@@ -17,8 +17,8 @@ body {
 
 .site-title i {
   color: #00bcd4;
-  margin-left: 8px;
-  font-size: 28px;
+  margin-left: 2px;
+  font-size: 20px;
   vertical-align: middle;
 }
 
