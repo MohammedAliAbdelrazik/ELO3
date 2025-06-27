@@ -423,21 +423,21 @@ button.delete-all:hover {
 
   /* ✅ رسائل التنبيه */
   .modal-content {
-    width: 90vw;
-    padding: 12px;
-    font-size: 14px;
-    border-radius: 12px;
+    width: 85vw;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 8px;
   }
 
   #modalMessage {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   .modal-buttons button {
-    font-size: 13px;
-    padding: 6px 12px;
-    margin: 6px;
+    font-size: 12px;
+    padding: 4px 10px;
+    margin: 4px;
   }
 }
 
