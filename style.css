@@ -358,7 +358,7 @@ button.delete-all:hover {
   background-color: #ff4d4d;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .download-btn,
   .save-btn,
   .view-btn,
@@ -380,15 +380,12 @@ button.delete-all:hover {
     width: 45%; /* يعني 80% من عرض الشاشة */
   }
 
-  .tasks-toggle.shifted {
-    right: calc(50px + 80vw);
+  .sidebar-toggle {
+    font-size: 22px;
+    padding: 6px 10px;
   }
 
   
-   .download-btn {
-    margin-top: 100px; /* ✅ تحريك الزر لأسفل */
-  }
-
   .ayoosh-badge {
     font-size: 13px;
     padding: 5px 10px;
@@ -425,11 +422,7 @@ button.delete-all:hover {
     right: 10px;
   }
 
-  .tasks-toggle {
-    font-size: 16px;
-    right: 15px;
-    padding: 6px 10px;
-  }
+  
 
   textarea,
   select {
