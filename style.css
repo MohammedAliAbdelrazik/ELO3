@@ -367,25 +367,26 @@ button.delete-all:hover {
     padding: 8px 14px;
   }
 
-
   .sidebar-toggle,
-.tasks-toggle {
-  top: 2px;           /* ← قربهم لأعلى الصفحة أكتر */
-  font-size: 18px;    /* ← صغر حجم الأيقونة */
-  padding: 6px 10px;  /* ← صغر حجم الزر نفسه */
-}
-
-
-.sidebar {
-    width: 45%; /* يعني 80% من عرض الشاشة */
+  .tasks-toggle {
+    top: 2px;            /* أعلى الصفحة */
+    font-size: 16px;     /* أصغر شوية */
+    padding: 5px 8px;    /* أصغر في الحجم */
+    z-index: 1002;       /* عشان ميختفوش تحت عناصر تانية */
   }
 
   .sidebar-toggle {
-    font-size: 22px;
-    padding: 6px 10px;
+    right: 10px;         /* أقصى اليمين */
   }
 
-  
+  .tasks-toggle {
+    right: 60px;         /* بعيد شوية عن زر القائمة */
+  }
+
+  .sidebar {
+    width: 85vw;
+  }
+
   .ayoosh-badge {
     font-size: 13px;
     padding: 5px 10px;
@@ -413,16 +414,10 @@ button.delete-all:hover {
     margin: 5px 6px;
   }
 
-  .sidebar {
-    width: 85vw;
-  }
-
   .tasks-dropdown {
     width: 80vw;
     right: 10px;
   }
-
-  
 
   textarea,
   select {
@@ -430,6 +425,7 @@ button.delete-all:hover {
     padding: 8px;
   }
 }
+
 
 .feelings input[type="radio"],
 .section input[type="checkbox"] {
