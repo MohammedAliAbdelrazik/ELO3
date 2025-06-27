@@ -7,8 +7,8 @@ body {
 
 .ayoosh-badge {
   position: fixed;
-  top: 0px;
-  left: 50px;
+  top: -4px;
+  left: 45px;
   font-size: 16px;
   font-weight: bold;
   color: #00bfa5;
@@ -571,3 +571,24 @@ button.delete-all:hover {
   margin-left: 8px;
   color: #5cc0e7;
 }
+
+
+
+
+.day-badge {
+  position: fixed;
+  top: 150px; /* نازل شوية لتحت */
+  left:-3px;
+  background-color: #00ccff;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1002;
+  box-shadow: 0 4px 12px rgba(0, 204, 255, 0.2);
+  font-family: 'Tajawal', sans-serif;
+}
+
+
+
