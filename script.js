@@ -635,10 +635,11 @@ document.addEventListener('click', function (e) {
 
 const sidebarToggle = document.querySelector('.sidebar-toggle');
 const tasksToggle = document.querySelector('.tasks-toggle');
+const ayooshBadge = document.querySelector('.ayoosh-badge');
 
 let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
 let scrollThreshold = 200; // المسافة اللي لازم يطلعها المستخدم عشان يظهر الزرار
-let hideReferencePoint = lastScrollTop; // هنسجل منها نقطة النزول
+let hideReferencePoint = lastScrollTop;
 
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -646,11 +647,12 @@ window.addEventListener('scroll', () => {
   const sidebarOpen = document.getElementById('sidebar').classList.contains('open');
   const tasksOpen = document.getElementById('tasksDropdown').classList.contains('open');
 
-  // ✅ لو المستخدم في أول الصفحة → نظهر الزرين على طول
+  // ✅ لو المستخدم في أول الصفحة → نظهر الزرين + الشعار
   if (scrollTop === 0) {
     sidebarToggle.classList.remove('hidden-soft');
     tasksToggle.classList.remove('hidden-soft');
-    return; // نخرج من الدالة
+    if (ayooshBadge) ayooshBadge.style.opacity = '1';
+    return;
   }
 
   // لو القوائم مفتوحة → لا تخفي ولا تظهر الزرار
@@ -661,6 +663,7 @@ window.addEventListener('scroll', () => {
     hideReferencePoint = scrollTop;
     sidebarToggle.classList.add('hidden-soft');
     tasksToggle.classList.add('hidden-soft');
+    if (ayooshBadge && scrollTop > 50) ayooshBadge.style.opacity = '0';
   }
   // المستخدم طالع ↑
   else if (scrollTop < lastScrollTop) {
@@ -669,6 +672,7 @@ window.addEventListener('scroll', () => {
       sidebarToggle.classList.remove('hidden-soft');
       tasksToggle.classList.remove('hidden-soft');
     }
+    if (scrollTop < 100 && ayooshBadge) ayooshBadge.style.opacity = '1';
   }
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
