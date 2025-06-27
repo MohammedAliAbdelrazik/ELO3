@@ -631,7 +631,7 @@ button.delete-all:hover {
 
 .day-badge {
   position: fixed;
-  top: 590px; /* نازل شوية لتحت */
+  top: 550px; /* نازل شوية لتحت */
   left:-3px;
   background-color: #00ccff;
   color: white;
