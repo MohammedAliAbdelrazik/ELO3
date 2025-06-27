@@ -368,7 +368,7 @@ button.delete-all:hover {
   }
 
 .sidebar {
-    width: 45vw; /* يعني 80% من عرض الشاشة */
+    width: 45%; /* يعني 80% من عرض الشاشة */
   }
 
   .tasks-toggle.shifted {
@@ -377,7 +377,7 @@ button.delete-all:hover {
 
   
    .download-btn {
-    margin-top: 20px; /* ✅ تحريك الزر لأسفل */
+    margin-top: 100px; /* ✅ تحريك الزر لأسفل */
   }
 
   .ayoosh-badge {
