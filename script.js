@@ -610,7 +610,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
 let buttonsHidden = false;
 
 document.addEventListener('click', function (e) {
@@ -622,38 +621,35 @@ document.addEventListener('click', function (e) {
   const clickedInsideSidebar = sidebar.contains(e.target) || sidebarToggle.contains(e.target);
   const clickedInsideTasks = tasksDropdown.contains(e.target) || tasksToggle.contains(e.target);
 
-  // ✅ استثناءات: لو ضغطت على إدخال أو زر أو رابط أو خانة حوار، ما تعملش حاجة
   const interactiveTags = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'LABEL', 'A'];
   if (interactiveTags.includes(e.target.tagName)) return;
 
-  // ✅ لو ضغطت جوه القائمة أو جوه المهام، ما تعملش حاجة
   if (clickedInsideSidebar || clickedInsideTasks) return;
 
-  // ✅ نسجل إذا كانت أي من القوائم مفتوحة
-  const sidebarWasOpen = sidebar.classList.contains('open');
-  const tasksWasOpen = tasksDropdown.classList.contains('open');
+  // نقفل القوائم فقط
+  sidebar.classList.remove('open');
+  tasksDropdown.classList.remove('open');
+  tasksToggle.classList.remove('shifted');
+});
 
-  // ✅ نقفلهم لو كانوا مفتوحين
-  if (sidebarWasOpen) {
-    sidebar.classList.remove('open');
-    tasksToggle.classList.remove('shifted');
+
+const sidebarToggle = document.querySelector('.sidebar-toggle');
+const tasksToggle = document.querySelector('.tasks-toggle');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+  const sidebarOpen = document.getElementById('sidebar').classList.contains('open');
+  const tasksOpen = document.getElementById('tasksDropdown').classList.contains('open');
+
+  // لو القوائم مفتوحة → لا تخفي الزرار
+  if (sidebarOpen || tasksOpen) return;
+
+  if (scrollTop > 50) {
+    sidebarToggle.classList.add('hidden-soft');
+    tasksToggle.classList.add('hidden-soft');
+  } else {
+    sidebarToggle.classList.remove('hidden-soft');
+    tasksToggle.classList.remove('hidden-soft');
   }
-  if (tasksWasOpen) {
-    tasksDropdown.classList.remove('open');
-  }
-
-  // ✅ بعد ما نقفلهم، نبدأ نختفي/نظهر الزرار حسب الحالة
-  setTimeout(() => {
-    if (!sidebar.classList.contains('open') && !tasksDropdown.classList.contains('open')) {
-      buttonsHidden = !buttonsHidden;
-
-      if (buttonsHidden) {
-        sidebarToggle.classList.add('hidden-soft');
-        tasksToggle.classList.add('hidden-soft');
-      } else {
-        sidebarToggle.classList.remove('hidden-soft');
-        tasksToggle.classList.remove('hidden-soft');
-      }
-    }
-  }, (sidebarWasOpen || tasksWasOpen) ? 300 : 0);
 });
