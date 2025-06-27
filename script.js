@@ -636,20 +636,34 @@ document.addEventListener('click', function (e) {
 const sidebarToggle = document.querySelector('.sidebar-toggle');
 const tasksToggle = document.querySelector('.tasks-toggle');
 
+let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
+let scrollThreshold = 200; // المسافة اللي لازم يطلعها المستخدم عشان يظهر الزرار
+let hideReferencePoint = lastScrollTop; // هنسجل منها نقطة النزول
+
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
   const sidebarOpen = document.getElementById('sidebar').classList.contains('open');
   const tasksOpen = document.getElementById('tasksDropdown').classList.contains('open');
 
-  // لو القوائم مفتوحة → لا تخفي الزرار
+  // لو القوائم مفتوحة → لا تخفي ولا تظهر الزرار
   if (sidebarOpen || tasksOpen) return;
 
-  if (scrollTop > 50) {
+  // المستخدم نازل ↓
+  if (scrollTop > lastScrollTop) {
+    // خزّن النقطة اللي بدأ يختفي منها
+    hideReferencePoint = scrollTop;
     sidebarToggle.classList.add('hidden-soft');
     tasksToggle.classList.add('hidden-soft');
-  } else {
-    sidebarToggle.classList.remove('hidden-soft');
-    tasksToggle.classList.remove('hidden-soft');
   }
+  // المستخدم طالع ↑
+  else if (scrollTop < lastScrollTop) {
+    const scrolledUp = hideReferencePoint - scrollTop;
+    if (scrolledUp > scrollThreshold) {
+      sidebarToggle.classList.remove('hidden-soft');
+      tasksToggle.classList.remove('hidden-soft');
+    }
+  }
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
