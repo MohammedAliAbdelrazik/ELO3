@@ -358,35 +358,64 @@ button.delete-all:hover {
   background-color: #ff4d4d;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+  .download-btn,
+  .save-btn,
+  .view-btn,
+  .delete-all {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .ayoosh-badge {
+    font-size: 13px;
+    padding: 5px 10px;
+    left: 10px;
+  }
+
+  .day-badge {
+    font-size: 13px;
+    padding: 8px 10px;
+    left: 5px;
+  }
+
   .section {
-    padding: 15px;
+    padding: 12px;
   }
 
   .section-title {
+    font-size: 15px;
+  }
+
+  .feelings label,
+  .section label {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin: 5px 6px;
+  }
+
+  .sidebar {
+    width: 85vw;
+  }
+
+  .tasks-dropdown {
+    width: 80vw;
+    right: 10px;
+  }
+
+  .tasks-toggle {
     font-size: 16px;
+    right: 15px;
+    padding: 6px 10px;
   }
 
   textarea,
   select {
     font-size: 14px;
-    padding: 10px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  .sidebar {
-    width: 45%; /* فقط غير العرض لو عايزها أضيق على الموبايل */
-  }
-
-  .sidebar-toggle {
-    font-size: 22px;
-    padding: 6px 10px;
+    padding: 8px;
   }
 }
+
 .feelings input[type="radio"],
 .section input[type="checkbox"] {
   display: none;
