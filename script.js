@@ -32,7 +32,7 @@ window.onload = () => {
     li.onclick = () => {
   daySelect.value = i
   const selectedDisplay = document.getElementById('selectedDayDisplay')
-  if (selectedDisplay) selectedDisplay.textContent = ` اليوم الحالي: ${i}`
+  if (selectedDisplay) selectedDisplay.textContent = i;
   loadDayData(i)
   
 
@@ -51,7 +51,7 @@ window.onload = () => {
     daySelect.value = firstEmptyDay;
     const selectedDisplay = document.getElementById("selectedDayDisplay");
     if (selectedDisplay) {
-      selectedDisplay.textContent = ` اليوم الحالي: ${firstEmptyDay}`;
+      selectedDisplay.textContent = firstEmptyDay;
     }
     loadDayData(firstEmptyDay);
   }
@@ -147,7 +147,7 @@ function resetSidebarContent() {
         loadDayData(i)
         const selectedDisplay = document.getElementById('selectedDayDisplay')
         if (selectedDisplay) {
-          selectedDisplay.textContent = ` اليوم الحالي: ${i}`
+          selectedDisplay.textContent = i
         }
         toggleSidebar() // إغلاق القائمة بعد الاختيار
       }
@@ -318,7 +318,7 @@ function loadDayData(day) {
     // لو مفيش بيانات، بس اعرض اليوم الحالي فقط
     const selectedDisplay = document.getElementById("selectedDayDisplay");
     if (selectedDisplay) {
-      selectedDisplay.textContent =` اليوم الحالي: ${day}`;
+selectedDisplay.textContent = day;
     }
     document.getElementById("day").value = day;
     return;
@@ -341,7 +341,7 @@ function loadDayData(day) {
 
   const selectedDisplay = document.getElementById("selectedDayDisplay");
   if (selectedDisplay) {
-    selectedDisplay.textContent =` اليوم الحالي: ${day}`;
+    selectedDisplay.textContent = day;
   }
 
   document.getElementById("day").value = day;
@@ -510,7 +510,7 @@ async function askAboutYesterday(currentDay) {
   } else {
     // رد سلبي عشوائي بدون تعديل الحالة
     const negativeResponses = [
-      "ليه كده يا أيلو؟ طيب يلا نبدأ؟ 💭",
+      "ليه كده يا أيلو؟ طيب يلا نبدأ؟ ",
       "مفيش مشكلة، كلنا بتحصل لنا ظروف تعطّلنا 💜",
       "كنت فاكرك خلّصتيهم بصراحة ، بس مش مشكلة يلا ننجزهم الأول! ",
       "ما تقلقيش، نقدر نبدأ من جديد ونخلّصهم سوا 🤗"
