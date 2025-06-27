@@ -5,6 +5,28 @@ body {
   padding: 0;
 }
 
+.site-title {
+  font-size: 38px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0 20px;
+  color: #00ccff;
+  position: relative;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.site-title i {
+  color: #00bcd4;
+  margin-left: 8px;
+  font-size: 28px;
+  vertical-align: middle;
+}
+
+.site-title span {
+  color: #00bfa5;
+}
+
+
 .download-btn {
   text-decoration: none;
   background-color: #00ccff;
@@ -82,12 +104,13 @@ textarea, select {
   border: 1px solid #dcdde1;
   border-radius: 10px;
   font-size: 16px;
-  font-family: 'Cairo', sans-serif; /* لتتناسب مع باقي النص */
+  font-family: 'Tajawal', sans-serif; 
   background-color: #f9f9f9;
   transition: all 0.3s ease;
   margin: 8px 0 16px 0;
   resize: none;
   box-sizing: border-box; /* مهم لاحتساب padding ضمن العرض */
+  -webkit-font-smoothing: antialiased;
 }
 
 textarea {
@@ -545,4 +568,9 @@ button.delete-all:hover {
   opacity: 0;
   transform: scale(0.9);
   pointer-events: none; /* عشان ميضغطش عليه وهو مخفي */
+}
+
+.sidebar-item i {
+  margin-left: 8px;
+  color: #5cc0e7;
 }
