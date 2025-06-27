@@ -367,6 +367,15 @@ button.delete-all:hover {
     padding: 8px 14px;
   }
 
+
+  .sidebar-toggle,
+.tasks-toggle {
+  top: 2px;           /* ← قربهم لأعلى الصفحة أكتر */
+  font-size: 18px;    /* ← صغر حجم الأيقونة */
+  padding: 6px 10px;  /* ← صغر حجم الزر نفسه */
+}
+
+
 .sidebar {
     width: 45%; /* يعني 80% من عرض الشاشة */
   }
