@@ -229,8 +229,8 @@ function resetSidebarContent() {
   // التحقق من البيانات الأساسية
   if (!day || !feeling || !notes) {
   await showModal(
-    "من فضلك املأ البيانات الأساسية.",
-    [{ label: "طيب استنى", value: true }]
+    "  .معلش لازم تملي البيانات كلهاالأول ",
+    [{ label: " طيب.يارب صبرني", value: true }]
   );
   return;
 }
@@ -272,8 +272,8 @@ entry.tasks = tasks;
   // التخزين في localStorage
   localStorage.setItem(`ayoosh_day_${day}`, JSON.stringify(entry));
   await showModal(
-  "تم حفظ اليوم بنجاح!",
-  [{ label: " تم" , value: true }]
+  "اليوم اتحفظ بنجاح",
+  [{ label: "ماشي" , value: true }]
 );
 
   // إعادة تعيين الحقول
@@ -305,7 +305,7 @@ function viewData() {
   return;
 }
 
-  output.innerHTML = "<h3>📋 اليوميات المحفوظة:</h3>";
+  output.innerHTML = "<h3>اليوميات المحفوظة:</h3>";
 
   for (let i = 1; i <= 30; i++) {
     const data = localStorage.getItem(`ayoosh_day_${i}`);
@@ -403,10 +403,10 @@ selectedDisplay.textContent = day;
 
  async function deleteAllData() {
   const confirmDelete = await showModal(
-  "هل أنت متأكد أنك تريد حذف جميع اليوميات؟ هذا لا يمكن التراجع عنه.",
+  "متأكده أنك عايزه حذف جميع اليوميات؟ هذا لا يمكن التراجع عنه.",
   [
-    { label: "أيوه، امسح 🗑️", value: true },
-    { label: "لا ❌", value: false }
+    { label: "أيوه، امسح", value: true },
+    { label: " لا استنى ", value: false }
   ]
 );
 
@@ -428,8 +428,8 @@ if (messageElem) messageElem.textContent = "لا توجد بيانات لعرض�
 
 
     await showModal(
-    "تم حذف جميع اليوميات بنجاح!",
-    [{ label: "تم", value: true }]
+    "الأيام كلها اتحذفت بنجاح",
+    [{ label: "ماشي", value: true }]
   );
 
 
@@ -534,7 +534,7 @@ async function askAboutYesterday(currentDay) {
 
   // اسأل المستخدم
   const answer = await showModal(
-    "أيوش انتهيتي من مهمة امبارح؟",
+    "أيوش انتهيتي من المهام اللي عليكي؟",
     [
       { label: "أه خلصتها ", value: true },
       { label: "لسه ", value: false }
@@ -549,15 +549,15 @@ async function askAboutYesterday(currentDay) {
 
     // رد إيجابي عشوائي
     const positiveResponses = [
-      "ممتاز يا أشوش، أنا مبسوط منك 🌟",
+      "ممتاز يا أشوش، أنا مبسوط منك ",
       "هايل يا أيوش 💖",
-      "أنتي أحسن حد بيعرف ينجّز مهامه 💪",
+      "أنتي أحسن حد بيعرف ينجّز مهامه ",
       "أنا مبسوط منك أوي 🥰"
     ];
     const randomPositive = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
     await showModal(
       randomPositive,
-      [{ label: "تمام ", value: true }]
+      [{ label: "ماشي", value: true }]
     );
 
   } else {
@@ -571,7 +571,7 @@ async function askAboutYesterday(currentDay) {
     const randomNegative = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
     await showModal(
       randomNegative,
-      [{ label: "تمام ", value: true }]
+      [{ label: "ماشي", value: true }]
     );
   }
 }
@@ -605,9 +605,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const greetingMessages = [
     "عندنا يا ترى معانا إيه جديد النهاردة؟؟ ",
     "صباح الخير يا أحلى أيوش ",
-    "اووه إيه الحلويات دي؟ أنا بفرح لما بشوفك اوي 🥰",
+    "اوووه إيه الحلويات دي؟ أنا بفرح لما بشوفك أوي 🥰",
     "غيابك طول وحشتيني أوي 💜",
-    "اووف ايه ده 🫣♥",
+    "اووف ايه ده 🫣",
   ];
   const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
 
