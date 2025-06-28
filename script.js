@@ -94,6 +94,7 @@ function toggleTasks() {
   list.innerHTML = ''
 
   for (let i = 1; i <= 30; i++) {
+    
     const data = localStorage.getItem(`ayoosh_day_${i}`)
     if (data) {
       const d = JSON.parse(data)
@@ -101,10 +102,15 @@ function toggleTasks() {
         const li = document.createElement('li')
         const label = document.createElement('label')
         label.textContent = `اليوم ${i}`
-        label.onclick = (e) => {
-          e.preventDefault()
-          alert(`مهام اليوم ${i}:\n${d.priority || 'لا توجد مهام مسجلة'}`)
-        }
+       label.onclick = async (e) => {
+  e.preventDefault();
+  const message = d.priority
+    ? `المهمة بتاعت اليوم ${i} هي:${d.priority}`
+    : `مفيش مهمة مسجلة لليوم ${i} `;
+
+  await showModal(message, [{ label: "ماشي", value: true }]);
+};
+
         const checkbox = document.createElement('input')
         checkbox.type = 'checkbox'
         checkbox.checked = !!d.taskCompleted
@@ -117,9 +123,23 @@ function toggleTasks() {
         li.appendChild(label)
         li.appendChild(checkbox)
         list.appendChild(li)
+
+        
       }
     }
   }
+
+// لو القائمة فضيت بعد اللف → نعرض رسالة
+if (list.children.length === 0) {
+  const emptyMsg = document.createElement('div');
+  emptyMsg.textContent = "أيوش معندهاش مهام 😴";
+  emptyMsg.style.padding = "10px";
+  emptyMsg.style.textAlign = "center";
+  emptyMsg.style.color = "#666";
+  list.appendChild(emptyMsg);
+}
+
+
 }
 
 
@@ -677,4 +697,21 @@ window.addEventListener('scroll', () => {
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+
+
+
+
+function showTaskMessage(message) {
+  const modal = document.getElementById("taskModal");
+  const modalText = document.getElementById("taskModalText");
+
+  modalText.textContent = message;
+  modal.style.display = "flex";
+}
+
+function closeTaskModal() {
+  const modal = document.getElementById("taskModal");
+  modal.style.display = "none";
+}
+
 
