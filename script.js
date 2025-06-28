@@ -676,20 +676,30 @@ document.addEventListener('click', function (e) {
   const tasksDropdown = document.getElementById('tasksDropdown');
   const sidebarToggle = document.querySelector('.sidebar-toggle');
   const tasksToggle = document.querySelector('.tasks-toggle');
+  const output = document.getElementById('output');
 
   const clickedInsideSidebar = sidebar.contains(e.target) || sidebarToggle.contains(e.target);
   const clickedInsideTasks = tasksDropdown.contains(e.target) || tasksToggle.contains(e.target);
+  const clickedInsideOutput = output.contains(e.target);
+  const clickedInsideDayEntry = e.target.closest('.day-entry') !== null;
 
   const interactiveTags = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'LABEL', 'A'];
   if (interactiveTags.includes(e.target.tagName)) return;
 
-  if (clickedInsideSidebar || clickedInsideTasks) return;
+  if (clickedInsideSidebar || clickedInsideTasks || clickedInsideOutput || clickedInsideDayEntry) return;
 
-  // نقفل القوائم فقط
+  // نقفل القوائم
   sidebar.classList.remove('open');
   tasksDropdown.classList.remove('open');
   tasksToggle.classList.remove('shifted');
+
+  // ✅ اقفل عرض اليوميات بس لو الضغط مش داخلها
+  if (output.classList.contains('show')) {
+    output.classList.remove('show');
+    setTimeout(() => output.innerHTML = '', 400);
+  }
 });
+
 
 
 const sidebarToggle = document.querySelector('.sidebar-toggle');
