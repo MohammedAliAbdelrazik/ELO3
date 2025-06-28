@@ -373,7 +373,8 @@ button.delete-all:hover {
     max-width: 75vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    
+    top: 10vh;
+    transform: translateY(0);
   }
 
 
