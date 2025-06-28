@@ -378,7 +378,7 @@ button.delete-all:hover {
 
  .sidebar-toggle,
 .tasks-toggle {
-  position: relative !important;
+  position: fixed !important;
   right: auto !important;
   top: 1px !important;
   font-size: 16px !important;
