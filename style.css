@@ -204,7 +204,7 @@ textarea:focus {
   cursor: pointer;
   z-index: 1001;
   color: #5ccee7;
-  background-color: #f5f6fa;
+  background-color: #f6f6f6;
   padding: 8px 12px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -565,8 +565,8 @@ button.delete-all:hover {
   top: 1px;
   right: 70px; /* المسافة على حسب ذوقك */
   font-size: 18px;
-  background-color: #ffffff;
-  color: rgb(55, 55, 55);
+  background-color: #f6f6f6;
+  color: #5ccee7;
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
