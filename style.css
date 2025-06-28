@@ -383,8 +383,10 @@ button.delete-all:hover {
   top: 1px !important;
   font-size: 16px !important;
   padding: 6px 10px !important;
-  z-index: 1002;
+  width: auto !important;  /* مهم لتمنعهم من التمدد */
+  min-width: 40px;
 }
+
 
     #welcomeModal {
     font-size: 13px;
