@@ -649,8 +649,8 @@ button.delete-all:hover {
 }
 
 .tasks-dropdown input[type="checkbox"]:checked {
-  background-color: #5fa8d3;
-  border-color: #5fa8d3;
+  background-color: #00C389;
+  border-color: #00C389;
 }
 
 .tasks-dropdown input[type="checkbox"]::after {
