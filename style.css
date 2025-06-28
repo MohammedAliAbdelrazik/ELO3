@@ -387,7 +387,7 @@ button.delete-all:hover {
   }
 
   .tasks-toggle {
-    right: 50px !important;
+    right: 50px;
   }
 
   .sidebar {
