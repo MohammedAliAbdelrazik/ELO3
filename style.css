@@ -471,7 +471,7 @@ button.delete-all:hover {
   }
 
   .tasks-toggle {
-    right: 50px;
+    right: 24px !important;
   }
 
   
