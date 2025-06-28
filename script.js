@@ -81,66 +81,99 @@ function toggleSidebar() {
 
 
 
-function toggleTasks() {
-  const dropdown = document.getElementById('tasksDropdown')
-  dropdown.classList.toggle('open')
-  
-  // أول ما أفتح المهام، أسمح للقايمة الجانبية بالتمدد
-  const sidebar = document.getElementById('sidebar')
-  sidebar.classList.remove('collapsed') 
+function updateTasksDropdownPosition() {
+  const dropdown = document.getElementById('tasksDropdown');
+  const toggleBtn = document.querySelector('.tasks-toggle');
 
-  // تفريغ القائمة وبناء عناصر المهام زي ما عندك بالفعل
-  const list = document.getElementById('tasksList')
-  list.innerHTML = ''
+  if (!dropdown.classList.contains('open')) return;
+
+  const rect = toggleBtn.getBoundingClientRect();
+  const dropdownWidth = dropdown.offsetWidth;
+
+  dropdown.style.position = 'absolute';
+  dropdown.style.top = `${rect.bottom + window.scrollY + 8}px`;
+
+  // نوسّط القائمة تحت الزر
+  const centerX = rect.left + rect.width / 2;
+  dropdown.style.left = `${centerX - dropdownWidth / 2 + window.scrollX}px`;
+}
+
+
+function toggleTasks() {
+  const dropdown = document.getElementById('tasksDropdown');
+  const toggleBtn = document.querySelector('.tasks-toggle');
+  const list = document.getElementById('tasksList');
+
+  // إذا كانت القايمة مفتوحة اقفلها وخلاص
+  if (dropdown.classList.contains('open')) {
+    dropdown.classList.remove('open');
+    return;
+  }
+
+  // احسب مكان الزر واضبط مكان القائمة مباشرة
+  const rect = toggleBtn.getBoundingClientRect();
+  const dropdownWidth = 220; // لازم يطابق CSS
+  const top = rect.bottom + window.scrollY + 8;
+  const left = rect.left + window.scrollX + (rect.width / 2) - (dropdownWidth / 2);
+
+  dropdown.style.top = `${top}px`;
+  dropdown.style.left = `${left}px`;
+
+  // بعد ما ظبطنا المكان، نفتح القائمة
+  dropdown.classList.add('open');
+  updateTasksDropdownPosition(); // خليها بعد فتح القائمة مباشرة
+
+  // فك طي القائمة الجانبية
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.remove('collapsed');
+
+  // فضي القائمة وبنيها من جديد
+  list.innerHTML = '';
 
   for (let i = 1; i <= 30; i++) {
-    
-    const data = localStorage.getItem(`ayoosh_day_${i}`)
+    const data = localStorage.getItem(`ayoosh_day_${i}`);
     if (data) {
-      const d = JSON.parse(data)
+      const d = JSON.parse(data);
       if (d.priority) {
-        const li = document.createElement('li')
-        const label = document.createElement('label')
-        label.textContent = `اليوم ${i}`
-       label.onclick = async (e) => {
-  e.preventDefault();
-  const message = d.priority
-    ? `المهمة بتاعت اليوم ${i} هي:${d.priority}`
-    : `مفيش مهمة مسجلة لليوم ${i} `;
+        const li = document.createElement('li');
+        const label = document.createElement('label');
+        label.textContent = `اليوم ${i}`;
+        label.onclick = async (e) => {
+          e.preventDefault();
+          const message = d.priority
+            ? `المهمة بتاعت اليوم ${i} هي:${d.priority}`
+            : `مفيش مهمة مسجلة لليوم ${i}`;
+          await showModal(message, [{ label: "ماشي", value: true }]);
+        };
 
-  await showModal(message, [{ label: "ماشي", value: true }]);
-};
-
-        const checkbox = document.createElement('input')
-        checkbox.type = 'checkbox'
-        checkbox.checked = !!d.taskCompleted
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = !!d.taskCompleted;
         checkbox.onclick = (e) => {
-          e.stopPropagation()
-          d.taskCompleted = checkbox.checked
-          localStorage.setItem(`ayoosh_day_${i}`, JSON.stringify(d))
-        }
+          e.stopPropagation();
+          d.taskCompleted = checkbox.checked;
+          localStorage.setItem(`ayoosh_day_${i}`, JSON.stringify(d));
+        };
 
-        li.appendChild(label)
-        li.appendChild(checkbox)
-        list.appendChild(li)
-
-        
+        li.appendChild(label);
+        li.appendChild(checkbox);
+        list.appendChild(li);
       }
     }
   }
 
-// لو القائمة فضيت بعد اللف → نعرض رسالة
-if (list.children.length === 0) {
-  const emptyMsg = document.createElement('div');
-  emptyMsg.textContent = "أيوش معندهاش مهام 😴";
-  emptyMsg.style.padding = "10px";
-  emptyMsg.style.textAlign = "center";
-  emptyMsg.style.color = "#666";
-  list.appendChild(emptyMsg);
+  if (list.children.length === 0) {
+    const emptyMsg = document.createElement('div');
+    emptyMsg.textContent = "أيوش معندهاش مهام 😴";
+    emptyMsg.style.padding = "10px";
+    emptyMsg.style.textAlign = "center";
+    emptyMsg.style.color = "#666";
+    list.appendChild(emptyMsg);
+  }
 }
-
-
-}
+// كل ما المستخدم يعمل scroll أو resize، نحدّث مكان القائمة لو كانت مفتوحة
+window.addEventListener('scroll', updateTasksDropdownPosition);
+window.addEventListener('resize', updateTasksDropdownPosition);
 
 
 
@@ -719,4 +752,3 @@ function closeTaskModal() {
   const modal = document.getElementById("taskModal");
   modal.style.display = "none";
 }
-
