@@ -400,6 +400,11 @@ button.delete-all:hover {
   .tasks-toggle {
     right: 50px;
   }
+  
+  .tasks-toggle.shifted {
+  right: calc(50px + 45vw); /* 45vw هو عرض القائمة على الموبايل */
+  transition: right 0.3s ease;
+}
 
   .sidebar {
     width: 45vw !important;
