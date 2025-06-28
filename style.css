@@ -370,7 +370,7 @@ button.delete-all:hover {
     #welcomeModal {
     font-size: 13px;
     padding: 10px 14px;
-    max-width: 85vw;
+    max-width: 80vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
@@ -734,7 +734,7 @@ button.delete-all:hover {
 }
 
 #welcomeModal.show {
-  top: 20px;
+  top: 2px;
   opacity: 1;
   display: flex;
 }
