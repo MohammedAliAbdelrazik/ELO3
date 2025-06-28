@@ -554,6 +554,34 @@ setTimeout(() => {
 }, 10000); // بعد أول 10 ثواني من تحميل الصفحة
 
 
+function showWelcomeMessage(message) {
+  const modal = document.getElementById('welcomeModal');
+  const messageElem = document.getElementById('welcomeMessage');
+
+  messageElem.textContent = message;
+  modal.style.display = "flex";
+  setTimeout(() => modal.classList.add('show'), 10);
+
+  setTimeout(() => {
+    modal.classList.remove('show');
+    setTimeout(() => (modal.style.display = "none"), 500);
+  }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const greetingMessages = [
+    "عندنا يا ترى معانا إيه جديد النهاردة؟؟ ",
+    "صباح الخير يا أحلى أيوش ",
+    "اووه إيه الحلويات دي؟ أنا بفرح لما بشوفك اوي 🥰",
+    "غيابك طول وحشتيني أوي 💜",
+    "اووف ايه ده 🫣♥",
+  ];
+  const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
+
+  setTimeout(() => {
+    showWelcomeMessage(randomGreeting);
+  }, 1000);
+});
 
 
 function showModal(message, buttons) {
@@ -589,29 +617,7 @@ function showModal(message, buttons) {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const greetingMessages = [
-    "عندنا يا ترى معانا إيه جديد النهاردة؟؟ ",
-    "صباح الخير يا أحلى أيوش ",
-    "اووه إيه الحلويات دي؟ أنا بفرح لما بشوفك اوي 🥰",
-    "غيابك طول وحشتيني أوي 💜",
-    "اووف ايه ده 🫣♥",
 
-    
-  ];
-
-  const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
-
-  setTimeout(() => {
-    showModal(randomGreeting); // بدون أزرار
-    setTimeout(() => {
-      const modal = document.getElementById('customModal');
-      if (modal) {
-        modal.style.display = 'none';
-      }
-    }, 3000); // يختفي بعد 4 ثواني
-  }, 1000); // يظهر بعد ثانية من تحميل الصفحة
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   // بنختار كل عناصر القايمة الرئيسية بدون شرط وجود "has-submenu"
@@ -713,5 +719,4 @@ function closeTaskModal() {
   const modal = document.getElementById("taskModal");
   modal.style.display = "none";
 }
-
 
