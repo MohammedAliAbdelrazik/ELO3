@@ -367,6 +367,25 @@ button.delete-all:hover {
     padding: 8px 14px;
   }
 
+  .mobile-buttons {
+    position: fixed;
+    top: 1px;
+    right: 10px;
+    display: flex;
+    gap: 6px;
+    z-index: 1002;
+  }
+
+ .sidebar-toggle,
+.tasks-toggle {
+  position: relative !important;
+  right: auto !important;
+  top: 1px !important;
+  font-size: 16px !important;
+  padding: 6px 10px !important;
+  z-index: 1002;
+}
+
     #welcomeModal {
     font-size: 13px;
     padding: 10px 14px;
@@ -385,21 +404,9 @@ button.delete-all:hover {
     padding: 8px 14px;
 }
   
-  .sidebar-toggle,
-  .tasks-toggle {
-    top: 1px !important;
-    font-size: 16px !important;
-    padding: 6px 6px !important;
-    z-index: 1002;
-  }
+  
 
-  .sidebar-toggle {
-    right: 10px !important;
-  }
-
-  .tasks-toggle {
-    right: 50px;
-  }
+  
   
   .tasks-toggle.shifted {
   right: calc(50px + 45vw); /* 45vw هو عرض القائمة على الموبايل */
