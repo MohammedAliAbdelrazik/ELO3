@@ -442,7 +442,7 @@ button.delete-all:hover {
   }
 
    #welcomeModal {
-    top: -100px;
+    top: -100px; /* مكانها قبل الظهور */
     font-size: 13px;
     padding: 10px 14px;
     max-width: 70vw;
@@ -452,7 +452,7 @@ button.delete-all:hover {
   }
 
   #welcomeModal.show {
-    top: -5px; /* ✅ بدل 1px عشان يكون أعلى شويه من النص */
+    top: 0; /* ✅ ملاصقة تمامًا لأعلى الشاشة */
     opacity: 1;
     display: flex;
   }
