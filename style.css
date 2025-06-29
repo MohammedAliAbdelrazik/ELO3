@@ -475,9 +475,10 @@ button.delete-all:hover {
     right: 45px !important;
   }
 
-  .tasks-toggle.shifted {
-    right: calc(45vw + 10px);
-  
+   .tasks-toggle.shifted {
+    right: calc(45vw + 10px); /* يتزحلق مع القائمة */
+  }
+
 
 
   .sidebar {
