@@ -137,7 +137,8 @@ textarea:focus {
   padding: 10px 20px;
   margin: 8px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 13px;
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
@@ -155,9 +156,10 @@ textarea:focus {
   padding: 10px 20px;
   margin: 8px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
   cursor: pointer;
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
   transition: background 0.3s, transform 0.2s;
 }
 .view-btn:hover {
@@ -173,7 +175,8 @@ textarea:focus {
   padding: 10px 20px;     
   margin: 8px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 13px;
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
@@ -416,22 +419,7 @@ textarea:focus {
 
 
 
-button.delete-all {
-  background-color: #ff6b6b;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 8px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
 
-button.delete-all:hover {
-  background-color: #ff4d4d;
-}
 
 @media (max-width: 600px) {
   .save-btn,
@@ -763,6 +751,7 @@ button.delete-all:hover {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
   justify-content: center;
   align-items: center;
 }
@@ -774,6 +763,7 @@ button.delete-all:hover {
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   width: 320px;
   max-width: 80%;
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
   text-align: center;
   animation: fadeIn 0.3s ease;
 }
@@ -785,6 +775,7 @@ button.delete-all:hover {
   border-radius: 8px;
   cursor: pointer;
   background-color: #00ccff;
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
   color: white;
   font-weight: bold;
   transition: background 0.3s;
@@ -890,6 +881,7 @@ button.delete-all:hover {
 
 .danger-btn {
   background-color: #e74c3c !important;
+  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
 }
 
 .danger-btn:hover {
