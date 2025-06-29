@@ -229,7 +229,7 @@ function resetSidebarContent() {
   // التحقق من البيانات الأساسية
   if (!day || !feeling || !notes) {
   await showModal(
-    "  .معلش لازم تملي البيانات كلهاالأول ",
+    "  .معلش لازم تملي البيانات كله الأول ",
     [{ label: " طيب. يارب صبرني", value: true }]
   );
   return;
