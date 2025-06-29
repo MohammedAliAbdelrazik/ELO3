@@ -476,7 +476,7 @@ button.delete-all:hover {
   }
 
    .tasks-toggle.shifted {
-    right: 210px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 200px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
 
@@ -490,10 +490,10 @@ button.delete-all:hover {
   min-width: 140px;
   max-width: 180px;
   font-size: 12px;
-
   padding: 6px 8px;
-  top: 42px;
-  right: 40px;
+   top: auto !important;
+    right: auto !important;
+    left: auto !important;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
