@@ -476,7 +476,7 @@ button.delete-all:hover {
   }
 
    .tasks-toggle.shifted {
-    right: 210px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 215px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
 
