@@ -452,7 +452,7 @@ button.delete-all:hover {
   }
 
   #welcomeModal.show {
-    top: 4px; /* ✅ بدل 1px عشان يكون أعلى شويه من النص */
+    top: -4px; /* ✅ بدل 1px عشان يكون أعلى شويه من النص */
     opacity: 1;
     display: flex;
   }
