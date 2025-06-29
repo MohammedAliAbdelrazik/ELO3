@@ -472,11 +472,11 @@ button.delete-all:hover {
   }
 
   .tasks-toggle {
-    right: 43px !important;
+    right: 42px !important;
   }
 
    .tasks-toggle.shifted {
-    right: 260px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 230px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
 
