@@ -476,7 +476,7 @@ button.delete-all:hover {
   }
 
    .tasks-toggle.shifted {
-    right: 208px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 210px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
 
@@ -486,19 +486,18 @@ button.delete-all:hover {
   }
 
   .tasks-dropdown {
-  width: 160px !important;       /* حجم أصغر مناسب للموبايل */
-  min-width: 140px;
-  max-width: 180px;
+  width: 140px !important;       /* حجم أصغر مناسب للموبايل */
+  min-width: 120px;
+  max-width: 150px;
   font-size: 12px;
   padding: 6px 8px;
   
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  /* التأثير النعيم */
   transform: translateY(-10px);
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
+     overflow-wrap: break-word; /* يتلف السطر لو طويل */
 }
 
 .tasks-dropdown.open {
