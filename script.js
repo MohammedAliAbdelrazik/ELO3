@@ -405,10 +405,11 @@ selectedDisplay.textContent = day;
   const confirmDelete = await showModal(
   "متأكده أنك عايزه حذف جميع اليوميات؟ هذا لا يمكن التراجع عنه.",
   [
-    { label: "أيوه، امسح", value: true },
+    { label: "أيوه، امسح", value: true, className: "danger-btn" },
     { label: " لا استنى ", value: false }
   ]
 );
+
 
   if (confirmDelete) {
     for (let i = 1; i <= 30; i++) {
@@ -416,11 +417,15 @@ selectedDisplay.textContent = day;
     }
 
 // تصفير دائرة المشاعر
-chart.data.labels = [];
-chart.data.datasets[0].data = [];
-chart.data.datasets[0].backgroundColor = [];
-chart.options.plugins.legend.display = false;
-chart.update();
+// تصفير دائرة المشاعر (لو الرسم البياني موجود)
+if (typeof chart !== 'undefined' && chart) {
+  chart.data.labels = [];
+  chart.data.datasets[0].data = [];
+  chart.data.datasets[0].backgroundColor = [];
+  chart.options.plugins.legend.display = false;
+  chart.update();
+}
+
 
 // تغيير الرسالة
 const messageElem = document.getElementById("feelingMessage");
@@ -611,9 +616,16 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
 
-  setTimeout(() => {
+ setTimeout(() => {
+  const lastShown = localStorage.getItem("welcome_shown_at");
+  const now = Date.now();
+
+  if (!lastShown || now - parseInt(lastShown) > 30000) { // ✅ عدّى 30 ثانية
     showWelcomeMessage(randomGreeting);
-  }, 1000);
+    localStorage.setItem("welcome_shown_at", now);
+  }
+}, 3000);
+
 });
 
 
@@ -626,17 +638,21 @@ function showModal(message, buttons) {
     messageElem.textContent = message;
     buttonsElem.innerHTML = '';
 
-    // لو مفيش أزرار نعرض الرسالة بدون أزرار ونرجع مباشرة
     if (!buttons || buttons.length === 0) {
       modal.style.display = 'flex';
-      resolve(); // نرجع على طول عشان مفيش قيمة من أزرار
+      resolve();
       return;
     }
 
-    // لو فيه أزرار نبنيها عادي
     buttons.forEach(btn => {
       const button = document.createElement('button');
       button.textContent = btn.label;
+      
+      // ✅ لو فيه className مخصص للزر، ضيفه
+      if (btn.className) {
+        button.classList.add(btn.className);
+      }
+
       button.onclick = () => {
         modal.style.display = 'none';
         resolve(btn.value); 
@@ -647,6 +663,7 @@ function showModal(message, buttons) {
     modal.style.display = 'flex';
   });
 }
+
 
 
 
