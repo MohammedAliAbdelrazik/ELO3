@@ -442,17 +442,23 @@ button.delete-all:hover {
   }
 
    #welcomeModal {
-    top: -100px; /* مكانها قبل الظهور */
+    top: -100px;
     font-size: 13px;
     padding: 10px 14px;
     max-width: 70vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: top 1s ease-out, opacity 0.6s ease;
+    
+    /* ✅ إضافات جديدة */
+    height: 50px; /* أو أي ارتفاع يناسبك */
+    display: flex;
+    align-items: center; /* ✅ لتوسيط النص عموديًا */
+    overflow: hidden; /* يخفي أي زيادة */
   }
 
   #welcomeModal.show {
-    top: 0; /* ✅ ملاصقة تمامًا لأعلى الشاشة */
+    top: 0;
     opacity: 1;
     display: flex;
   }
