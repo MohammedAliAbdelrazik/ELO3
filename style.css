@@ -445,7 +445,7 @@ button.delete-all:hover {
     top: -100px;
     font-size: 13px;
     padding: 10px 14px;
-    max-width: 80vw;
+    max-width: 70vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: top 1s ease-out, opacity 0.6s ease;
