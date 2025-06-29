@@ -887,3 +887,11 @@ button.delete-all:hover {
   opacity: 1;
   display: flex;
 }
+
+.danger-btn {
+  background-color: #e74c3c !important;
+}
+
+.danger-btn:hover {
+  background-color: #c0392b !important;
+}
