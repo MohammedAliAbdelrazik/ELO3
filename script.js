@@ -603,16 +603,20 @@ function showWelcomeMessage(message) {
   setTimeout(() => {
     modal.classList.remove('show');
     setTimeout(() => (modal.style.display = "none"), 500);
-  }, 3000);
+  }, 6000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const greetingMessages = [
-    "عندنا يا ترى معانا إيه جديد النهاردة؟؟ ",
-    "صباح الخير يا أحلى أيوش ",
+    "يارب يومك كله يبقى حنية زي قلبك ❤",
+    "صباح الخير يا وش السعد ❤ ",
     "اوووه إيه الحلويات دي؟ أنا بفرح لما بشوفك أوي 🥰",
     "غيابك طول وحشتيني أوي 💜",
-    "اووف ايه ده 🫣",
+    "هو في حلاويات أكثر من كده؟؟ 😍",
+    "فين الجميل من بدري ؟",
+    "أيووووه كده نورت الدنيا كلها 🥰",
+    "فينك من بدري؟ كنت مستنيكي 🤨",
+    "أووه أنا طول عنري أسمع عن نوع حلويات أيوش أول مره أشوفه 😍"
   ];
   const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
 
@@ -620,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lastShown = localStorage.getItem("welcome_shown_at");
   const now = Date.now();
 
-  if (!lastShown || now - parseInt(lastShown) > 30000) { // ✅ عدّى 30 ثانية
+  if (!lastShown || now - parseInt(lastShown) > 12 * 60 * 60 * 1000  ) { // ✅ عدّى 30 ثانية
     showWelcomeMessage(randomGreeting);
     localStorage.setItem("welcome_shown_at", now);
   }
