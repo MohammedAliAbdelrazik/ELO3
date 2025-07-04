@@ -289,6 +289,8 @@ entry.tasks = tasks;
   
 
   viewData(); // علشان يحدث القائمة فورًا
+   setTimeout(() => location.reload(), 500);
+
 }
 
   
@@ -440,6 +442,7 @@ if (messageElem) messageElem.textContent = "لا توجد بيانات لعرض�
 
     // إعادة تحديث العرض (لو القائمة مفتوحة)
     viewData();
+    setTimeout(() => location.reload(), 500);
   }
   
 
