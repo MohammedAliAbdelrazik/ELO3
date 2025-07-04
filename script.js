@@ -784,3 +784,23 @@ function closeTaskModal() {
   const modal = document.getElementById("taskModal");
   modal.style.display = "none";
 }
+
+
+function showAppPrompt() {
+    const prompt = document.getElementById('appPrompt');
+    prompt.classList.add('show');
+
+    // إخفاء تلقائي بعد 3 ثواني
+    setTimeout(() => {
+      prompt.classList.remove('show');
+    }, 6000);
+  }
+
+  function hideAppPrompt() {
+    document.getElementById('appPrompt').classList.remove('show');
+  }
+
+  // عرض الرسالة عند تحميل الصفحة
+  window.addEventListener('load', () => {
+    setTimeout(showAppPrompt, 500); // تأخير بسيط عشان السلاسة
+  });
