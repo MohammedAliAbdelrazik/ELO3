@@ -421,7 +421,7 @@ textarea:focus {
 
 
 
-@media (max-width: 600px){
+@media (max-width: 400px){
   .save-btn,
   .view-btn,
   .delete-all {
@@ -477,6 +477,163 @@ textarea:focus {
 
    .tasks-toggle.shifted {
     right: 220px !important; /* جرب رقم مناسب لحجم السايدبار */
+  }
+
+
+
+  .sidebar {
+    width: 45vw !important;
+  }
+
+  .tasks-dropdown {
+  width: 140px !important;       /* حجم أصغر مناسب للموبايل */
+  min-width: 120px;
+  max-width: 150px;
+  font-size: 12px;
+  padding: 6px 8px;
+  
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+     overflow-wrap: break-word; /* يتلف السطر لو طويل */
+}
+
+.tasks-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tasks-dropdown ul {
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.tasks-dropdown li {
+  font-size: 12px;
+  padding: 5px 4px;
+  margin-bottom: 3px;
+}
+
+.tasks-dropdown label {
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.tasks-dropdown input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+}
+
+
+  
+
+  .day-badge {
+    font-size: 13px;
+    padding: 8px 10px;
+    left: 5px;
+  }
+
+  .section {
+    padding: 12px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+
+  .feelings label,
+  .section label {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin: 5px 6px;
+  }
+
+  textarea,
+  select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* ✅ رسائل التنبيه - مصغرة أكثر */
+  .modal-content {
+    width: 60vw; /* أصغر من 85 */
+    max-width: 300px;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9); /* يصغر الصندوق نفسه */
+  }
+
+  #modalMessage {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .modal-buttons button {
+    font-size: 12px;
+    padding: 4px 10px;
+    margin: 4px;
+  }
+}
+@media (min-width: 401px) and (max-width: 540px) {
+  .save-btn,
+  .view-btn,
+  .delete-all {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+   #welcomeModal {
+    top: -100px;
+    font-size: 13px;
+    padding: 10px 14px;
+    max-width: 70vw;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: top 1s ease-out, opacity 0.6s ease;
+    
+    /* ✅ إضافات جديدة */
+    height: 50px; /* أو أي ارتفاع يناسبك */
+    display: flex;
+    align-items: center; /* ✅ لتوسيط النص عموديًا */
+    overflow: hidden; /* يخفي أي زيادة */
+  }
+
+  #welcomeModal.show {
+    top: 0;
+    opacity: 1;
+    display: flex;
+  }
+
+
+.download-btn {
+ 
+  top: 30px;
+   font-size: 13px;
+    padding: 8px 14px;
+}
+  
+  .sidebar-toggle,
+  .tasks-toggle {
+    top: 1px !important;
+    font-size: 16px !important;
+    padding: 6px 6px !important;
+    z-index: 1002;
+  }
+
+  .sidebar-toggle {
+    right: 10px !important;
+  }
+
+  .tasks-toggle {
+    right: 41px !important;
+  }
+
+   .tasks-toggle.shifted {
+    right: 290px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
 
