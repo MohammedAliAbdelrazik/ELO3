@@ -471,7 +471,7 @@ textarea:focus {
   .delete-all {
     font-size: 13px; /* زودت حجم الخط */
     padding: 8px 14px; /* زودت الحواف */
-    border-radius: 14px; /* أكبر قليلاً */
+    border-radius: 10px; /* أكبر قليلاً */
   }
 
 
@@ -481,7 +481,7 @@ textarea:focus {
     top: -100px;
     font-size: 13px; /* زودت الحجم شوي */
     padding: 10px 14px; /* زودت البادينج */
-    max-width: 70vw;
+    max-width: 65vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: top 1s ease-out, opacity 0.6s ease;
@@ -523,11 +523,11 @@ textarea:focus {
     }
 
   .tasks-toggle {
-    right: 41px !important;
+    right: 43px !important;
   }
 
   .tasks-toggle.shifted {
-    right: 228px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 226px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
   .sidebar {
