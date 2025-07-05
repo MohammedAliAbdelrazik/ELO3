@@ -21,13 +21,11 @@ window.onload = () => {
     }
   }
 
-  // عرض نسبة المهام
   const percent = tasksDone.total ? Math.round((tasksDone.done / tasksDone.total) * 100) : 0;
   document.getElementById("taskProgress").value = percent;
   document.getElementById("taskText").textContent = `تم إنجاز ${percent}% من المهام.`;
 
 
-  // عرض دائرة المشاعر
   const labels = Object.keys(feelingsCount);
   const data = labels.map(label => feelingsCount[label]);
 
@@ -63,7 +61,6 @@ window.onload = () => {
   
 
 
-  // تحليل المشاعر
   let mostFrequent = null;
   let max = 0;
   for (const [feeling, count] of Object.entries(feelingsCount)) {
@@ -89,7 +86,7 @@ window.onload = () => {
 };
 
   function goBack() {
-    window.location.href = 'index.html'; // اسم صفحتك الرئيسية
+    window.location.href = 'index.html'; 
   }
 
 
