@@ -726,6 +726,7 @@ document.addEventListener('click', function (e) {
     output.classList.remove('show');
     setTimeout(() => output.innerHTML = '', 400);
   }
+   adjustTasksButton();
 });
 
 
