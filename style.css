@@ -250,7 +250,7 @@ textarea:focus {
   position: fixed;
   top: 1px;
   right: 15px;
-  font-size: 26px;
+  font-size: 22px;
   cursor: pointer;
   z-index: 1001;
   color: #33CCEE;
@@ -469,8 +469,8 @@ textarea:focus {
   .save-btn,
   .view-btn,
   .delete-all {
-    font-size: 14px; /* زودت حجم الخط */
-    padding: 12px 22px; /* زودت الحواف */
+    font-size: 13px; /* زودت حجم الخط */
+    padding: 8px 14px; /* زودت الحواف */
     border-radius: 14px; /* أكبر قليلاً */
   }
 
@@ -479,8 +479,8 @@ textarea:focus {
 
    #welcomeModal {
     top: -100px;
-    font-size: 14px; /* زودت الحجم شوي */
-    padding: 12px 16px; /* زودت البادينج */
+    font-size: 13px; /* زودت الحجم شوي */
+    padding: 10px 14px; /* زودت البادينج */
     max-width: 70vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -500,34 +500,34 @@ textarea:focus {
 
   .download-btn {
     top: 30px;
-    font-size: 14px; /* حجم أكبر */
-    padding: 12px 22px; /* حواف أكبر */
+    font-size: 13px; /* حجم أكبر */
+    padding: 8px 14px; /* حواف أكبر */
   }
 
   .sidebar-toggle {
     top: 1px !important;
     font-size: 16px !important; /* حجم أكبر */
-    padding: 8px 8px !important; /* حواف أكبر */
+    padding: 7px 7px !important; /* حواف أكبر */
     z-index: 1002;
   }
 
   .sidebar-toggle {
-    right: 12px !important;
+    right: 10px !important;
   }
 
     .tasks-toggle {
       top: 1px !important;
-      font-size: 18px !important; /* حجم أكبر */
-      padding: 8px 8px !important; /* حواف أكبر */
+      font-size: 16px !important; /* حجم أكبر */
+      padding: 7px 7px !important; /* حواف أكبر */
       z-index: 1002;
     }
 
   .tasks-toggle {
-    right: 52px !important;
+    right: 41px !important;
   }
 
   .tasks-toggle.shifted {
-    right: 232px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 228px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
   .sidebar {
@@ -536,10 +536,10 @@ textarea:focus {
 
   .tasks-dropdown {
     width: 140px !important;       /* حجم أكبر شوي */
-    min-width: 140px;
+    min-width: 120px;
     max-width: 140px;
     font-size: 12px; /* حجم خط أكبر */
-    padding: 8px 12px;
+    padding: 6px 8px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(-10px);
@@ -575,52 +575,52 @@ textarea:focus {
   }
 
   .day-badge {
-    font-size: 16px; /* أكبر */
-    padding: 10px 14px;
+    font-size: 13px; /* أكبر */
+    padding: 8px 10px;
     left: 5px;
   }
 
   .section {
-    padding: 20px; /* أكبر */
+    padding: 12px; /* أكبر */
   }
 
   .section-title {
-    font-size: 18px; /* أكبر */
+    font-size: 15px; /* أكبر */
   }
 
   .feelings label,
   .section label {
-    font-size: 17px; /* أكبر */
-    padding: 10px 16px; /* أكبر */
-    margin: 6px 8px;
+    font-size: 15px; /* أكبر */
+    padding: 8px 12px; /* أكبر */
+    margin: 5px 6px;
   }
 
   textarea,
   select {
-    font-size: 16px; /* أكبر */
-    padding: 12px;
+    font-size: 14px; /* أكبر */
+    padding: 8px;
   }
 
   /* ✅ رسائل التنبيه - مصغرة أكثر */
   .modal-content {
-    width: 85vw; /* أكبر شوي */
-    max-width: 340px;
-    padding: 10px 16px;
-    font-size: 17px; /* أكبر */
-    border-radius: 8px;
+    width: 80vw; /* أكبر شوي */
+    max-width: 300px;
+    padding: 6px 10px;
+    font-size: 15px; /* أكبر */
+    border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transform: scale(0.95);
   }
 
   #modalMessage {
-    font-size: 14px; /* أكبر */
+    font-size: 12px; /* أكبر */
     line-height: 1.5;
   }
 
   .modal-buttons button {
-    font-size: 14px; /* أكبر */
-    padding: 8px 14px;
-    margin: 6px;
+    font-size: 12px; /* أكبر */
+    padding: 4px 10px;
+    margin: 4px;
   }
 }
 
@@ -904,7 +904,7 @@ textarea:focus {
 
 .day-badge {
   position: fixed;
-  top: 600px; /* نازل شوية لتحت */
+  top: 590px; /* نازل شوية لتحت */
   left:-3px;
   background-color: #00ccff;
   color: white;
