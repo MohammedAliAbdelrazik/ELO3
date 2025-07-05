@@ -145,7 +145,7 @@ body {
 }
 
 textarea, select {
-  width: 100%; /* بدلاً من 90% لملء المساحة المتاحة */
+  width: 100%; 
   padding: 12px;
   border: 1px solid #dcdde1;
   border-radius: 10px;
@@ -155,13 +155,13 @@ textarea, select {
   transition: all 0.3s ease;
   margin: 8px 0 16px 0;
   resize: none;
-  box-sizing: border-box; /* مهم لاحتساب padding ضمن العرض */
+  box-sizing: border-box; 
   -webkit-font-smoothing: antialiased;
 }
 
 textarea {
-  min-height: 100px; /* ارتفاع مناسب للبداية */
-  line-height: 1.5; /* تباعد أسطر أفضل */
+  min-height: 100px; 
+  line-height: 1.5; 
 }
 
 textarea:focus {
@@ -174,7 +174,7 @@ textarea:focus {
 
 
 
-/* زر سجل */
+
 .save-btn {
   background-color: #00C389;
   color: white;
@@ -183,7 +183,7 @@ textarea:focus {
   margin: 8px;
   border-radius: 10px;
   font-size: 13px;
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
@@ -193,7 +193,7 @@ textarea:focus {
   transform: scale(1.05);
 }
 
-/* زر عرض اليوميات */
+
 .view-btn {
   background-color: #33CCEE;
   color: white;
@@ -204,7 +204,7 @@ textarea:focus {
   font-size: 13px;
   font-weight: bold;
   cursor: pointer;
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
   transition: background 0.3s, transform 0.2s;
 }
 .view-btn:hover {
@@ -212,7 +212,7 @@ textarea:focus {
   transform: scale(1.05);
 }
 
-/* زر حذف (موجود عندك لكن للتأكد) */
+
 .delete-all {
   background-color: #ff6b6b;
   color: white;
@@ -221,7 +221,7 @@ textarea:focus {
   margin: 8px;
   border-radius: 10px;
   font-size: 13px;
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
@@ -245,7 +245,7 @@ textarea:focus {
   line-height: 1.6;
 }
 
-/* sidebar + toggle (بدون تغيير) */
+
 .sidebar-toggle {
   position: fixed;
   top: 1px;
@@ -270,12 +270,12 @@ textarea:focus {
   right: 0;
   width: 250px;
   height: 100%;
-  background-color: #f9fcfd; /* ✅ خلفية ناعمة */
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08); /* ✅ ظل أفتح */
+  background-color: #f9fcfd; 
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08); 
   padding: 20px;
   transition: transform 0.3s ease;
   z-index: 1000;
-  border-left: 2px solid #e0f1f5; /* ✅ إطار ناعم */
+  border-left: 2px solid #e0f1f5; 
   overflow-y: auto;
   border-radius: 12px 0 0 12px;
   transform: translateX(100%);
@@ -288,8 +288,8 @@ textarea:focus {
 .sidebar h3 {
   font-size: 19px;
   margin-bottom: 15px;
-  color: #33bcd4; /* ✅ عنوان أزرق ناعم */
-  border-bottom: 1px solid #d6f1f7; /* ✅ خط خفيف */
+  color: #33bcd4; 
+  border-bottom: 1px solid #d6f1f7; 
   padding-bottom: 8px;
 }
 
@@ -303,7 +303,7 @@ textarea:focus {
   padding: 10px 12px;
   border-radius: 6px;
   cursor: pointer;
-  color: #455a64; /* ✅ رمادي داكن */
+  color: #455a64; 
   transition: background 0.3s, color 0.3s;
   margin-bottom: 5px;
   font-size: 16px;
@@ -311,8 +311,8 @@ textarea:focus {
   background-color: transparent;
 }
 .sidebar-item:hover {
-  background-color: #e0f7fa; /* ✅ سماوي فاتح */
-  color: #00796b; /* ✅ أخضر مزرق */
+  background-color: #e0f7fa; 
+  color: #00796b; 
 }
 
 .sidebar-item ul.submenu {
@@ -321,9 +321,9 @@ textarea:focus {
   margin-top: 6px;
   background: #eef8fb;
   border-radius: 8px;
-  max-height: 220px;         /* ✅ تحديد أقصى ارتفاع */
-  overflow-y: auto;          /* ✅ الحفاظ على السكرول */
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05); /* ✅ لمسة داخلية ناعمة */
+  max-height: 220px;         
+  overflow-y: auto;         
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05); 
   scrollbar-width: thin;
   scrollbar-color: #b2ebf2 transparent;
 }
@@ -343,10 +343,10 @@ textarea:focus {
 .sidebar-item ul.submenu li:hover {
   background-color: #d0ecf0;
   color: #00796b;
-  transform: translateX(3px); /* ✅ حركة خفيفة */
+  transform: translateX(3px); 
 }
 
-/* القايمة الجانبية وهي مفتوحة لكنها قصيرة (الافتراضية بعد الفتح مباشرة) */
+
 .sidebar.collapsed {
   max-height: 100px;
   overflow: hidden;
@@ -360,14 +360,14 @@ textarea:focus {
 
 
 
-/* حاوية عرض الأيام */
+
 #output {
   max-height: 0;
   opacity: 0;
   overflow-y: hidden;
   margin-top: 20px;
   background: #f1f8fb;
-  padding: 0 14px; /* يبدأ بدون padding لتأثير ناعم */
+  padding: 0 14px; 
   border-radius: 14px;
   border: 1px solid #d3d6d7;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
@@ -377,15 +377,15 @@ textarea:focus {
 }
 
 #output.show {
-  max-height: 800px;     /* تأكد إنها كبيرة كفاية لعدد الأيام */
+  max-height: 800px;     
   opacity: 1;
-  overflow-y: auto;      /* هنا يرجع السكروول */
+  overflow-y: auto;     
   padding: 14px;
 }
 
 
 
-/* كل عنصر يوم */
+
 .day-entry {
   background-color: #ffffff;
   border: 1px solid #dceef2;
@@ -401,7 +401,7 @@ textarea:focus {
   box-shadow: 0 6px 14px rgba(0, 204, 255, 0.08);
 }
 
-/* عنوان اليوم */
+
 .day-header {
   background-color: #e0f7fa;
   color: #00796b;
@@ -412,7 +412,7 @@ textarea:focus {
   border-bottom: 1px solid #d0ebf0;
 }
 
-/* تفاصيل اليوم */
+
 .day-details {
   background-color: #fefeff;
   padding: 14px 18px;
@@ -427,7 +427,7 @@ textarea:focus {
   box-shadow: inset 0 0 4px rgba(0, 204, 255, 0.02);
 }
 
-/* تنسيق الفقرات داخل التفاصيل */
+
 .day-details p {
   margin-bottom: 10px;
   font-size: 14.5px;
@@ -439,7 +439,7 @@ textarea:focus {
   box-shadow: 0 1px 2px rgba(0,0,0,0.02);
 }
 
-/* سطر التاريخ (أول فقرة) */
+
 .day-details p:first-of-type {
   font-weight: bold;
   background-color: #e8fafd;
@@ -449,7 +449,7 @@ textarea:focus {
   margin-bottom: 18px;
 }
 
-/* الخط الفاصل بعد التاريخ */
+
 .day-details p:first-of-type::after {
   content: "";
   position: absolute;
@@ -469,9 +469,9 @@ textarea:focus {
   .save-btn,
   .view-btn,
   .delete-all {
-    font-size: 13px; /* زودت حجم الخط */
-    padding: 8px 14px; /* زودت الحواف */
-    border-radius: 10px; /* أكبر قليلاً */
+    font-size: 13px; 
+    padding: 8px 14px; 
+    border-radius: 10px; 
   }
 
 
@@ -479,17 +479,17 @@ textarea:focus {
 
    #welcomeModal {
     top: -100px;
-    font-size: 13px; /* زودت الحجم شوي */
-    padding: 10px 14px; /* زودت البادينج */
+    font-size: 13px;
+    padding: 10px 14px; 
     max-width: 65vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: top 1s ease-out, opacity 0.6s ease;
 
-    /* ✅ إضافات جديدة */
-    height: 50px; /* أو أي ارتفاع يناسبك */
+    
+    height: 50px; 
     display: flex;
-    align-items: center; /* ✅ لتوسيط النص عموديًا */
+    align-items: center; 
   }
 
   #welcomeModal.show {
@@ -500,15 +500,15 @@ textarea:focus {
 
   .download-btn {
     top: 30px;
-    font-size: 13px; /* حجم أكبر */
+    font-size: 13px; 
     padding: 8px 14px;
-    border-radius: 10px !important;/* حواف أكبر */
+    border-radius: 10px !important;
   }
 
   .sidebar-toggle {
     top: 1px !important;
-    font-size: 16px !important; /* حجم أكبر */
-    padding: 7px 7px !important; /* حواف أكبر */
+    font-size: 16px !important; 
+    padding: 7px 7px !important; 
     z-index: 1002;
   }
 
@@ -518,8 +518,8 @@ textarea:focus {
 
     .tasks-toggle {
       top: 1px !important;
-      font-size: 16px !important; /* حجم أكبر */
-      padding: 7px 7px !important; /* حواف أكبر */
+      font-size: 16px !important; 
+      padding: 7px 7px !important; 
       z-index: 1002;
     }
 
@@ -529,7 +529,7 @@ textarea:focus {
   
 
   .tasks-toggle.shifted {
-    right: 219px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 219px !important; 
   }
 
   .sidebar {
@@ -539,10 +539,10 @@ textarea:focus {
   .tasks-dropdown {
     position: absolute;
     word-wrap: break-word;
-    width: 110px !important;       /* حجم أكبر شوي */
+    width: 110px !important;       
     min-width: 110px;
     max-width: 90vw;
-    font-size: 12px; /* حجم خط أكبر */
+    font-size: 12px; 
     padding: 6px 8px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -558,71 +558,70 @@ textarea:focus {
   }
 
   .tasks-dropdown ul {
-    max-height: 220px; /* أكبر */
+    max-height: 220px; 
     overflow-y: auto;
   }
 
   .tasks-dropdown li {
-    font-size: 15px; /* أكبر */
-    padding: 8px 6px; /* أكبر */
+    font-size: 15px; 
+    padding: 8px 6px; 
     margin-bottom: 4px;
   }
 
   .tasks-dropdown label {
-    font-size: 14px; /* أكبر */
+    font-size: 14px; 
     margin-left: 6px;
   }
 
   .tasks-dropdown input[type="checkbox"] {
-    width: 16px; /* أكبر */
+    width: 16px; 
     height: 14px;
   }
 
   .day-badge {
-    font-size: 13px; /* أكبر */
+    font-size: 13px; 
     padding: 8px 10px;
     left: 5px;
   }
 
   .section {
-    padding: 12px; /* أكبر */
+    padding: 12px; 
   }
 
   .section-title {
-    font-size: 15px; /* أكبر */
+    font-size: 15px; 
   }
 
   .feelings label,
   .section label {
-    font-size: 15px; /* أكبر */
-    padding: 8px 12px; /* أكبر */
+    font-size: 15px; 
+    padding: 8px 12px; 
     margin: 5px 6px;
   }
 
   textarea,
   select {
-    font-size: 14px; /* أكبر */
+    font-size: 14px; 
     padding: 8px;
   }
 
-  /* ✅ رسائل التنبيه - مصغرة أكثر */
   .modal-content {
-    width: 80vw; /* أكبر شوي */
+    width: 80vw; 
     max-width: 300px;
     padding: 6px 10px;
-    font-size: 15px; /* أكبر */
+    font-size: 15px; 
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transform: scale(0.95);
   }
 
   #modalMessage {
-    font-size: 12px; /* أكبر */
+    font-size: 12px; 
     line-height: 1.5;
   }
 
   .modal-buttons button {
-    font-size: 12px; /* أكبر */
+    font-size: 12px; 
     padding: 4px 10px;
     margin: 4px;
   }
@@ -632,9 +631,9 @@ textarea:focus {
   .save-btn,
   .view-btn,
   .delete-all {
-    font-size: 13px; /* زودت حجم الخط */
-    padding: 8px 14px; /* زودت الحواف */
-    border-radius: 10px; /* أكبر قليلاً */
+    font-size: 13px; 
+    padding: 8px 14px; 
+    border-radius: 10px; 
   }
 
 
@@ -642,17 +641,16 @@ textarea:focus {
 
    #welcomeModal {
     top: -100px;
-    font-size: 13px; /* زودت الحجم شوي */
-    padding: 10px 14px; /* زودت البادينج */
+    font-size: 13px; 
+    padding: 10px 14px; 
     max-width: 65vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: top 1s ease-out, opacity 0.6s ease;
 
-    /* ✅ إضافات جديدة */
-    height: 50px; /* أو أي ارتفاع يناسبك */
+    height: 50px; 
     display: flex;
-    align-items: center; /* ✅ لتوسيط النص عموديًا */
+    align-items: center; 
   }
 
   #welcomeModal.show {
@@ -663,15 +661,15 @@ textarea:focus {
 
   .download-btn {
     top: 30px;
-    font-size: 13px; /* حجم أكبر */
+    font-size: 13px; 
     padding: 8px 14px;
-    border-radius: 10px !important;/* حواف أكبر */
+    border-radius: 10px !important;
   }
 
   .sidebar-toggle {
     top: 1px !important;
-    font-size: 16px !important; /* حجم أكبر */
-    padding: 7px 7px !important; /* حواف أكبر */
+    font-size: 16px !important; 
+    padding: 7px 7px !important; 
     z-index: 1002;
   }
 
@@ -681,8 +679,8 @@ textarea:focus {
 
     .tasks-toggle {
       top: 1px !important;
-      font-size: 16px !important; /* حجم أكبر */
-      padding: 7px 7px !important; /* حواف أكبر */
+      font-size: 16px !important; 
+      padding: 7px 7px !important; 
       z-index: 1002;
     }
 
@@ -692,7 +690,7 @@ textarea:focus {
   
 
   .tasks-toggle.shifted {
-    right: 219px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 219px !important; 
   }
 
   .sidebar {
@@ -702,10 +700,10 @@ textarea:focus {
   .tasks-dropdown {
     position: absolute;
     word-wrap: break-word;
-    width: 110px !important;       /* حجم أكبر شوي */
+    width: 110px !important;       
     min-width: 110px;
     max-width: 90vw;
-    font-size: 12px; /* حجم خط أكبر */
+    font-size: 12px; 
     padding: 6px 8px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -721,71 +719,70 @@ textarea:focus {
   }
 
   .tasks-dropdown ul {
-    max-height: 220px; /* أكبر */
+    max-height: 220px; 
     overflow-y: auto;
   }
 
   .tasks-dropdown li {
-    font-size: 15px; /* أكبر */
-    padding: 8px 6px; /* أكبر */
+    font-size: 15px; 
+    padding: 8px 6px; 
     margin-bottom: 4px;
   }
 
   .tasks-dropdown label {
-    font-size: 14px; /* أكبر */
+    font-size: 14px; 
     margin-left: 6px;
   }
 
   .tasks-dropdown input[type="checkbox"] {
-    width: 16px; /* أكبر */
+    width: 16px; 
     height: 14px;
   }
 
   .day-badge {
-    font-size: 13px; /* أكبر */
+    font-size: 13px; 
     padding: 8px 10px;
     left: 5px;
   }
 
   .section {
-    padding: 12px; /* أكبر */
+    padding: 12px; 
   }
 
   .section-title {
-    font-size: 15px; /* أكبر */
+    font-size: 15px; 
   }
 
   .feelings label,
   .section label {
-    font-size: 15px; /* أكبر */
-    padding: 8px 12px; /* أكبر */
+    font-size: 15px; 
+    padding: 8px 12px; 
     margin: 5px 6px;
   }
 
   textarea,
   select {
-    font-size: 14px; /* أكبر */
+    font-size: 14px; 
     padding: 8px;
   }
 
-  /* ✅ رسائل التنبيه - مصغرة أكثر */
   .modal-content {
-    width: 80vw; /* أكبر شوي */
+    width: 80vw; 
     max-width: 300px;
     padding: 6px 10px;
-    font-size: 15px; /* أكبر */
+    font-size: 15px; 
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transform: scale(0.95);
   }
 
   #modalMessage {
-    font-size: 12px; /* أكبر */
+    font-size: 12px; 
     line-height: 1.5;
   }
 
   .modal-buttons button {
-    font-size: 12px; /* أكبر */
+    font-size: 12px; 
     padding: 4px 10px;
     margin: 4px;
   }
@@ -801,7 +798,7 @@ textarea:focus {
 .feelings label:active {
   outline: none;
   border: none;
-  -webkit-tap-highlight-color: transparent; /* لمنع تأثير اللمس الأزرق على أندرويد */
+  -webkit-tap-highlight-color: transparent; 
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -812,7 +809,7 @@ textarea:focus {
 .section label:active {
   outline: none;
   border: none;
-  -webkit-tap-highlight-color: transparent; /* لمنع تأثير التحديد الأزرق في أندرويد */
+  -webkit-tap-highlight-color: transparent;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .feeling-emoji {
@@ -833,7 +830,7 @@ textarea:focus {
 }
 
 .feelings label {
-  position: relative; /* مهم جداً علشان الإيموجي يتمركز عليه */
+  position: relative; 
   overflow: visible;
 }
 
@@ -859,7 +856,7 @@ textarea:focus {
 .tasks-toggle {
   position: fixed;
   top: 1px;
-  right: 70px; /* المسافة على حسب ذوقك */
+  right: 70px; 
   font-size: 18px;
   background-color: #f6f6f6;
   color: #33CCEE;
@@ -885,7 +882,6 @@ textarea:focus {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   z-index: 1001;
 
-  /* إعدادات الاختفاء الأولي */
   opacity: 0;
   transform: translateY(-15px);
   pointer-events: none;
@@ -928,7 +924,6 @@ textarea:focus {
   color: #333;
 }
 
-/* ✅ شكل جديد للـ checkbox */
 .tasks-dropdown input[type="checkbox"] {
   appearance: none;
   width: 18px;
@@ -974,7 +969,6 @@ textarea:focus {
 
 
 
-/* Modal Styles */
 .modal {
   display: none; 
   position: fixed;
@@ -984,7 +978,7 @@ textarea:focus {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
   justify-content: center;
   align-items: center;
 }
@@ -996,7 +990,7 @@ textarea:focus {
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   width: 320px;
   max-width: 80%;
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
   text-align: center;
   animation: fadeIn 0.3s ease;
 }
@@ -1008,7 +1002,7 @@ textarea:focus {
   border-radius: 8px;
   cursor: pointer;
   background-color: #00ccff;
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
   color: white;
   font-weight: bold;
   transition: background 0.3s;
@@ -1023,7 +1017,6 @@ textarea:focus {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* الخلفية المعتمة */
 .overlay {
   position: fixed;
   top: 0;
@@ -1036,7 +1029,7 @@ textarea:focus {
   transition: opacity 0.3s ease;
   z-index: 999;
 }
-/* تظهر الخلفية لما يكون السايدبار مفتوح */
+
 .sidebar.open ~ .overlay {
   opacity: 1;
   visibility: visible;
@@ -1056,7 +1049,7 @@ textarea:focus {
 .hidden-soft {
   opacity: 0;
   transform: scale(0.9);
-  pointer-events: none; /* عشان ميضغطش عليه وهو مخفي */
+  pointer-events: none; 
 }
 
 .sidebar-item i {
@@ -1069,7 +1062,7 @@ textarea:focus {
 
 .day-badge {
   position: fixed;
-  top: 580px; /* نازل شوية لتحت */
+  top: 580px; 
   left:-3px;
   background-color: #00ccff;
   color: white;
@@ -1096,9 +1089,9 @@ textarea:focus {
   box-shadow: none;
   z-index: 99999;
   opacity: 0;
-  pointer-events: none; /* لمنع التفاعل وهو مخفي */
+  pointer-events: none; 
   transition: top 1s ease-out, opacity 0.6s ease;
-  display: flex; /* دايماً flex */
+  display: flex; 
   justify-content: center;
   align-items: center;
   max-width: 90%;
@@ -1110,12 +1103,12 @@ textarea:focus {
 #welcomeModal.show {
   top: 2px;
   opacity: 1;
-  pointer-events: auto; /* يسمح بالتفاعل */
+  pointer-events: auto; 
 }
 
 .danger-btn {
   background-color: #e74c3c !important;
-  font-family: 'Tajawal', sans-serif; /* ✅ الخط الجميل */
+  font-family: 'Tajawal', sans-serif; 
 }
 
 .danger-btn:hover {
