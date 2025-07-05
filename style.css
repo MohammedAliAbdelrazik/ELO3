@@ -475,9 +475,7 @@ textarea:focus {
     right: 41px !important;
   }
 
-   .tasks-toggle.shifted {
-    right: 220px !important; /* جرب رقم مناسب لحجم السايدبار */
-  }
+ 
 
 
 
@@ -632,9 +630,7 @@ textarea:focus {
     right: 41px !important;
   }
 
-   .tasks-toggle.shifted {
-    right: 290px !important; /* جرب رقم مناسب لحجم السايدبار */
-  }
+   
 
 
 
