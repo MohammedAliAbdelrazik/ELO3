@@ -807,3 +807,34 @@ function showAppPrompt() {
   window.addEventListener('load', () => {
     setTimeout(showAppPrompt, 500); // تأخير بسيط عشان السلاسة
   });
+
+function adjustTasksButton() {
+  const tasksToggle = document.querySelector(".tasks-toggle");
+  const sidebar = document.querySelector(".sidebar");
+
+  if (!tasksToggle || !sidebar) return; // أمان
+
+  if (sidebar.classList.contains("open")) {
+    const sidebarWidth = sidebar.offsetWidth;
+    tasksToggle.style.right = (sidebarWidth + 20) + "px";
+  } else {
+    tasksToggle.style.right = "70px"; // ترجع للمكان الأصلي
+  }
+}
+
+// عند فتح أو إغلاق السايدبار
+const sidebarToggle = document.querySelector(".sidebar-toggle");
+if (sidebarToggle) {
+  sidebarToggle.addEventListener("click", () => {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.classList.toggle("open");
+    adjustTasksButton();
+  });
+}
+
+// عند تغيير حجم الشاشة
+window.addEventListener("resize", adjustTasksButton);
+
+// لو السايدبار مفتوح عند تحميل الصفحة
+window.addEventListener("load", adjustTasksButton);
+
