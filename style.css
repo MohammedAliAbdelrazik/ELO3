@@ -956,3 +956,62 @@ textarea:focus {
 .danger-btn:hover {
   background-color: #c0392b !important;
 }
+
+.app-prompt {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border: 1px solid #e0f1f5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 10px 14px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  z-index: 9999;
+  transition: bottom 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.app-prompt.show {
+  bottom: 15px;
+  opacity: 1;
+}
+
+.prompt-text {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.download-app {
+  background-color: #00ccff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.browse-site {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.download-app:hover {
+  background-color: #0099cc;
+}
+
+.browse-site:hover {
+  background-color: #bbb;
+}
