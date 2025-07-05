@@ -1,30 +1,29 @@
-// توليد الأيام تلقائيًا
-// توليد الأيام في القائمة الجانبية
+
 window.onload = () => {
   const daySelect = document.getElementById("day");
   const dayList = document.getElementById("dayList");
   let firstEmptyDay = null;
 
   for (let i = 1; i <= 30; i++) {
-    // إنشاء عنصر option للقائمة المخفية
+    
     const option = document.createElement("option");
     option.value = i;
     option.textContent = ` اليوم ${i}`;
     daySelect.appendChild(option);
 
-    // إنشاء عنصر li للقائمة الجانبية
+    
     const li = document.createElement("li");
     li.textContent = ` اليوم ${i}`;
 
-    // تلوين الأيام اللي فيها بيانات
+   
     const savedData = localStorage.getItem(`ayoosh_day_${i}`);
     if (savedData) {
-      li.style.backgroundColor = "#b9effff7"; // لون هادي
+      li.style.backgroundColor = "#b9effff7"; 
     } else if (!firstEmptyDay) {
       firstEmptyDay = i;
     }
 
-    // تحديد الأيام 7 و14 و21 و28 بخط بولد
+    
     if ([7, 14, 21, 28].includes(i)) {
       li.style.fontWeight = "bold";
     }
@@ -37,8 +36,8 @@ window.onload = () => {
   
 
  
-  // بدلاً من الإغلاق، نوسّع القايمة
-  toggleSidebar(); // دي أصلاً بتفتح وتقفل
+  
+  toggleSidebar(); 
 
 
     };
@@ -46,7 +45,7 @@ window.onload = () => {
     dayList.appendChild(li);
   }
 
-  // التوجيه تلقائي لأول يوم فاضي
+ 
   if (firstEmptyDay) {
     daySelect.value = firstEmptyDay;
     const selectedDisplay = document.getElementById("selectedDayDisplay");
@@ -60,19 +59,19 @@ window.onload = () => {
 
 
 
-// فتح/إغلاق القائمة الجانبية
+
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   sidebar.classList.toggle("open");
 
   const tasksToggle = document.querySelector(".tasks-toggle");
-  tasksToggle.classList.toggle("shifted"); // ده الكلاس الجديد
+  tasksToggle.classList.toggle("shifted"); 
 
   if (sidebar.classList.contains("open")) {
-    // شيل الـ collapsed أول ما تتفتح
+  
     sidebar.classList.remove("collapsed");
   } else {
-    // ضيف الـ collapsed أول ما تتقفل
+    
     sidebar.classList.add("collapsed");
   }
 }
@@ -93,7 +92,7 @@ function updateTasksDropdownPosition() {
   dropdown.style.position = 'absolute';
   dropdown.style.top = `${rect.bottom + window.scrollY + 8}px`;
 
-  // نوسّط القائمة تحت الزر
+ 
   const centerX = rect.left + rect.width / 2;
   dropdown.style.left = `${centerX - dropdownWidth / 2 + window.scrollX}px`;
 }
@@ -104,30 +103,30 @@ function toggleTasks() {
   const toggleBtn = document.querySelector('.tasks-toggle');
   const list = document.getElementById('tasksList');
 
-  // إذا كانت القايمة مفتوحة اقفلها وخلاص
+  
   if (dropdown.classList.contains('open')) {
     dropdown.classList.remove('open');
     return;
   }
 
-  // احسب مكان الزر واضبط مكان القائمة مباشرة
+  
   const rect = toggleBtn.getBoundingClientRect();
-  const dropdownWidth = 220; // لازم يطابق CSS
+  const dropdownWidth = 220; 
   const top = rect.bottom + window.scrollY + 8;
   const left = rect.left + window.scrollX + (rect.width / 2) - (dropdownWidth / 2);
 
   dropdown.style.top = `${top}px`;
   dropdown.style.left = `${left}px`;
 
-  // بعد ما ظبطنا المكان، نفتح القائمة
+  
   dropdown.classList.add('open');
-  updateTasksDropdownPosition(); // خليها بعد فتح القائمة مباشرة
+  updateTasksDropdownPosition(); 
 
-  // فك طي القائمة الجانبية
+  
   const sidebar = document.getElementById('sidebar');
   sidebar.classList.remove('collapsed');
 
-  // فضي القائمة وبنيها من جديد
+  
   list.innerHTML = '';
 
   for (let i = 1; i <= 30; i++) {
@@ -171,7 +170,7 @@ function toggleTasks() {
     list.appendChild(emptyMsg);
   }
 }
-// كل ما المستخدم يعمل scroll أو resize، نحدّث مكان القائمة لو كانت مفتوحة
+
 window.addEventListener('scroll', updateTasksDropdownPosition);
 window.addEventListener('resize', updateTasksDropdownPosition);
 
@@ -180,10 +179,10 @@ window.addEventListener('resize', updateTasksDropdownPosition);
 function resetSidebarContent() {
   const dayList = document.getElementById('dayList')
   if (dayList) {
-    // امسح القائمة
+    
     dayList.innerHTML = ''
 
-    // أعد توليد الأيام من الأول
+    
     for (let i = 1; i <= 30; i++) {
       const li = document.createElement('li')
       li.textContent = ` اليوم ${i}`
@@ -202,7 +201,7 @@ function resetSidebarContent() {
         if (selectedDisplay) {
           selectedDisplay.textContent = i
         }
-        toggleSidebar() // إغلاق القائمة بعد الاختيار
+        toggleSidebar() 
       }
 
       dayList.appendChild(li)
@@ -215,7 +214,7 @@ function resetSidebarContent() {
 
 
 
-// حفظ البيانات
+
  async function saveData() {
   const day = document.getElementById("day").value;
   const feeling = document.querySelector('input[name="feeling"]:checked')?.value || '';
@@ -226,7 +225,7 @@ function resetSidebarContent() {
   const morning = document.getElementById("morning").checked;
   const evening = document.getElementById("evening").checked;
 
-  // التحقق من البيانات الأساسية
+  
   if (!day || !feeling || !notes) {
   await showModal(
     "  .معلش لازم تملي البيانات كلها الأول ",
@@ -235,12 +234,12 @@ function resetSidebarContent() {
   return;
 }
 
-  // التاريخ والوقت الحالي
+  
   const now = new Date();
   const time = now.toLocaleTimeString('ar-EG');
   const date = now.toLocaleDateString('ar-EG');
 
-  // البيانات المراد حفظها
+  
   const entry = {
     day,
     feeling,
@@ -256,7 +255,7 @@ function resetSidebarContent() {
     time
   };
 
-// استدعاء المهام (لو فيه مكان بتضيف فيه مهام يومية)
+
 const taskElements = document.querySelectorAll('.task input[type="checkbox"]');
 const tasks = Array.from(taskElements).map(task => ({
   name: task.getAttribute('data-name') || 'مهمة',
@@ -269,14 +268,14 @@ entry.tasks = tasks;
 
 
 
-  // التخزين في localStorage
+  
   localStorage.setItem(`ayoosh_day_${day}`, JSON.stringify(entry));
   await showModal(
   "اليوم اتحفظ بنجاح",
   [{ label: "ماشي" , value: true }]
 );
 
-  // إعادة تعيين الحقول
+  
   document.getElementById("notes").value = "";
   document.getElementById("priority").value = "";
   document.getElementById("event").value = "";
@@ -288,17 +287,17 @@ entry.tasks = tasks;
 
   
 
-  viewData(); // علشان يحدث القائمة فورًا
+  viewData(); 
   setTimeout(() => location.reload(), 500);
 
 }
 
   
-// عرض البيانات
+
 function viewData() {
   const output = document.getElementById("output");
 
-  // إغلاق العرض إن كان مفتوح
+  
   if (output.classList.contains("show")) {
   output.classList.remove("show");
   setTimeout(() => {
@@ -338,7 +337,7 @@ function viewData() {
          الأذكار: ${azkarText}
       `;
 
-      // التحكم في الفتح والإغلاق
+      
       header.onclick = () => {
         details.style.display = details.style.display === "block" ? "none" : "block";
       };
@@ -357,7 +356,7 @@ function viewData() {
 function loadDayData(day) {
   const data = localStorage.getItem(`ayoosh_day_${day}`);
 
-  // 🟡 فضي الحقول الأول
+  
   document.getElementById("notes").value = "";
   document.getElementById("priority").value = "";
   document.getElementById("event").value = "";
@@ -370,7 +369,7 @@ function loadDayData(day) {
   document.getElementById("evening").checked = false;
 
   if (!data) {
-    // لو مفيش بيانات، بس اعرض اليوم الحالي فقط
+    
     const selectedDisplay = document.getElementById("selectedDayDisplay");
     if (selectedDisplay) {
 selectedDisplay.textContent = day;
@@ -379,7 +378,7 @@ selectedDisplay.textContent = day;
     return;
   }
 
-  // ✅ لو فيه بيانات، املأها
+  
   const d = JSON.parse(data);
 
   document.getElementById("notes").value = d.notes || "";
@@ -418,8 +417,7 @@ selectedDisplay.textContent = day;
       localStorage.removeItem(`ayoosh_day_${i}`);
     }
 
-// تصفير دائرة المشاعر
-// تصفير دائرة المشاعر (لو الرسم البياني موجود)
+
 if (typeof chart !== 'undefined' && chart) {
   chart.data.labels = [];
   chart.data.datasets[0].data = [];
@@ -429,7 +427,7 @@ if (typeof chart !== 'undefined' && chart) {
 }
 
 
-// تغيير الرسالة
+
 const messageElem = document.getElementById("feelingMessage");
 if (messageElem) messageElem.textContent = "لا توجد بيانات لعرضها.";
 
@@ -440,7 +438,7 @@ if (messageElem) messageElem.textContent = "لا توجد بيانات لعرض�
   );
 
 
-    // إعادة تحديث العرض (لو القائمة مفتوحة)
+    
     viewData();
     setTimeout(() => location.reload(), 500);
   }
@@ -456,16 +454,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener("keydown", function (e) {
-        // لو ضغط Enter من غير Shift
+        
         if (e.key === "Enter" && !e.shiftKey) {
           e.preventDefault();
 
-          // لو مش آخر خانة → روح للي بعدها
+          
           if (index < fields.length - 1) {
             const nextEl = document.getElementById(fields[index + 1]);
             nextEl.focus();
           } else {
-            // لو آخر خانة → سجل البيانات
+            
             saveData();
           }
         }
@@ -492,38 +490,37 @@ document.querySelectorAll('input[name="feeling"]').forEach(input => {
 
     if (!label) return;
 
-    // إزالة أي إيموجي قديم
+    
     const oldEmoji = label.querySelector(".feeling-emoji");
     if (oldEmoji) oldEmoji.remove();
 
-    // إنشاء إيموجي جديد
     const emojiSpan = document.createElement("span");
     emojiSpan.textContent = emoji;
     emojiSpan.classList.add("feeling-emoji");
     label.appendChild(emojiSpan);
 
-    // نستخدم setTimeout لإضافة الكلاس .show بعد قليل لبدء الانتقال
+    
     setTimeout(() => {
       emojiSpan.classList.add("show");
     }, 10);
 
-    // إزالة الإيموجي بعد 2 ثانية مع إزالة الكلاس لتشغيل الانتقال بشكل سلس
+    
     setTimeout(() => {
       emojiSpan.classList.remove("show");
-      setTimeout(() => emojiSpan.remove(), 500); // ننتظر انتهاء الانتقال قبل الحذف
+      setTimeout(() => emojiSpan.remove(), 500); 
     }, 2000);
   });
 });
-// أول ما الصفحة تفتح، نستنى ٥ ثواني قبل أول سؤال
+
 setTimeout(() => {
   const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
   
   if (currentDay > 1) {
-    // اسأل أول مره
+   
     askAboutYesterday(currentDay);
   }
 
-  // وبعدين كرر السؤال كل دقيقة
+  
   setInterval(() => {
     const currentDayRepeat = parseInt(document.getElementById('day').value, 10) || 1;
     if (currentDayRepeat > 1) {
@@ -532,20 +529,17 @@ setTimeout(() => {
   }, 60000); // كل 60 ثانية
 }, 10000); // بعد أول 10 ثواني من تحميل الصفحة
 
-// دالة السؤال
- // دالة السؤال
-// دالة السؤال
-// دالة السؤال
+
 async function askAboutYesterday(currentDay) {
   const previousDay = currentDay - 1;
 
   const data = localStorage.getItem(`ayoosh_day_${previousDay}`);
-  if (!data) return; // مفيش بيانات لليوم السابق
+  if (!data) return; 
 
   const d = JSON.parse(data);
-  if (d.taskCompleted) return; // أصلًا مكتمل → مفيش سؤال
+  if (d.taskCompleted) return; 
 
-  // اسأل المستخدم
+  
   const answer = await showModal(
     "أيوش انتهيتي من المهام اللي عليكي؟",
     [
@@ -555,12 +549,10 @@ async function askAboutYesterday(currentDay) {
   );
 
   if (answer) {
-    // عدّل الحالة للمهمة
     d.taskCompleted = true;
     localStorage.setItem(`ayoosh_day_${previousDay}`, JSON.stringify(d));
     
 
-    // رد إيجابي عشوائي
     const positiveResponses = [
       "كوتي كوتي أنتي خلصي مهامك 🥺",
       "أنتي أشطر كتكوت 💖",
@@ -575,7 +567,6 @@ async function askAboutYesterday(currentDay) {
     );
 
   } else {
-    // رد سلبي عشوائي بدون تعديل الحالة
     const negativeResponses = [
       "جدعة",
       "🤨🤨",
@@ -593,13 +584,12 @@ async function askAboutYesterday(currentDay) {
 
 
 
-// أول ما الصفحة تفتح، نستنى 10 ثواني ثم نسأل مره واحده فقط
 setTimeout(() => {
   const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
   if (currentDay > 1) {
-    askAboutYesterday(currentDay); // نسأل مره واحده فقط
+    askAboutYesterday(currentDay); 
   }
-}, 10000); // بعد أول 10 ثواني من تحميل الصفحة
+}, 10000); 
 
 
 function showWelcomeMessage(message) {
@@ -633,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lastShown = localStorage.getItem("welcome_shown_at");
   const now = Date.now();
 
-  if (!lastShown || now - parseInt(lastShown) > 9000  ) { // ✅ عدّى 30 ثانية
+  if (!lastShown || now - parseInt(lastShown) > 20 * 60 * 60 * 1000  ) { 
     showWelcomeMessage(randomGreeting);
     localStorage.setItem("welcome_shown_at", now);
   }
@@ -661,7 +651,6 @@ function showModal(message, buttons) {
       const button = document.createElement('button');
       button.textContent = btn.label;
       
-      // ✅ لو فيه className مخصص للزر، ضيفه
       if (btn.className) {
         button.classList.add(btn.className);
       }
@@ -683,14 +672,13 @@ function showModal(message, buttons) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // بنختار كل عناصر القايمة الرئيسية بدون شرط وجود "has-submenu"
   const sidebarItems = document.querySelectorAll('.sidebar-item');
 
   sidebarItems.forEach(item => {
     const submenu = item.querySelector('.submenu');
     if (submenu) {
       item.addEventListener('click', (e) => {
-        e.stopPropagation(); // نمنع انتشار الحدث
+        e.stopPropagation(); 
         submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
       });
     }
@@ -718,12 +706,10 @@ document.addEventListener('click', function (e) {
 
   if (clickedInsideSidebar || clickedInsideTasks || clickedInsideOutput || clickedInsideDayEntry) return;
 
-  // نقفل القوائم
   sidebar.classList.remove('open');
   tasksDropdown.classList.remove('open');
   tasksToggle.classList.remove('shifted');
 
-  // ✅ اقفل عرض اليوميات بس لو الضغط مش داخلها
   if (output.classList.contains('show')) {
     output.classList.remove('show');
     setTimeout(() => output.innerHTML = '', 400);
@@ -737,7 +723,7 @@ const tasksToggle = document.querySelector('.tasks-toggle');
 const ayooshBadge = document.querySelector('.ayoosh-badge');
 
 let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
-let scrollThreshold = 200; // المسافة اللي لازم يطلعها المستخدم عشان يظهر الزرار
+let scrollThreshold = 200; 
 let hideReferencePoint = lastScrollTop;
 
 window.addEventListener('scroll', () => {
@@ -746,7 +732,6 @@ window.addEventListener('scroll', () => {
   const sidebarOpen = document.getElementById('sidebar').classList.contains('open');
   const tasksOpen = document.getElementById('tasksDropdown').classList.contains('open');
 
-  // ✅ لو المستخدم في أول الصفحة → نظهر الزرين + الشعار
   if (scrollTop === 0) {
     sidebarToggle.classList.remove('hidden-soft');
     tasksToggle.classList.remove('hidden-soft');
@@ -754,17 +739,14 @@ window.addEventListener('scroll', () => {
     return;
   }
 
-  // لو القوائم مفتوحة → لا تخفي ولا تظهر الزرار
   if (sidebarOpen || tasksOpen) return;
 
-  // المستخدم نازل ↓
   if (scrollTop > lastScrollTop) {
     hideReferencePoint = scrollTop;
     sidebarToggle.classList.add('hidden-soft');
     tasksToggle.classList.add('hidden-soft');
     if (ayooshBadge) ayooshBadge.style.opacity = '0';
   }
-  // المستخدم طالع ↑
   else if (scrollTop < lastScrollTop) {
     const scrolledUp = hideReferencePoint - scrollTop;
     if (scrolledUp > scrollThreshold) {
@@ -797,12 +779,10 @@ function showAppPrompt() {
   const prompt = document.getElementById('appPrompt');
   prompt.classList.add('show');
 
-  // إخفاء تلقائي بعد 6 ثواني
   setTimeout(() => {
     prompt.classList.remove('show');
   }, 6000);
 
-  // حفظ توقيت العرض الحالي
   const now = Date.now();
   localStorage.setItem('last_app_prompt_time', now);
 }
@@ -811,16 +791,14 @@ function hideAppPrompt() {
   document.getElementById('appPrompt').classList.remove('show');
 }
 
-// عرض الرسالة عند تحميل الصفحة
 window.addEventListener('load', () => {
   setTimeout(() => {
     const lastShown = localStorage.getItem('last_app_prompt_time');
     const now = Date.now();
 
-    // لو أول مرة أو فات أكتر من ساعتين
-    if (!lastShown || now - parseInt(lastShown) >= 2 * 60 * 60 * 1000) {
+    if (!lastShown || now - parseInt(lastShown) >= 3 * 60 * 60 * 1000) {
       showAppPrompt();
     }
-  }, 500); // تأخير بسيط عشان السلاسة
+  }, 500); 
 });
 
