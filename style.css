@@ -528,19 +528,19 @@ textarea:focus {
   }
 
   .tasks-toggle.shifted {
-    right: 215px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 219px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
   .sidebar {
-    width: 45vw !important;
+    width: 44vw !important;
   }
 
   .tasks-dropdown {
     position: absolute;
     word-wrap: break-word;
-    width: 140px !important;       /* حجم أكبر شوي */
-    min-width: 120px;
-   max-width: 90vw;
+    width: 110px !important;       /* حجم أكبر شوي */
+    min-width: 110px;
+    max-width: 90vw;
     font-size: 12px; /* حجم خط أكبر */
     padding: 6px 8px;
     border-radius: 8px;
