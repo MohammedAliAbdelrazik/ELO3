@@ -421,7 +421,7 @@ textarea:focus {
 
 
 
-@media (max-width: 400px){
+@media (max-width: 600px){
   .save-btn,
   .view-btn,
   .delete-all {
