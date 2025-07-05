@@ -1,3 +1,44 @@
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('./fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('./fonts/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  src: url('./webfonts/fa-brands-400.woff2') format('woff2'),
+       url('./webfonts/fa-brands-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./webfonts/fa-regular-400.woff2') format('woff2'),
+       url('./webfonts/fa-regular-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-style: normal;
+  src: url('./webfonts/fa-solid-900.woff2') format('woff2'),
+       url('./webfonts/fa-solid-900.ttf') format('truetype');
+}
+
+
+
 body {
   font-family: 'Tajawal', sans-serif;
   background: linear-gradient(to bottom, #e3f2fd, #ffffff);
@@ -5,11 +46,14 @@ body {
   padding: 0;
 }
 
+
+
+
 .ayoosh-badge {
   position: fixed;
   top: -4px;
   left: 40px;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   color: #00bfa5;
   background-color: #e0f7fa;
@@ -62,6 +106,7 @@ body {
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 25px;
+  font-family: 'Tajawal', sans-serif;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -420,29 +465,31 @@ textarea:focus {
 
 
 
-
-@media (max-width: 400px){
+@media (max-width: 400px)  {
   .save-btn,
   .view-btn,
   .delete-all {
-    font-size: 13px;
-    padding: 8px 14px;
+    font-size: 14px; /* زودت حجم الخط */
+    padding: 12px 22px; /* زودت الحواف */
+    border-radius: 14px; /* أكبر قليلاً */
   }
+
+
+
 
    #welcomeModal {
     top: -100px;
-    font-size: 13px;
-    padding: 10px 14px;
+    font-size: 14px; /* زودت الحجم شوي */
+    padding: 12px 16px; /* زودت البادينج */
     max-width: 70vw;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: top 1s ease-out, opacity 0.6s ease;
-    
+
     /* ✅ إضافات جديدة */
     height: 50px; /* أو أي ارتفاع يناسبك */
     display: flex;
     align-items: center; /* ✅ لتوسيط النص عموديًا */
-    overflow: hidden; /* يخفي أي زيادة */
   }
 
   #welcomeModal.show {
@@ -451,287 +498,131 @@ textarea:focus {
     display: flex;
   }
 
+  .download-btn {
+    top: 30px;
+    font-size: 14px; /* حجم أكبر */
+    padding: 12px 22px; /* حواف أكبر */
+  }
 
-.download-btn {
- 
-  top: 30px;
-   font-size: 13px;
-    padding: 8px 14px;
-}
-  
-  .sidebar-toggle,
-  .tasks-toggle {
+  .sidebar-toggle {
     top: 1px !important;
-    font-size: 16px !important;
-    padding: 6px 6px !important;
+    font-size: 16px !important; /* حجم أكبر */
+    padding: 8px 8px !important; /* حواف أكبر */
     z-index: 1002;
   }
 
   .sidebar-toggle {
-    right: 10px !important;
+    right: 12px !important;
   }
+
+    .tasks-toggle {
+      top: 1px !important;
+      font-size: 18px !important; /* حجم أكبر */
+      padding: 8px 8px !important; /* حواف أكبر */
+      z-index: 1002;
+    }
 
   .tasks-toggle {
-    right: 41px !important;
+    right: 52px !important;
   }
 
- 
-
-
+  .tasks-toggle.shifted {
+    right: 232px !important; /* جرب رقم مناسب لحجم السايدبار */
+  }
 
   .sidebar {
     width: 45vw !important;
   }
 
   .tasks-dropdown {
-  width: 140px !important;       /* حجم أصغر مناسب للموبايل */
-  min-width: 120px;
-  max-width: 150px;
-  font-size: 12px;
-  padding: 6px 8px;
-  
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-10px);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-     overflow-wrap: break-word; /* يتلف السطر لو طويل */
-}
-
-.tasks-dropdown.open {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tasks-dropdown ul {
-  max-height: 180px;
-  overflow-y: auto;
-}
-
-.tasks-dropdown li {
-  font-size: 12px;
-  padding: 5px 4px;
-  margin-bottom: 3px;
-}
-
-.tasks-dropdown label {
-  font-size: 12px;
-  margin-left: 4px;
-}
-
-.tasks-dropdown input[type="checkbox"] {
-  width: 13px;
-  height: 13px;
-}
-
-
-  
-
-  .day-badge {
-    font-size: 13px;
-    padding: 8px 10px;
-    left: 5px;
-  }
-
-  .section {
-    padding: 12px;
-  }
-
-  .section-title {
-    font-size: 15px;
-  }
-
-  .feelings label,
-  .section label {
-    font-size: 13px;
+    width: 140px !important;       /* حجم أكبر شوي */
+    min-width: 140px;
+    max-width: 140px;
+    font-size: 12px; /* حجم خط أكبر */
     padding: 8px 12px;
-    margin: 5px 6px;
-  }
-
-  textarea,
-  select {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  /* ✅ رسائل التنبيه - مصغرة أكثر */
-  .modal-content {
-    width: 60vw; /* أصغر من 85 */
-    max-width: 300px;
-    padding: 6px 10px;
-    font-size: 13px;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transform: scale(0.9); /* يصغر الصندوق نفسه */
-  }
-
-  #modalMessage {
-    font-size: 12px;
-    line-height: 1.4;
-  }
-
-  .modal-buttons button {
-    font-size: 12px;
-    padding: 4px 10px;
-    margin: 4px;
-  }
-}
-@media (min-width: 401px) and (max-width: 540px) {
-  .save-btn,
-  .view-btn,
-  .delete-all {
-    font-size: 13px;
-    padding: 8px 14px;
-  }
-
-   #welcomeModal {
-    top: -100px;
-    font-size: 13px;
-    padding: 10px 14px;
-    max-width: 70vw;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: top 1s ease-out, opacity 0.6s ease;
-    
-    /* ✅ إضافات جديدة */
-    height: 50px; /* أو أي ارتفاع يناسبك */
-    display: flex;
-    align-items: center; /* ✅ لتوسيط النص عموديًا */
-    overflow: hidden; /* يخفي أي زيادة */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    overflow-wrap: break-word;
   }
 
-  #welcomeModal.show {
-    top: 0;
+  .tasks-dropdown.open {
     opacity: 1;
-    display: flex;
+    transform: translateY(0);
   }
 
-
-.download-btn {
- 
-  top: 30px;
-   font-size: 13px;
-    padding: 8px 14px;
-}
-  
-  .sidebar-toggle,
-  .tasks-toggle {
-    top: 1px !important;
-    font-size: 16px !important;
-    padding: 6px 6px !important;
-    z-index: 1002;
+  .tasks-dropdown ul {
+    max-height: 220px; /* أكبر */
+    overflow-y: auto;
   }
 
-  .sidebar-toggle {
-    right: 10px !important;
+  .tasks-dropdown li {
+    font-size: 15px; /* أكبر */
+    padding: 8px 6px; /* أكبر */
+    margin-bottom: 4px;
   }
 
-  .tasks-toggle {
-    right: 41px !important;
+  .tasks-dropdown label {
+    font-size: 14px; /* أكبر */
+    margin-left: 6px;
   }
 
-   
-
-
-
-  .sidebar {
-    width: 45vw !important;
+  .tasks-dropdown input[type="checkbox"] {
+    width: 16px; /* أكبر */
+    height: 14px;
   }
-
-  .tasks-dropdown {
-  width: 140px !important;       /* حجم أصغر مناسب للموبايل */
-  min-width: 120px;
-  max-width: 150px;
-  font-size: 12px;
-  padding: 6px 8px;
-  
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-10px);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-     overflow-wrap: break-word; /* يتلف السطر لو طويل */
-}
-
-.tasks-dropdown.open {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tasks-dropdown ul {
-  max-height: 180px;
-  overflow-y: auto;
-}
-
-.tasks-dropdown li {
-  font-size: 12px;
-  padding: 5px 4px;
-  margin-bottom: 3px;
-}
-
-.tasks-dropdown label {
-  font-size: 12px;
-  margin-left: 4px;
-}
-
-.tasks-dropdown input[type="checkbox"] {
-  width: 13px;
-  height: 13px;
-}
-
-
-  
 
   .day-badge {
-    font-size: 13px;
-    padding: 8px 10px;
+    font-size: 16px; /* أكبر */
+    padding: 10px 14px;
     left: 5px;
   }
 
   .section {
-    padding: 12px;
+    padding: 20px; /* أكبر */
   }
 
   .section-title {
-    font-size: 15px;
+    font-size: 18px; /* أكبر */
   }
 
   .feelings label,
   .section label {
-    font-size: 13px;
-    padding: 8px 12px;
-    margin: 5px 6px;
+    font-size: 17px; /* أكبر */
+    padding: 10px 16px; /* أكبر */
+    margin: 6px 8px;
   }
 
   textarea,
   select {
-    font-size: 14px;
-    padding: 8px;
+    font-size: 16px; /* أكبر */
+    padding: 12px;
   }
 
   /* ✅ رسائل التنبيه - مصغرة أكثر */
   .modal-content {
-    width: 60vw; /* أصغر من 85 */
-    max-width: 300px;
-    padding: 6px 10px;
-    font-size: 13px;
-    border-radius: 6px;
+    width: 85vw; /* أكبر شوي */
+    max-width: 340px;
+    padding: 10px 16px;
+    font-size: 17px; /* أكبر */
+    border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transform: scale(0.9); /* يصغر الصندوق نفسه */
+    transform: scale(0.95);
   }
 
   #modalMessage {
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 14px; /* أكبر */
+    line-height: 1.5;
   }
 
   .modal-buttons button {
-    font-size: 12px;
-    padding: 4px 10px;
-    margin: 4px;
+    font-size: 14px; /* أكبر */
+    padding: 8px 14px;
+    margin: 6px;
   }
 }
-
 
 
 
@@ -740,23 +631,47 @@ textarea:focus {
   display: none;
 }
 
+.feelings label,
+.feelings label:focus,
+.feelings label:active {
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent; /* لمنع تأثير اللمس الأزرق على أندرويد */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
+.section input[type="checkbox"],
+.section input[type="radio"],
+.section label,
+.section label:focus,
+.section label:active {
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent; /* لمنع تأثير التحديد الأزرق في أندرويد */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 .feeling-emoji {
   position: absolute;
   top: -10px;
   right: -10px;
   font-size: 20px;
   pointer-events: none;
-  animation: emojiFade 2s ease forwards;
   opacity: 0;
   z-index: 10;
-  transform: translateY(0);
+  transform: translateY(0) scale(0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.feeling-emoji.show {
+  opacity: 1;
+  transform: translateY(-20px) scale(1.2);
 }
 
 .feelings label {
   position: relative; /* مهم جداً علشان الإيموجي يتمركز عليه */
   overflow: visible;
 }
+
 
 
 @keyframes emojiFade {
@@ -788,7 +703,7 @@ textarea:focus {
   cursor: pointer;
   z-index: 1001;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: right 1.3s ease-in-out, background 1.3s;
+  transition: background 0.3s;
 }
 .tasks-toggle:hover {
   background-color: #efefef;
@@ -887,7 +802,10 @@ textarea:focus {
   opacity: 1;
 }
 
-
+.tasks-toggle.shifted {
+  right: calc(50px + 250px);
+  transition: right 0.3s ease;
+}
 
 
 
@@ -986,7 +904,7 @@ textarea:focus {
 
 .day-badge {
   position: fixed;
-  top: 550px; /* نازل شوية لتحت */
+  top: 600px; /* نازل شوية لتحت */
   left:-3px;
   background-color: #00ccff;
   color: white;
@@ -1006,15 +924,16 @@ textarea:focus {
   top: -200px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: transparent;       /* ✅ بدون خلفية بيضاء */
-  backdrop-filter: none;               /* ✅ بدون ضبابية */
+  background-color: transparent;
+  backdrop-filter: none;
   border-radius: 12px;
   padding: 16px 20px;
-  box-shadow: none;                    /* ❌ لو مش عايز ظل خالص، أو خليه خفيف */
+  box-shadow: none;
   z-index: 99999;
   opacity: 0;
+  pointer-events: none; /* لمنع التفاعل وهو مخفي */
   transition: top 1s ease-out, opacity 0.6s ease;
-  display: none;
+  display: flex; /* دايماً flex */
   justify-content: center;
   align-items: center;
   max-width: 90%;
@@ -1026,7 +945,7 @@ textarea:focus {
 #welcomeModal.show {
   top: 2px;
   opacity: 1;
-  display: flex;
+  pointer-events: auto; /* يسمح بالتفاعل */
 }
 
 .danger-btn {
@@ -1036,63 +955,4 @@ textarea:focus {
 
 .danger-btn:hover {
   background-color: #c0392b !important;
-}
-
-.app-prompt {
-  position: fixed;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #ffffff;
-  border: 1px solid #e0f1f5;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 10px 14px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  z-index: 9999;
-  transition: bottom 0.5s ease, opacity 0.5s ease;
-  opacity: 0;
-}
-
-.app-prompt.show {
-  bottom: 15px;
-  opacity: 1;
-}
-
-.prompt-text {
-  color: #2c3e50;
-  font-weight: bold;
-}
-
-.download-app {
-  background-color: #00ccff;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-family: 'Tajawal', sans-serif;
-}
-
-.browse-site {
-  background-color: #ccc;
-  color: #333;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-family: 'Tajawal', sans-serif;
-}
-
-.download-app:hover {
-  background-color: #0099cc;
-}
-
-.browse-site:hover {
-  background-color: #bbb;
 }
