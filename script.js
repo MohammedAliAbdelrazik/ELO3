@@ -66,19 +66,16 @@ function toggleSidebar() {
   sidebar.classList.toggle("open");
 
   const tasksToggle = document.querySelector(".tasks-toggle");
+  tasksToggle.classList.toggle("shifted"); // ده الكلاس الجديد
 
-  // ✅ شيل الكلاس shifted مش محتاجينه خلاص
-  // وحط مكانه التعديل المباشر للمكان
   if (sidebar.classList.contains("open")) {
-    const sidebarWidth = sidebar.offsetWidth;
-    tasksToggle.style.right = (sidebarWidth + 20) + "px";
+    // شيل الـ collapsed أول ما تتفتح
     sidebar.classList.remove("collapsed");
   } else {
-    tasksToggle.style.right = "70px";
+    // ضيف الـ collapsed أول ما تتقفل
     sidebar.classList.add("collapsed");
   }
 }
-
 
 
 
@@ -292,7 +289,7 @@ entry.tasks = tasks;
   
 
   viewData(); // علشان يحدث القائمة فورًا
-   setTimeout(() => location.reload(), 500);
+  setTimeout(() => location.reload(), 500);
 
 }
 
@@ -505,13 +502,18 @@ document.querySelectorAll('input[name="feeling"]').forEach(input => {
     emojiSpan.classList.add("feeling-emoji");
     label.appendChild(emojiSpan);
 
-    // إزالة بعد ثانيتين (احتياطي)
+    // نستخدم setTimeout لإضافة الكلاس .show بعد قليل لبدء الانتقال
     setTimeout(() => {
-      emojiSpan.remove();
+      emojiSpan.classList.add("show");
+    }, 10);
+
+    // إزالة الإيموجي بعد 2 ثانية مع إزالة الكلاس لتشغيل الانتقال بشكل سلس
+    setTimeout(() => {
+      emojiSpan.classList.remove("show");
+      setTimeout(() => emojiSpan.remove(), 500); // ننتظر انتهاء الانتقال قبل الحذف
     }, 2000);
   });
 });
-
 // أول ما الصفحة تفتح، نستنى ٥ ثواني قبل أول سؤال
 setTimeout(() => {
   const currentDay = parseInt(document.getElementById('day').value, 10) || 1;
@@ -560,10 +562,11 @@ async function askAboutYesterday(currentDay) {
 
     // رد إيجابي عشوائي
     const positiveResponses = [
-      "ممتاز يا أشوش، أنا مبسوط منك ",
-      "هايل يا أيوش 💖",
-      "أنتي أحسن حد بيعرف ينجّز مهامه ",
-      "أنا مبسوط منك أوي 🥰"
+      "كوتي كوتي أنتي خلصي مهامك 🥺",
+      "أنتي أشطر كتكوت 💖",
+      " أحسن حد بيعرف ينجز مهامه ",
+      "أنا مبسوط منك أوي 🥰",
+      "أنتي شطووره علطول "
     ];
     const randomPositive = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
     await showModal(
@@ -574,10 +577,11 @@ async function askAboutYesterday(currentDay) {
   } else {
     // رد سلبي عشوائي بدون تعديل الحالة
     const negativeResponses = [
-      "ليه كده يا أيلو؟ طيب يلا نبدأ؟ ",
-      "مفيش مشكلة، كلنا بتحصل لنا ظروف تعطّلنا 💜",
-      "كنت فاكرك خلّصتيهم بصراحة ، بس مش مشكلة يلا ننجزهم الأول! ",
-      "ما تقلقيش، نقدر نبدأ من جديد ونخلّصهم سوا 🤗"
+      "جدعة",
+      "🤨🤨",
+      "مبسوط منك🤨  ",
+      "تماام ",
+
     ];
     const randomNegative = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
     await showModal(
@@ -614,16 +618,14 @@ function showWelcomeMessage(message) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const greetingMessages = [
-    "صباح الخير ❤",
-"يارب يومك كله يبقى حنية زي قلبك ❤",
+    "يارب يومك كله يبقى حنية زي قلبك ❤",
+    "صباح الخير يا وش السعد ❤ ",
     "اوووه إيه الحلويات دي؟ أنا بفرح لما بشوفك أوي 🥰",
     "غيابك طول وحشتيني أوي 💜",
     "هو في حلاويات أكثر من كده؟؟ 😍",
     "فين الجميل من بدري ؟",
     "أيووووه كده نورت الدنيا كلها 🥰",
     "فينك من بدري؟ كنت مستنيكي 🤨",
-    "أووه أنا طول عنري أسمع عن نوع حلويات أيوش أول مره أشوفه 😍"
-   
   ];
   const randomGreeting = greetingMessages[Math.floor(Math.random() * greetingMessages.length)];
 
@@ -631,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lastShown = localStorage.getItem("welcome_shown_at");
   const now = Date.now();
 
-  if (!lastShown || now - parseInt(lastShown) > 12 * 60 * 60 * 1000  ) { // ✅ عدّى 30 ثانية
+  if (!lastShown || now - parseInt(lastShown) > 9000  ) { // ✅ عدّى 30 ثانية
     showWelcomeMessage(randomGreeting);
     localStorage.setItem("welcome_shown_at", now);
   }
@@ -720,15 +722,12 @@ document.addEventListener('click', function (e) {
   sidebar.classList.remove('open');
   tasksDropdown.classList.remove('open');
   tasksToggle.classList.remove('shifted');
-  // ✅ تعديل مكان زر المهام لما القائمة الجانبية تتقفل
-tasksToggle.style.right = '70px';
 
   // ✅ اقفل عرض اليوميات بس لو الضغط مش داخلها
   if (output.classList.contains('show')) {
     output.classList.remove('show');
     setTimeout(() => output.innerHTML = '', 400);
   }
- 
 });
 
 
@@ -793,44 +792,3 @@ function closeTaskModal() {
   const modal = document.getElementById("taskModal");
   modal.style.display = "none";
 }
-
-
-function showAppPrompt() {
-    const prompt = document.getElementById('appPrompt');
-    prompt.classList.add('show');
-
-    // إخفاء تلقائي بعد 3 ثواني
-    setTimeout(() => {
-      prompt.classList.remove('show');
-    }, 6000);
-  }
-
-  function hideAppPrompt() {
-    document.getElementById('appPrompt').classList.remove('show');
-  }
-
-  // عرض الرسالة عند تحميل الصفحة
-  window.addEventListener('load', () => {
-    setTimeout(showAppPrompt, 500); // تأخير بسيط عشان السلاسة
-  });
-function adjustTasksButton() {
-  const tasksToggle = document.querySelector(".tasks-toggle");
-  const sidebar = document.querySelector(".sidebar");
-
-  if (!tasksToggle || !sidebar) return;
-
-  if (sidebar.classList.contains("open")) {
-    const sidebarWidth = sidebar.offsetWidth;
-    tasksToggle.style.right = (sidebarWidth + 20) + "px";
-  } else {
-    tasksToggle.style.right = "70px";
-  }
-}
-
-// عند تغيير حجم الشاشة
-window.addEventListener("resize", adjustTasksButton);
-
-// لو السايدبار مفتوح عند تحميل الصفحة
-window.addEventListener("load", adjustTasksButton);
-
-
