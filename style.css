@@ -788,7 +788,6 @@ textarea:focus {
   cursor: pointer;
   z-index: 1001;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background 0.3s;
   transition: right 0.3s ease-in-out, background 0.3s;
 }
 .tasks-toggle:hover {
