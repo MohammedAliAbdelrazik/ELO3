@@ -904,11 +904,11 @@ textarea:focus {
 
 .day-badge {
   position: fixed;
-  top: 590px; /* نازل شوية لتحت */
+  top: 580px; /* نازل شوية لتحت */
   left:-3px;
   background-color: #00ccff;
   color: white;
-  padding: 10px 14px;
+  padding: 7px 14px;
   border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
