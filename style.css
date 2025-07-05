@@ -502,7 +502,7 @@ textarea:focus {
     top: 30px;
     font-size: 13px; /* حجم أكبر */
     padding: 8px 14px;
-    border-radius: 10px;/* حواف أكبر */
+    border-radius: 10px !important;/* حواف أكبر */
   }
 
   .sidebar-toggle {
