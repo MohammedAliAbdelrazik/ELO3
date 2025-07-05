@@ -536,10 +536,11 @@ textarea:focus {
   }
 
   .tasks-dropdown {
-    
+    position: absolute;
+    word-wrap: break-word;
     width: 140px !important;       /* حجم أكبر شوي */
     min-width: 120px;
-    max-width: 100px;
+   max-width: 90vw;
     font-size: 12px; /* حجم خط أكبر */
     padding: 6px 8px;
     border-radius: 8px;
