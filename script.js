@@ -794,20 +794,33 @@ function closeTaskModal() {
 }
 
 function showAppPrompt() {
-    const prompt = document.getElementById('appPrompt');
-    prompt.classList.add('show');
+  const prompt = document.getElementById('appPrompt');
+  prompt.classList.add('show');
 
-    // إخفاء تلقائي بعد 3 ثواني
-    setTimeout(() => {
-      prompt.classList.remove('show');
-    }, 6000);
-  }
+  // إخفاء تلقائي بعد 6 ثواني
+  setTimeout(() => {
+    prompt.classList.remove('show');
+  }, 6000);
 
-  function hideAppPrompt() {
-    document.getElementById('appPrompt').classList.remove('show');
-  }
+  // حفظ توقيت العرض الحالي
+  const now = Date.now();
+  localStorage.setItem('last_app_prompt_time', now);
+}
 
-  // عرض الرسالة عند تحميل الصفحة
-  window.addEventListener('load', () => {
-    setTimeout(showAppPrompt, 500); // تأخير بسيط عشان السلاسة
-  });
+function hideAppPrompt() {
+  document.getElementById('appPrompt').classList.remove('show');
+}
+
+// عرض الرسالة عند تحميل الصفحة
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const lastShown = localStorage.getItem('last_app_prompt_time');
+    const now = Date.now();
+
+    // لو أول مرة أو فات أكتر من ساعتين
+    if (!lastShown || now - parseInt(lastShown) >= 2 * 60 * 60 * 1000) {
+      showAppPrompt();
+    }
+  }, 500); // تأخير بسيط عشان السلاسة
+});
+
