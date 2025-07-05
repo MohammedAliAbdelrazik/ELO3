@@ -528,7 +528,7 @@ textarea:focus {
   }
 
   .tasks-toggle.shifted {
-    right: 226px !important; /* جرب رقم مناسب لحجم السايدبار */
+    right: 215px !important; /* جرب رقم مناسب لحجم السايدبار */
   }
 
   .sidebar {
