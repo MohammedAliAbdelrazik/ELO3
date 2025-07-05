@@ -720,13 +720,15 @@ document.addEventListener('click', function (e) {
   sidebar.classList.remove('open');
   tasksDropdown.classList.remove('open');
   tasksToggle.classList.remove('shifted');
+  // ✅ تعديل مكان زر المهام لما القائمة الجانبية تتقفل
+tasksToggle.style.right = '70px';
 
   // ✅ اقفل عرض اليوميات بس لو الضغط مش داخلها
   if (output.classList.contains('show')) {
     output.classList.remove('show');
     setTimeout(() => output.innerHTML = '', 400);
   }
-   adjustTasksButton();
+ 
 });
 
 
