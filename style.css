@@ -887,10 +887,7 @@ textarea:focus {
   opacity: 1;
 }
 
-.tasks-toggle.shifted {
-  right: calc(50px + 250px);
-  transition: right 0.3s ease;
-}
+
 
 
 
